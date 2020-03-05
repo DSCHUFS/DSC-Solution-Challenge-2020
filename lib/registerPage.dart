@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flare_flutter/flare_actor.dart';
@@ -14,11 +16,7 @@ const List<String> infoList = ['클라이언트', '생활관리사', '보호자'
 class RegisterPage extends StatefulWidget {
   static const id = 'register_page';
 
-  @override
-  _RegisterPageState createState() => _RegisterPageState();
-}
 
-class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
   String email;
   String password;
@@ -514,8 +512,10 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
           ],
+
         ),
       ),
     );
   }
 }
+
