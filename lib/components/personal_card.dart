@@ -10,7 +10,7 @@ class PersonalCard extends StatelessWidget {
 
   final String name;
   final int age;
-  final Image photo;
+  final ImageProvider photo;
 
   static const mainTextStyle = TextStyle(
     fontSize: 20.0,
@@ -22,48 +22,47 @@ class PersonalCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Expanded(
-            flex: 3,
-            child: photo,
+          CircleAvatar(
+            radius: 40.0,
+            backgroundImage: photo,
           ),
-          SizedBox(width: 20.0,),
-          Expanded(
-            flex: 5,
-            child: Text(
-              name,
-              style: mainTextStyle,
+          Container(
+            padding: EdgeInsets.all(20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  name,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+                SizedBox(height: 5.0,),
+                Text(
+                  '$age / 남',
+                  style: TextStyle(
+                    color: Colors.black54,
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+              ],
             ),
           ),
-          Expanded(
-            flex: 2,
-            child: Text(
-              '${age} 세',
-              style: mainTextStyle,
-            ),
+          SizedBox(width: 120.0),
+          Icon(
+            Icons.keyboard_arrow_right,
+            color: Colors.black45,
+            size: 40.0,
           ),
         ],
-      ),
-      margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
-      height: 120.0,
-      padding: EdgeInsets.all(10.0),
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow( 
-            color: Colors.grey,
-            blurRadius: 3.0, // has the effect of softening the shadow
-            spreadRadius: 1.0, // has the effect of extending the shadow
-            offset: Offset(
-              3.0, // horizontal, move right 10
-              3.0, // vertical, move down 10
-            ),
-          ),
-        ],
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10.0),
       ),
     );
   }
 }
-

@@ -1,4 +1,4 @@
-import 'package:dsc_solution_challenge_2020/registerPage.dart';
+import 'package:dsc_solution_challenge_2020/signInPage.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:email_validator/email_validator.dart';
@@ -332,7 +332,7 @@ class _LoginPageState extends State<LoginPage> {
                         child: RaisedButton(
                           elevation: 5.0,
                           onPressed: () {
-                            Navigator.pushNamed(context, RegisterPage.id);
+                            Navigator.pushNamed(context, SignInPage.id);
                           },
                           padding: EdgeInsets.all(15.0),
                           shape: RoundedRectangleBorder(
