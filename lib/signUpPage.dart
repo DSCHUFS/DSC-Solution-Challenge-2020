@@ -249,7 +249,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               color: Colors.black54,
                             ),
                             prefixIcon: Icon(
-                              Icons.person,
+                              Icons.person_outline,
                               color: Colors.blue,
                               size: 30,
                             ),
