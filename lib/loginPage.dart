@@ -1,8 +1,11 @@
+import 'package:dsc_solution_challenge_2020/mainPage.dart';
 import 'package:dsc_solution_challenge_2020/signUpPage.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   static const id = 'login_page';
@@ -16,10 +19,41 @@ class _LoginPageState extends State<LoginPage> {
   String reEmail;
   String password;
   bool showSpinner = false;
+  bool autologin = false;
 
   final _formKey = GlobalKey<FormState>();
   final _formKeySecond = GlobalKey<FormState>();
-  bool _rememberMe = false;
+  final _auth = FirebaseAuth.instance;
+
+  void autoLogIn() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final bool isAutoLogin = prefs.getBool('autoLogin');
+    final List<String> savedUserInfo = prefs.getStringList('ID');
+
+    setState(() {
+      showSpinner=true;
+    });
+    if (isAutoLogin == true) {
+      try {
+        final user = await _auth.signInWithEmailAndPassword(
+            email: savedUserInfo[0], password: savedUserInfo[1]);
+        if (user != null) {
+          Navigator.pushNamed(context, MainPage.id);
+        }
+      } catch (e) {
+        print(e);
+      }
+    }
+    setState(() {
+      showSpinner=false;
+    });
+  }
+
+  @override
+  void initState() {
+    autoLogIn();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -153,12 +187,12 @@ class _LoginPageState extends State<LoginPage> {
                             data:
                                 ThemeData(unselectedWidgetColor: Colors.black),
                             child: Checkbox(
-                              value: _rememberMe,
-                              checkColor: Colors.black,
+                              value: autologin,
+                              checkColor: Colors.white,
                               activeColor: Colors.blue,
                               onChanged: (value) {
                                 setState(() {
-                                  _rememberMe = value;
+                                  autologin = value;
                                 });
                               },
                             ),
@@ -184,6 +218,9 @@ class _LoginPageState extends State<LoginPage> {
                                 return Form(
                                   key: _formKeySecond,
                                   child: AlertDialog(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
                                     content: new TextFormField(
                                       keyboardType: TextInputType.emailAddress,
                                       key: Key('reEmail'),
@@ -203,25 +240,57 @@ class _LoginPageState extends State<LoginPage> {
                                     actions: <Widget>[
                                       new FlatButton(
                                         child: new Text("확인"),
-                                        onPressed: () {
+                                        onPressed: () async {
                                           if (_formKeySecond.currentState
                                               .validate()) {
                                             setState(() {
                                               showSpinner = true;
                                             });
                                             try {
-                                              setState(() {
-                                                showSpinner = false;
-                                              });
-                                            } catch (e) {
-                                              print(e);
+                                              await _auth
+                                                  .sendPasswordResetEmail(
+                                                      email: reEmail);
+                                              Navigator.pop(context);
                                               showDialog(
                                                   context: context,
                                                   builder:
                                                       (BuildContext context) {
                                                     return AlertDialog(
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10)),
                                                       content:
-                                                          Text("없는 이메일 입니다."),
+                                                          Text("이메일을 확인해주세요."),
+                                                      actions: <Widget>[
+                                                        new FlatButton(
+                                                          onPressed: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                          },
+                                                          child: Text("확인"),
+                                                        )
+                                                      ],
+                                                    );
+                                                  });
+                                            } catch (e) {
+                                              print(e);
+                                              Navigator.pop(context);
+                                              showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (BuildContext context) {
+                                                    return AlertDialog(
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10)),
+                                                      content: Text(
+                                                          "존재하지 않는 계정입니다."),
                                                       actions: <Widget>[
                                                         new FlatButton(
                                                           onPressed: () {
@@ -280,21 +349,35 @@ class _LoginPageState extends State<LoginPage> {
                       width: 200,
                       child: RaisedButton(
                         elevation: 5.0,
-                        onPressed: () {
+                        onPressed: () async {
                           if (_formKey.currentState.validate()) {
                             setState(() {
                               showSpinner = true;
                             });
                             try {
-                              setState(() {
-                                showSpinner = false;
-                              });
+                              final user =
+                                  await _auth.signInWithEmailAndPassword(
+                                      email: email, password: password);
+                              final SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              if (user != null) {
+                                Navigator.pushNamed(context, MainPage.id);
+                                prefs.setBool('autoLogin', autologin);
+                                if (autologin) {
+                                  prefs.setStringList('ID', [email, password]);
+                                } else {
+                                  prefs.setStringList('ID', ['', '']);
+                                }
+                              }
                             } catch (e) {
                               print(e);
                               showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
                                     return AlertDialog(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       content: Text("이메일과 비밀번호를 확인해주세요."),
                                       actions: <Widget>[
                                         new FlatButton(

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>279767397629-e2ihmg94j4v260ledlhatciqplg9bnvi.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.279767397629-e2ihmg94j4v260ledlhatciqplg9bnvi</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB1f3aWMXiYTNVMDHIF92UH_hlUqwD9-rs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>279767397629</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.dschufs.dscSolutionChallenge2020</string>
+	<key>PROJECT_ID</key>
+	<string>dsc-solution-challenge-6c028</string>
+	<key>STORAGE_BUCKET</key>
+	<string>dsc-solution-challenge-6c028.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:279767397629:ios:8a03263671e32a8a687a94</string>
+	<key>DATABASE_URL</key>
+	<string>https://dsc-solution-challenge-6c028.firebaseio.com</string>
+</dict>
+</plist>
