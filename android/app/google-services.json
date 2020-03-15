@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "279767397629",
+    "firebase_url": "https://dsc-solution-challenge-6c028.firebaseio.com",
+    "project_id": "dsc-solution-challenge-6c028",
+    "storage_bucket": "dsc-solution-challenge-6c028.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279767397629:android:11a47e7515d4f6c7687a94",
+        "android_client_info": {
+          "package_name": "com.dschufs.dsc_solution_challenge_2020"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "279767397629-ahngk5hnrepufgn06mrar3pf1ba9vk51.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYBNPkNrTFbZ0WA4hjIsHwB0-jffnZoOk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "279767397629-ahngk5hnrepufgn06mrar3pf1ba9vk51.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
