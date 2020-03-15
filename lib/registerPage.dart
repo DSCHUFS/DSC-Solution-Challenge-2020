@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dsc_solution_challenge_2020/models/profile.dart';
 import 'package:dsc_solution_challenge_2020/components/alertPopup.dart';
+import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function addProfileCallback;
@@ -27,7 +28,7 @@ class _RegisterPageState extends State<RegisterPage> {
               Container(
                 margin: EdgeInsets.all(10.0),
                 child: Text(
-                  '관리 대상자 등록',
+                  '등록하기',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 30.0,
@@ -36,58 +37,58 @@ class _RegisterPageState extends State<RegisterPage> {
                   textAlign: TextAlign.left,
                 ),
               ),
-              Container(
-                margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
-                child: Text(
-                  '이름',
-                  style: TextStyle(
-                    fontSize: 15.0,
-                  ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.fromLTRB(20, 0, 20, 10),
-                child: TextField(
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {
-                    name = value;
-                  },
-                  decoration: InputDecoration(
-                    labelText: "이름을 입력하세요",
-                    labelStyle: TextStyle(
+              ContainerBox(
+                Column(
+                  children: <Widget>[
+                    Text(
+                      '이름',
+                      style: TextStyle(
                         fontSize: 15.0,
-                        color: Colors.grey),
-                  ),
+                      ),
+                    ),
+                    TextField(
+                      textAlign: TextAlign.center,
+                      onChanged: (value) {
+                        name = value;
+                      },
+                      decoration: InputDecoration(
+                        labelText: "이름을 입력하세요",
+                        labelStyle: TextStyle(
+                            fontSize: 15.0,
+                            color: Colors.grey),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              Container(
-                margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
-                child: Text(
-                  '나이',
-                  style: TextStyle(
-                    fontSize: 15.0,
-                  ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.fromLTRB(20, 0, 20, 10),
-                child: TextField(
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {
-                    age = int.parse(value);
-                  },
-                  decoration: InputDecoration(
-                    labelText: "나이를 입력하세요",
-                    labelStyle: TextStyle(
+              ContainerBox(
+                Column(
+                  children: <Widget>[
+                    Text(
+                      '나이',
+                      style: TextStyle(
                         fontSize: 15.0,
-                        color: Colors.grey),
-                  ),
+                      ),
+                    ),
+                    TextField(
+                      textAlign: TextAlign.center,
+                      onChanged: (value) {
+                        age = int.parse(value);
+                      },
+                      decoration: InputDecoration(
+                        labelText: "나이를 입력하세요",
+                        labelStyle: TextStyle(
+                            fontSize: 15.0,
+                            color: Colors.grey),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Container(
                 margin: EdgeInsets.fromLTRB(20, 30, 20, 10),
                 child: FlatButton(
-                  child: Text('등록하기'),
+                  child: Text('등록'),
                   onPressed: () {
                     if(name == null || name == ''){
                       alertPopup(context, 1);
