@@ -3,6 +3,7 @@ import 'package:dsc_solution_challenge_2020/components/personal_card.dart';
 import 'package:dsc_solution_challenge_2020/models/profile.dart';
 import 'package:dsc_solution_challenge_2020/registerPage.dart';
 import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
+import 'package:dsc_solution_challenge_2020/components/customAppBar.dart';
 
 List<Profile> profiles = [Profile(name: '펭 수', age: 10, address: 'EBS소품실', photo: AssetImage('images/pengsoo.jpeg'), comments: '펭-하!', phoneNumber: '비밀')];
 
@@ -115,6 +116,7 @@ class _MainPageState extends State<MainPage> {
         },
         child: Icon(Icons.add),
       ),
+      bottomNavigationBar: CustomAppBar(),
     );
   }
 }
