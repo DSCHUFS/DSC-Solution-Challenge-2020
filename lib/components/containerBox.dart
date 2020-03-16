@@ -10,7 +10,7 @@ class ContainerBox extends StatelessWidget {
     return Container(
       child: inputChild,
       margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-      height: 80.0,
+      //height: 80.0,
       padding: EdgeInsets.all(20.0),
       decoration: BoxDecoration(
         boxShadow: [
