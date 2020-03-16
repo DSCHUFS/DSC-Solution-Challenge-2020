@@ -6,11 +6,13 @@ class PersonalCard extends StatelessWidget {
     @required this.name, 
     @required this.age, 
     @required this.photo, 
+    @required this.gender,
   });
 
   final String name;
   final int age;
   final ImageProvider photo;
+  final String gender;
 
   static const mainTextStyle = TextStyle(
     fontSize: 20.0,
@@ -22,7 +24,7 @@ class PersonalCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           CircleAvatar(
             radius: 40.0,
@@ -31,7 +33,7 @@ class PersonalCard extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(20.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              //crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Text(
                   name,
@@ -44,7 +46,7 @@ class PersonalCard extends StatelessWidget {
                 ),
                 SizedBox(height: 5.0,),
                 Text(
-                  '$age / 남',
+                  '$age / $gender',
                   style: TextStyle(
                     color: Colors.black54,
                     fontSize: 15.0,
@@ -55,7 +57,7 @@ class PersonalCard extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(width: 120.0),
+          SizedBox(width: 80.0),
           Icon(
             Icons.keyboard_arrow_right,
             color: Colors.black45,
