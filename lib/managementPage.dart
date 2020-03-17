@@ -1,21 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
+import 'package:dsc_solution_challenge_2020/models/profile.dart';
 
 class ManagementPage extends StatelessWidget {
+  final Profile profile;
+
+  ManagementPage(@required this.profile);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         child: SafeArea(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              FlatButton(
+                child: Icon(
+                  Icons.keyboard_arrow_left,
+                  color: Colors.black87,
+                  size: 40.0,
+                ),
+                onPressed: (){
+                  Navigator.pop(context);
+                },
+              ),
               ContainerBox(
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     CircleAvatar(
-                      radius: 40.0,
+                      radius: 50.0,
                       backgroundImage: AssetImage('images/pengsoo.jpeg'),
                     ),
                     Container(
@@ -24,17 +40,17 @@ class ManagementPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            '홍 길 동',
+                            profile.name,
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25.0,
+                              fontSize: 35.0,
                               fontWeight: FontWeight.bold,
                             ),
                             textAlign: TextAlign.left,
                           ),
                           SizedBox(height: 5.0,),
                           Text(
-                            '69세 / 여',
+                            '${profile.age} / ${profile.gender}',
                             style: TextStyle(
                               color: Colors.black54,
                               fontSize: 15.0,
@@ -49,17 +65,32 @@ class ManagementPage extends StatelessWidget {
                 ),
               ),
               ContainerBox(
-                Text(
-                  '특이사항',
-                  style: TextStyle(
-                    fontSize: 27.0,
-                    color: Colors.black87,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ), 
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Text(
+                      '특이사항',
+                      style: TextStyle(
+                        fontSize: 27.0,
+                        color: Colors.black87,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ), 
+                    SizedBox(height: 10.0,),
+                    Text(
+                      'abc', //데이터 가져오기
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.black87,
+                      ),),
+                  ],
+                )
+                
+                
               ),
               ContainerBox(
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -80,19 +111,38 @@ class ManagementPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Text('2020/01/31 보고서')
+                    SizedBox(height: 10.0,),
+                    Text(
+                      '2020/01/31 보고서',
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          color: Colors.black87,
+                        ),),
                   ],
                 ),
               ),
               ContainerBox(
-                Text(
-                  '기본 정보',
-                  style: TextStyle(
-                    fontSize: 27.0,
-                    color: Colors.black87,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ), 
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Text(
+                      '기본 정보',
+                      style: TextStyle(
+                        fontSize: 27.0,
+                        color: Colors.black87,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ), 
+                    SizedBox(height: 10.0,),
+                    Text(
+                      '주소 ${profile.address}',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.black87,
+                      ),),
+                  ],
+                )
+                
               ),
             ],
           ),
