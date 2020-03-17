@@ -21,6 +21,19 @@ class _SignUpPageState extends State<SignUpPage> {
   String chkPassword;
   String name;
   bool showSpinner = false;
+  FocusNode resNum;
+
+  @override
+  void initState() {
+    resNum = FocusNode();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    resNum.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -242,33 +255,77 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                           ),
                           SizedBox(height: 10.0),
-                          TextFormField(
-                            inputFormatters: [
-                              WhitelistingTextInputFormatter.digitsOnly
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Flexible(
+                                child: TextFormField(
+                                  onChanged: (value) {
+                                    if(value.length==6){
+                                      resNum.requestFocus();
+                                    }
+                                  },
+                                  inputFormatters: [
+                                    WhitelistingTextInputFormatter.digitsOnly,
+                                    LengthLimitingTextInputFormatter(6),
+                                  ],
+                                  keyboardType: TextInputType.number,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                  ),
+                                  decoration: InputDecoration(
+                                    hintText: '생년월일',
+                                    hintStyle: TextStyle(
+                                      color: Colors.black54,
+                                    ),
+                                  ),
+                                  validator: (value) {
+                                    if (value.length != 6) {
+                                      return "6자리를 입력해주세요.";
+                                    } else {
+                                      return null;
+                                    }
+                                  },
+                                ),
+                              ),
+                              SizedBox(width: 15),
+                              Text(
+                                "-",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              SizedBox(width: 15),
+                              Flexible(
+                                child: TextFormField(
+                                  focusNode: resNum,
+                                  inputFormatters: [
+                                    WhitelistingTextInputFormatter.digitsOnly,
+                                    LengthLimitingTextInputFormatter(1),
+                                  ],
+                                  keyboardType: TextInputType.number,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                  ),
+                                  decoration: InputDecoration(
+                                    hintText: '앞 1자리',
+                                    hintStyle: TextStyle(
+                                      color: Colors.black54,
+                                    ),
+                                  ),
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return "앞 1자리를 입력해주세요.";
+                                    } else {
+                                      return null;
+                                    }
+                                  },
+                                ),
+                              ),
                             ],
-                            keyboardType: TextInputType.number,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20,
-                            ),
-                            decoration: InputDecoration(
-                              hintText: '앞 7자리까지 입력해주세요.',
-                              hintStyle: TextStyle(
-                                color: Colors.black54,
-                              ),
-                              prefixIcon: Icon(
-                                Icons.person_outline,
-                                color: Colors.blue,
-                                size: 30,
-                              ),
-                            ),
-                            validator: (value) {
-                              if (value.length != 7) {
-                                return "7자리 입력해주세요.";
-                              } else {
-                                return null;
-                              }
-                            },
                           ),
                         ],
                       ),
