@@ -4,8 +4,9 @@ import 'package:dsc_solution_challenge_2020/models/profile.dart';
 import 'package:dsc_solution_challenge_2020/registerPage.dart';
 import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
 import 'package:dsc_solution_challenge_2020/components/customAppBar.dart';
+import 'package:dsc_solution_challenge_2020/managementPage.dart';
 
-List<Profile> profiles = [Profile(name: '펭 수', age: 10, address: 'EBS소품실', photo: AssetImage('images/pengsoo.jpeg'), comments: '펭-하!', phoneNumber: '비밀')];
+List<Profile> profiles = [Profile(name: '펭 수', age: 10, address: 'EBS소품실', photo: AssetImage('images/pengsoo.jpeg'), comments: '펭-하!', phoneNumber: '비밀',gender: '남'), Profile(name: '펭 하', age: 15, address: 'EBS소품실', photo: AssetImage('images/pengsoo.jpeg'), comments: '펭-하!', phoneNumber: '비밀',gender: '여')];
 
 class MainPage extends StatefulWidget {
   
@@ -88,10 +89,18 @@ class _MainPageState extends State<MainPage> {
                 child: ContainerBox(
                   ListView.builder(
                     itemBuilder: (context, index) {
-                      return PersonalCard(
-                        name: profiles[index].name,
-                        age: profiles[index].age,
-                        photo: profiles[index].photo,
+                      return FlatButton(
+                        child: PersonalCard(
+                          name: profiles[index].name,
+                          age: profiles[index].age,
+                          photo: profiles[index].photo,
+                          gender: profiles[index].gender,
+                        ),
+                        onPressed: (){
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) => ManagementPage(profiles[index]),)
+                          );
+                        },
                       );
                     },
                     itemCount: profiles.length,
@@ -107,11 +116,11 @@ class _MainPageState extends State<MainPage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => RegisterPage((newProfile) {
-                      setState(() {
-                        profiles.add(newProfile);
-                      });
-                    }))
+              builder: (context) => RegisterPage((newProfile) {
+                    setState(() {
+                      profiles.add(newProfile);
+                    });
+                  }))
           );
         },
         child: Icon(Icons.add),
