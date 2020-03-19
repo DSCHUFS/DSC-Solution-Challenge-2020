@@ -1,5 +1,6 @@
 import 'package:dsc_solution_challenge_2020/loginPage.dart';
 import 'package:dsc_solution_challenge_2020/registerPage.dart';
+import 'package:dsc_solution_challenge_2020/reportPage.dart';
 import 'package:flutter/material.dart';
 import 'package:dsc_solution_challenge_2020/mainPage.dart';
 import 'package:dsc_solution_challenge_2020/signUpPage.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         MainPage.id: (context) => MainPage(),
         LoginPage.id: (context) => LoginPage(),
         SignUpPage.id: (context) => SignUpPage(),
-        
+        ReportPage.id: (context) => ReportPage(),
       },
     );
   }
