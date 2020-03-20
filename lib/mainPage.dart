@@ -1,3 +1,4 @@
+import 'package:dsc_solution_challenge_2020/reportListPage.dart';
 import 'package:flutter/material.dart';
 import 'package:dsc_solution_challenge_2020/components/personal_card.dart';
 import 'package:dsc_solution_challenge_2020/models/profile.dart';
@@ -61,6 +62,17 @@ class _MainPageState extends State<MainPage> {
                         ],
                       ),
                     ),
+                    // 로그아웃 버튼
+                    Container(
+                      margin: EdgeInsets.only(left: 110.0),
+                      child: InkWell(
+                        onTap: () {
+
+                        },
+                        child: Text('Logout'),
+                      ),
+
+                    ),
                   ],
                 ),
               ),
@@ -77,10 +89,17 @@ class _MainPageState extends State<MainPage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Icon(
-                      Icons.keyboard_arrow_right,
-                      color: Colors.black45,
-                      size: 40.0,
+                    IconButton(
+                      icon: Icon(
+                        Icons.keyboard_arrow_right,
+                        color: Colors.black45,
+                        size: 40.0,
+                      ),
+                      onPressed: () {
+                        Navigator.push(context, 
+                        MaterialPageRoute(builder: (context) => ReportListPage())
+                        );
+                      },
                     ),
                   ],
                 ),
