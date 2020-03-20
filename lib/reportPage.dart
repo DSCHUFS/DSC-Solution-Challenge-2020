@@ -356,7 +356,7 @@ class _ReportPageState extends State<ReportPage> {
                         ),
                         decoration: InputDecoration(
                           hintText: '여기 입력하세요.',
-                          // border: OutlineInputBorder(),
+                          border: OutlineInputBorder(),
                         ),
                       )
                     ],

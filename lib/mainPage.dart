@@ -1,4 +1,6 @@
+import 'package:dsc_solution_challenge_2020/loginPage.dart';
 import 'package:dsc_solution_challenge_2020/reportListPage.dart';
+import 'package:dsc_solution_challenge_2020/reportPage.dart';
 import 'package:flutter/material.dart';
 import 'package:dsc_solution_challenge_2020/components/personal_card.dart';
 import 'package:dsc_solution_challenge_2020/models/profile.dart';
@@ -6,6 +8,8 @@ import 'package:dsc_solution_challenge_2020/registerPage.dart';
 import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
 import 'package:dsc_solution_challenge_2020/components/customAppBar.dart';
 import 'package:dsc_solution_challenge_2020/managementPage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 List<Profile> profiles = [Profile(name: '펭 수', age: 10, address: 'EBS소품실', photo: AssetImage('images/pengsoo.jpeg'), comments: '펭-하!', phoneNumber: '비밀',gender: '남'), Profile(name: '펭 하', age: 15, address: 'EBS소품실', photo: AssetImage('images/pengsoo.jpeg'), comments: '펭-하!', phoneNumber: '비밀',gender: '여')];
 
@@ -17,6 +21,9 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+
+  final _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,8 +73,12 @@ class _MainPageState extends State<MainPage> {
                     Container(
                       margin: EdgeInsets.only(left: 110.0),
                       child: InkWell(
-                        onTap: () {
-
+                        onTap: () async {
+                          final SharedPreferences prefs = await SharedPreferences.getInstance();
+                          _auth.signOut();
+                          Navigator.pushReplacementNamed(context, LoginPage.id);
+                          prefs.setBool('autoLogin', false);
+                          prefs.setStringList('ID', ['', '']);
                         },
                         child: Text('Logout'),
                       ),
