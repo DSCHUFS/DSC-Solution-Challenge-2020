@@ -125,7 +125,7 @@ class _MainPageState extends State<MainPage> {
         },
         child: Icon(Icons.add),
       ),
-      bottomNavigationBar: CustomAppBar(),
+      // bottomNavigationBar: CustomAppBar(),
     );
   }
 }
