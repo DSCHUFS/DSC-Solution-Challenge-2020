@@ -11,7 +11,7 @@ import 'package:dsc_solution_challenge_2020/managementPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-List<Profile> profiles = [Profile(name: '펭 수', age: 10, address: 'EBS소품실', photo: AssetImage('images/pengsoo.jpeg'), comments: '펭-하!', phoneNumber: '비밀',gender: '남'), Profile(name: '펭 하', age: 15, address: 'EBS소품실', photo: AssetImage('images/pengsoo.jpeg'), comments: '펭-하!', phoneNumber: '비밀',gender: '여')];
+List<Profile> profiles = [Profile(name: '펭 수펭펭', age: 10, address: 'EBS소품실', photo: AssetImage('images/pengsoo.jpeg'), comments: '펭-하!', phoneNumber: '비밀',gender: '남'), Profile(name: '펭 하', age: 15, address: 'EBS소품실', photo: AssetImage('images/pengsoo.jpeg'), comments: '펭-하!', phoneNumber: '비밀',gender: '여')];
 
 class MainPage extends StatefulWidget {
   
@@ -119,19 +119,7 @@ class _MainPageState extends State<MainPage> {
                 child: ContainerBox(
                   ListView.builder(
                     itemBuilder: (context, index) {
-                      return FlatButton(
-                        child: PersonalCard(
-                          name: profiles[index].name,
-                          age: profiles[index].age,
-                          photo: profiles[index].photo,
-                          gender: profiles[index].gender,
-                        ),
-                        onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(
-                            builder: (context) => ManagementPage(profiles[index]),)
-                          );
-                        },
-                      );
+                      return PersonalCard(profiles[index]);
                     },
                     itemCount: profiles.length,
                   ),
