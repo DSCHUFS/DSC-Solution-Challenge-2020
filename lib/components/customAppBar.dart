@@ -7,6 +7,9 @@ import 'package:dsc_solution_challenge_2020/managementPage.dart';
 
 
 class CustomAppBar extends StatefulWidget {
+
+  static const id = 'customAppBar_page';
+
   @override
   _CustomAppBarState createState() => _CustomAppBarState();
 }

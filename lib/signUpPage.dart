@@ -56,7 +56,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 children: <Widget>[
                   Text('회원가입',
                       style: TextStyle(
-                        fontSize: 50.0,
+                        fontSize: 40.0,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       )),
