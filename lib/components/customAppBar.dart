@@ -20,6 +20,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
     //RegisterPage(),
     ReportListPage(),
     ReportListPage(),
+    ReportListPage(),
   ];
   void _onItemTapped(int index) {
     setState(() {
