@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:dsc_solution_challenge_2020/models/profile.dart';
+import 'package:dsc_solution_challenge_2020/managementPage.dart';
 
 class PersonalCard extends StatelessWidget {
   
-  PersonalCard({
-    @required this.name, 
-    @required this.age, 
-    @required this.photo, 
-    @required this.gender,
-  });
+  PersonalCard(this.profile);
 
-  final String name;
-  final int age;
-  final ImageProvider photo;
-  final String gender;
+  final Profile profile;
 
   static const mainTextStyle = TextStyle(
     fontSize: 20.0,
@@ -28,7 +22,7 @@ class PersonalCard extends StatelessWidget {
         children: <Widget>[
           CircleAvatar(
             radius: 40.0,
-            backgroundImage: photo,
+            backgroundImage: profile.photo,
           ),
           Container(
             padding: EdgeInsets.all(20.0),
@@ -36,7 +30,7 @@ class PersonalCard extends StatelessWidget {
               //crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Text(
-                  name,
+                  profile.name,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 25.0,
@@ -46,7 +40,7 @@ class PersonalCard extends StatelessWidget {
                 ),
                 SizedBox(height: 5.0,),
                 Text(
-                  '$age / $gender',
+                  '${profile.age} / ${profile.gender}',
                   style: TextStyle(
                     color: Colors.black54,
                     fontSize: 15.0,
@@ -57,14 +51,22 @@ class PersonalCard extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(width: 80.0),
-          Icon(
-            Icons.keyboard_arrow_right,
-            color: Colors.black45,
-            size: 40.0,
+          //SizedBox(width: 80.0),
+          IconButton(
+            icon: Icon(
+              Icons.keyboard_arrow_right,
+              color: Colors.black45,
+              size: 40.0,
+            ),
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) => ManagementPage(profile),)
+              );
+            },
           ),
         ],
       ),
     );
   }
 }
+
