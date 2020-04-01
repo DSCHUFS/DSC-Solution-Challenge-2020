@@ -6,9 +6,8 @@ import 'package:dsc_solution_challenge_2020/reportListPage.dart';
 import 'package:dsc_solution_challenge_2020/components/report_card.dart';
 
 
-
 class PersonalReportPage extends StatefulWidget {
-  final Profile profile;
+  final Profile profile;  
 
   PersonalReportPage(@required this.profile);
 
@@ -18,7 +17,6 @@ class PersonalReportPage extends StatefulWidget {
 
 class _PersonalReportPageState extends State<PersonalReportPage> {
   
-
   static const mainTextStyle = TextStyle(
     fontSize: 20.0,
     color: Colors.black87,
