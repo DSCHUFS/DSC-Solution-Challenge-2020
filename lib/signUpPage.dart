@@ -1,3 +1,4 @@
+import 'package:dsc_solution_challenge_2020/loginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:email_validator/email_validator.dart';
@@ -64,7 +65,24 @@ class _SignUpPageState extends State<SignUpPage> {
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       )),
-                  SizedBox(height: 30.0),
+                  // SizedBox(height: 30.0),
+                  Container(
+                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      alignment: Alignment.centerRight,
+                      child: FlatButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, LoginPage.id);
+                        },
+                        padding: EdgeInsets.only(right: 0.0, bottom: 0.0),
+                        child: Text(
+                          '로그인',
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
                   Container(
                     height: 175,
                     child: ContainerBox(
