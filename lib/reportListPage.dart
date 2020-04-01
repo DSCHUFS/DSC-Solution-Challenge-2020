@@ -28,15 +28,32 @@ class _ReportListPageState extends State<ReportListPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              FlatButton(
-                child: Icon(
-                  Icons.keyboard_arrow_left,
-                  color: Colors.black87,
-                  size: 40.0,
-                ),
-                onPressed: (){
-                  Navigator.pop(context);
-                },
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  FlatButton(
+                    child: Icon(
+                      Icons.keyboard_arrow_left,
+                      color: Colors.black87,
+                      size: 40.0,
+                    ),
+                    onPressed: (){
+                      Navigator.pop(context);
+                    },
+                  ),
+                  IconButton(
+                      icon: Icon(
+                        Icons.add,
+                        color: Colors.black45,
+                        size: 30.0,
+                      ),
+                      onPressed: () {
+                        Navigator.push(context, 
+                        MaterialPageRoute(builder: (context) => ReportPage())
+                        );
+                      },
+                    ),
+                ],
               ),
               Container(
                 padding: EdgeInsets.only(left: 20.0),
