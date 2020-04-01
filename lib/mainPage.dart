@@ -10,6 +10,7 @@ import 'package:dsc_solution_challenge_2020/components/customAppBar.dart';
 import 'package:dsc_solution_challenge_2020/managementPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 List<Profile> profiles = [
   Profile(
@@ -38,6 +39,36 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   final _auth = FirebaseAuth.instance;
+  final _firestore = Firestore.instance;
+  DocumentSnapshot snapshot;
+  FirebaseUser loggedInUser;
+  String currentEmail;
+  String currentName;
+
+  void getCurrentUser() async {
+    try {
+      final user = await _auth.currentUser();
+      if (user != null) {
+        loggedInUser = user;
+        currentEmail = loggedInUser.email;
+        snapshot = await _firestore
+            .collection('Accounts')
+            .document(currentEmail)
+            .get();
+        setState(() {
+          currentName = snapshot.data['name'];
+        });
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  void initState() {
+    getCurrentUser();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +94,7 @@ class _MainPageState extends State<MainPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            '홍 길 동',
+                            currentName ?? "",
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 25.0,
@@ -75,7 +106,7 @@ class _MainPageState extends State<MainPage> {
                             height: 5.0,
                           ),
                           Text(
-                            ' 사회복지사',
+                            '사회복지사',
                             style: TextStyle(
                               color: Colors.black54,
                               fontSize: 15.0,
