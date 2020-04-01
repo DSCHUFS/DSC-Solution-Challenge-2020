@@ -6,9 +6,7 @@ import 'package:dsc_solution_challenge_2020/registerPage.dart';
 import 'package:dsc_solution_challenge_2020/models/profile.dart';
 import 'package:dsc_solution_challenge_2020/managementPage.dart';
 
-
 class CustomAppBar extends StatefulWidget {
-
   static const id = 'customAppBar_page';
 
   @override
@@ -16,14 +14,15 @@ class CustomAppBar extends StatefulWidget {
 }
 
 class _CustomAppBarState extends State<CustomAppBar> {
-
   int _selectedIndex = 0;
   // static const TextStyle optionStyle = TextStyle(fontSize: 10, fontWeight: FontWeight.bold);
   final List<Widget> _children = [
     MainPage(),
     //RegisterPage(),
     ReportListPage(),
-    ReportListPage(),
+    RegisterPage((newProfile) {
+      profiles.add(newProfile);
+    }),
     SettingPage(),
   ];
   void _onItemTapped(int index) {
@@ -31,7 +30,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
       _selectedIndex = index;
     });
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,12 +44,10 @@ class _CustomAppBarState extends State<CustomAppBar> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             title: Text('홈'),
-            
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.event_note),
             title: Text('보고서'),
-            
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add_circle_outline),
@@ -58,7 +55,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.format_align_justify),
-            title: Text('메뉴'),
+            title: Text('환경설정'),
           ),
         ],
         currentIndex: _selectedIndex,
@@ -69,4 +66,3 @@ class _CustomAppBarState extends State<CustomAppBar> {
     );
   }
 }
-

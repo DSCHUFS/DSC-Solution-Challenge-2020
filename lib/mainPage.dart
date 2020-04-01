@@ -11,17 +11,32 @@ import 'package:dsc_solution_challenge_2020/managementPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-List<Profile> profiles = [Profile(name: '펭 수펭펭', age: 10, address: 'EBS소품실', photo: AssetImage('images/pengsoo.jpeg'), comments: '펭-하!', phoneNumber: '비밀',gender: '남'), Profile(name: '펭 하', age: 15, address: 'EBS소품실', photo: AssetImage('images/pengsoo.jpeg'), comments: '펭-하!', phoneNumber: '비밀',gender: '여')];
+List<Profile> profiles = [
+  Profile(
+      name: '펭 수펭펭',
+      age: 10,
+      address: 'EBS소품실',
+      photo: AssetImage('images/pengsoo.jpeg'),
+      comments: '펭-하!',
+      phoneNumber: '비밀',
+      gender: '남'),
+  Profile(
+      name: '펭 하',
+      age: 15,
+      address: 'EBS소품실',
+      photo: AssetImage('images/pengsoo.jpeg'),
+      comments: '펭-하!',
+      phoneNumber: '비밀',
+      gender: '여')
+];
 
 class MainPage extends StatefulWidget {
-  
   static const String id = 'main_page';
   @override
   _MainPageState createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
-
   final _auth = FirebaseAuth.instance;
 
   @override
@@ -56,7 +71,9 @@ class _MainPageState extends State<MainPage> {
                             ),
                             textAlign: TextAlign.left,
                           ),
-                          SizedBox(height: 5.0,),
+                          SizedBox(
+                            height: 5.0,
+                          ),
                           Text(
                             ' 사회복지사',
                             style: TextStyle(
@@ -74,7 +91,8 @@ class _MainPageState extends State<MainPage> {
                       margin: EdgeInsets.only(left: 110.0),
                       child: InkWell(
                         onTap: () async {
-                          final SharedPreferences prefs = await SharedPreferences.getInstance();
+                          final SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
                           _auth.signOut();
                           Navigator.pushReplacementNamed(context, LoginPage.id);
                           prefs.setBool('autoLogin', false);
@@ -82,7 +100,6 @@ class _MainPageState extends State<MainPage> {
                         },
                         child: Text('Logout'),
                       ),
-
                     ),
                   ],
                 ),
@@ -107,9 +124,10 @@ class _MainPageState extends State<MainPage> {
                         size: 40.0,
                       ),
                       onPressed: () {
-                        Navigator.push(context, 
-                        MaterialPageRoute(builder: (context) => ReportListPage())
-                        );
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ReportListPage()));
                       },
                     ),
                   ],
@@ -129,21 +147,6 @@ class _MainPageState extends State<MainPage> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => RegisterPage((newProfile) {
-                    setState(() {
-                      profiles.add(newProfile);
-                    });
-                  }))
-          );
-        },
-        child: Icon(Icons.add),
-      ),
-      // bottomNavigationBar: CustomAppBar(),
     );
   }
 }
