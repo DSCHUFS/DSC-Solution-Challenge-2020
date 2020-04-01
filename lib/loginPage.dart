@@ -362,7 +362,7 @@ class _LoginPageState extends State<LoginPage> {
                               final SharedPreferences prefs =
                                   await SharedPreferences.getInstance();
                               if (user != null) {
-                                Navigator.pushNamed(context, CustomAppBar.id);
+                                Navigator.pushReplacementNamed(context, CustomAppBar.id);
                                 prefs.setBool('autoLogin', autologin);
                                 if (autologin) {
                                   prefs.setStringList('ID', [email, password]);
