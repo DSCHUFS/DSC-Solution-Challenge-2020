@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dsc_solution_challenge_2020/models/profile.dart';
-import 'package:dsc_solution_challenge_2020/registerPage.dart';
+import 'package:dsc_solution_challenge_2020/personalReportPage.dart';
+import 'package:dsc_solution_challenge_2020/reportListPage.dart';
 
 class PersonalReportCard extends StatelessWidget {
 
@@ -56,9 +57,11 @@ class PersonalReportCard extends StatelessWidget {
             ),
             // 화살표 누르면 개인별 보고서 페이지 나오도록
             onPressed: (){
+              // print('${profile.name}');
               // Navigator.push(context, MaterialPageRoute(
-              //   builder: (context) => ManagementPage(profile),)
+              //   builder: (context) => PersonalReportPage(profile),)
               // );
+              print('hi');
             },
           ),
         ],

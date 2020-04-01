@@ -75,13 +75,11 @@ class _ReportListPageState extends State<ReportListPage> {
               // ),
               Expanded(
                 child: ContainerBox(
-
-                  
                   ListView.builder(
                     itemBuilder: (context, index) {
                       return PersonalReportCard(profiles1[index]);
                     },
-                    itemCount: profiles.length,
+                    itemCount: profiles1.length,
                   ),
                 ),
               ),
