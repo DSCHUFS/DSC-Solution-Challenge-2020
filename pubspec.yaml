@@ -16,6 +16,9 @@ dependencies:
   firebase_core: ^0.4.4+3
   firebase_auth: ^0.15.5+2
   shared_preferences: ^0.5.6+3
+  camera:
+  path_provider:
+  path:
 
 dev_dependencies:
   flutter_test:
