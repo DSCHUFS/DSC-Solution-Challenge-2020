@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dsc_solution_challenge_2020/models/profile.dart';
 import 'package:dsc_solution_challenge_2020/components/alertPopup.dart';
 import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
+import 'package:dsc_solution_challenge_2020/registerPages/SecondReigisterPage.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function addProfileCallback;
@@ -17,7 +18,7 @@ class _RegisterPageState extends State<RegisterPage> {
   String name;
   int age;
   String address;
-  String comments;
+  String number;
 
   ImageProvider photo = AssetImage('images/pengsoo.jpeg');
 
@@ -62,39 +63,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             color: Colors.grey),
                       ),
                     ),
-                  ],
-                ),
-              ),
-              ContainerBox(
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      '나이',
-                      style: TextStyle(
-                        fontSize: 25.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    TextField(
-                      textAlign: TextAlign.center,
-                      onChanged: (value) {
-                        age = int.parse(value);
-                      },
-                      decoration: InputDecoration(
-                        labelText: "나이를 입력하세요",
-                        labelStyle: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.grey),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              ContainerBox(
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
+                    SizedBox(height:30.0),
                     Text(
                       '주소',
                       style: TextStyle(
@@ -114,15 +83,9 @@ class _RegisterPageState extends State<RegisterPage> {
                             color: Colors.grey),
                       ),
                     ),
-                  ],
-                ),
-              ),
-              ContainerBox(
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
+                    SizedBox(height:30.0),
                     Text(
-                      '특이사항',
+                      '연락처',
                       style: TextStyle(
                         fontSize: 25.0,
                         fontWeight: FontWeight.bold,
@@ -131,9 +94,24 @@ class _RegisterPageState extends State<RegisterPage> {
                     TextField(
                       textAlign: TextAlign.center,
                       onChanged: (value) {
-                        comments = value;
+                        number = value;
+                      },
+                    ),
+                    SizedBox(height:30.0),
+                    Text(
+                      '생년월일',
+                      style: TextStyle(
+                        fontSize: 25.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    TextField(
+                      textAlign: TextAlign.center,
+                      onChanged: (value) {
+                        age = int.parse(value);
                       },
                       decoration: InputDecoration(
+                        labelText: "생년월일을 입력하세요",
                         labelStyle: TextStyle(
                             fontSize: 20.0,
                             color: Colors.grey),
@@ -144,15 +122,22 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               Container(
                 margin: EdgeInsets.fromLTRB(20, 30, 20, 10),
-                child: FlatButton(
+                child: RaisedButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                  ),
+                  color: Colors.white,
+                  padding: EdgeInsets.symmetric(horizontal: 50.0,vertical: 10.0),
                   child: Text(
-                    '등록',
+                    '다음',
                     style: TextStyle(
                       fontSize: 30.0,
                       fontWeight: FontWeight.bold,
                     ),
                     ),
                   onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> SecondRegisterPage()));
+                    /*
                     if(name == null || name == ''){
                       alertPopup(context, 1);
                     }
@@ -164,7 +149,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           name: name, 
                           age: age,
                           photo: photo,
-                          comments: comments,
+                          comments: number,
                           address: address,
                         );
                     print(name); 
@@ -175,6 +160,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     age = null;
                     Navigator.pop(context);
                     }
+                    */
                   },
                 ),
               ),
