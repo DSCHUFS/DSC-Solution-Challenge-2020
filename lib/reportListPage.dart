@@ -1,7 +1,15 @@
 import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
 import 'package:flutter/material.dart';
 import 'package:dsc_solution_challenge_2020/reportPage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:dsc_solution_challenge_2020/components/report_card.dart';
+import 'package:dsc_solution_challenge_2020/models/profile.dart';
+import 'package:dsc_solution_challenge_2020/mainPage.dart';
 
+List<Profile> profiles1 = profiles;
+
+// List<Profile> profiles =[Profile(name: '펭 수펭펭', age: 10, address: 'EBS소품실', photo: AssetImage('images/pengsoo.jpeg'), comments: '펭-하!', phoneNumber: '비밀',gender: '남'), Profile(name: '펭 하', age: 15, address: 'EBS소품실', photo: AssetImage('images/pengsoo.jpeg'), comments: '펭-하!', phoneNumber: '비밀',gender: '여')];
 class ReportListPage extends StatefulWidget {
 
   static const String id = 'report_list_page';
@@ -32,7 +40,7 @@ class _ReportListPageState extends State<ReportListPage> {
               ),
               Container(
                 padding: EdgeInsets.only(left: 20.0),
-                margin: EdgeInsets.only( left: 10.0, right: 20.0),
+                margin: EdgeInsets.only( left: 10.0, right: 30.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -71,8 +79,9 @@ class _ReportListPageState extends State<ReportListPage> {
                   
                   ListView.builder(
                     itemBuilder: (context, index) {
-                      
-                    }
+                      return PersonalReportCard(profiles1[index]);
+                    },
+                    itemCount: profiles.length,
                   ),
                 ),
               ),
