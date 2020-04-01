@@ -89,16 +89,31 @@ class _MainPageState extends State<MainPage> {
                     // 로그아웃 버튼
                     Container(
                       margin: EdgeInsets.only(left: 110.0),
-                      child: InkWell(
-                        onTap: () async {
-                          final SharedPreferences prefs =
-                              await SharedPreferences.getInstance();
-                          _auth.signOut();
-                          Navigator.pushReplacementNamed(context, LoginPage.id);
-                          prefs.setBool('autoLogin', false);
-                          prefs.setStringList('ID', ['', '']);
-                        },
-                        child: Text('Logout'),
+                      child: Column(
+                        children: <Widget>[
+                          InkWell(
+                            onTap: () async {
+                              final SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              _auth.signOut();
+                              Navigator.pushReplacementNamed(
+                                  context, LoginPage.id);
+                              prefs.setBool('autoLogin', false);
+                              prefs.setStringList('ID', ['', '']);
+                            },
+                            child: Text('Logout'),
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.notifications_none,
+                              color: Colors.black45,
+                              size: 35.0,
+                            ),
+                            onPressed: () {
+                              // 알림 버튼
+                            },
+                          ),
+                        ],
                       ),
                     ),
                   ],
