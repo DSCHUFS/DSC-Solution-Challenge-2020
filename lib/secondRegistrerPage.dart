@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
-import 'package:dsc_solution_challenge_2020/mainPage.dart';
+import 'package:dsc_solution_challenge_2020/components/customAppBar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class SeventhRegisterPage extends StatelessWidget {
+class SecondRegisterPage extends StatelessWidget {
+  SecondRegisterPage(this.name);
 
-  String mainNeeds;
+  String name;
+  String etcInfo;
+  final _firestore = Firestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +33,7 @@ class SeventhRegisterPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      '주요욕구',
+                      '기타사항',
                       style: TextStyle(
                         fontSize: 25.0,
                         fontWeight: FontWeight.bold,
@@ -37,14 +41,18 @@ class SeventhRegisterPage extends StatelessWidget {
                     ),
                     TextField(
                       onChanged: (value) {
-                        mainNeeds = value;
+                        etcInfo = value;
                       },
                       style: TextStyle(
                         fontSize: 20.0,
                       ),
-                      maxLines: 7, 
+                      maxLines: 12, 
                       keyboardType: TextInputType.text, //줄바꿈
                       decoration: InputDecoration(
+                        hintText: "가족사항, 사회참여, 경제상태, 주거환경, 질병, 주요 욕구 등을 입력하세요.",
+                        labelStyle: TextStyle(
+                            fontSize: 20.0,
+                            color: Colors.grey),
                         contentPadding: EdgeInsets.symmetric(horizontal: 20.0,  vertical: 20.0),
                         border: InputBorder.none,
                       ),
@@ -53,7 +61,6 @@ class SeventhRegisterPage extends StatelessWidget {
                   ],
                 ),
               ),
-              
               Container(
                 margin: EdgeInsets.fromLTRB(20, 30, 20, 10),
                 child: RaisedButton(
@@ -63,14 +70,22 @@ class SeventhRegisterPage extends StatelessWidget {
                   color: Colors.white,
                   padding: EdgeInsets.symmetric(horizontal: 50.0,vertical: 10.0),
                   child: Text(
-                    '등록완료',
+                    '다음',
                     style: TextStyle(
                       fontSize: 30.0,
                       fontWeight: FontWeight.bold,
                     ),
                     ),
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> MainPage()));
+                    _firestore
+                        .collection('Accounts')
+                        .document('1@mail.com')
+                        .collection('ElderInfo')
+                        .document(name)
+                        .setData({
+                          'note': etcInfo,
+                        });
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> CustomAppBar()));
                   },
                 ),
               ),
