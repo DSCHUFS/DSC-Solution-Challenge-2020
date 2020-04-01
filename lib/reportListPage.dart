@@ -41,18 +41,6 @@ class _ReportListPageState extends State<ReportListPage> {
                       Navigator.pop(context);
                     },
                   ),
-                  IconButton(
-                      icon: Icon(
-                        Icons.add,
-                        color: Colors.black45,
-                        size: 30.0,
-                      ),
-                      onPressed: () {
-                        Navigator.push(context, 
-                        MaterialPageRoute(builder: (context) => ReportPage())
-                        );
-                      },
-                    ),
                 ],
               ),
               Container(
@@ -72,18 +60,6 @@ class _ReportListPageState extends State<ReportListPage> {
                     // Container(
                     //   width: 80.0,
                     // ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.add,
-                        color: Colors.black45,
-                        size: 40.0,
-                      ),
-                      onPressed: () {
-                        Navigator.push(context, 
-                        MaterialPageRoute(builder: (context) => ReportPage())
-                        );
-                      },
-                    ),
                   ]
                 ),
               ),

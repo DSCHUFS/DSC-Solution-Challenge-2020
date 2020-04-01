@@ -92,6 +92,21 @@ class _MainPageState extends State<MainPage> {
                       child: Column(
                         children: <Widget>[
                           InkWell(
+                            onTap: () {
+
+                            },
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.notifications_none,
+                                color: Colors.black45,
+                                size: 35.0,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5.0,
+                          ),
+                          InkWell(
                             onTap: () async {
                               final SharedPreferences prefs =
                                   await SharedPreferences.getInstance();
@@ -102,16 +117,6 @@ class _MainPageState extends State<MainPage> {
                               prefs.setStringList('ID', ['', '']);
                             },
                             child: Text('Logout'),
-                          ),
-                          IconButton(
-                            icon: Icon(
-                              Icons.notifications_none,
-                              color: Colors.black45,
-                              size: 35.0,
-                            ),
-                            onPressed: () {
-                              // 알림 버튼
-                            },
                           ),
                         ],
                       ),

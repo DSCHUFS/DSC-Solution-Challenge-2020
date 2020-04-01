@@ -2,7 +2,7 @@ import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
 import 'package:flutter/material.dart';
 import 'package:dsc_solution_challenge_2020/models/profile.dart';
 import 'package:dsc_solution_challenge_2020/mainPage.dart';
-import 'package:dsc_solution_challenge_2020/reportListPage.dart';
+import 'package:dsc_solution_challenge_2020/reportPage.dart';
 import 'package:dsc_solution_challenge_2020/components/report_card.dart';
 
 
@@ -66,9 +66,9 @@ class _PersonalReportPageState extends State<PersonalReportPage> {
                         size: 40.0,
                       ),
                       onPressed: () {
-                        // Navigator.push(context, 
-                        // MaterialPageRoute(builder: (context) => ReportPage())
-                        // );
+                        Navigator.push(context, 
+                        MaterialPageRoute(builder: (context) => ReportPage())
+                        );
                       },
                     ),
                   ]
