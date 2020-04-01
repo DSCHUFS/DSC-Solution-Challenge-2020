@@ -1,5 +1,6 @@
 import 'package:dsc_solution_challenge_2020/mainPage.dart';
 import 'package:dsc_solution_challenge_2020/reportListPage.dart';
+import 'package:dsc_solution_challenge_2020/settingPage.dart';
 import 'package:flutter/material.dart';
 import 'package:dsc_solution_challenge_2020/registerPage.dart';
 import 'package:dsc_solution_challenge_2020/models/profile.dart';
@@ -23,7 +24,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
     //RegisterPage(),
     ReportListPage(),
     ReportListPage(),
-    ReportListPage(),
+    SettingPage(),
   ];
   void _onItemTapped(int index) {
     setState(() {
