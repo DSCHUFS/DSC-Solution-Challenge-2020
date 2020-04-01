@@ -28,38 +28,29 @@ class _ReportListPageState extends State<ReportListPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  FlatButton(
-                    child: Icon(
-                      Icons.keyboard_arrow_left,
-                      color: Colors.black87,
-                      size: 40.0,
-                    ),
-                    onPressed: (){
-                      Navigator.pop(context);
-                    },
-                  ),
-                  IconButton(
-                      icon: Icon(
-                        Icons.add,
-                        color: Colors.black45,
-                        size: 30.0,
-                      ),
-                      onPressed: () {
-                        Navigator.push(context, 
-                        MaterialPageRoute(builder: (context) => ReportPage())
-                        );
-                      },
-                    ),
-                ],
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: <Widget>[
+              //     FlatButton(
+              //       child: Icon(
+              //         Icons.keyboard_arrow_left,
+              //         color: Colors.black87,
+              //         size: 40.0,
+              //       ),
+              //       onPressed: (){
+              //         Navigator.pop(context);
+              //       },
+              //     ),
+              //   ],
+              // ),
+              SizedBox(
+                height: 30.0,
               ),
               Container(
                 padding: EdgeInsets.only(left: 20.0),
                 margin: EdgeInsets.only( left: 10.0, right: 30.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Text(
                       '보고서 리스트',
@@ -72,24 +63,12 @@ class _ReportListPageState extends State<ReportListPage> {
                     // Container(
                     //   width: 80.0,
                     // ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.add,
-                        color: Colors.black45,
-                        size: 40.0,
-                      ),
-                      onPressed: () {
-                        Navigator.push(context, 
-                        MaterialPageRoute(builder: (context) => ReportPage())
-                        );
-                      },
-                    ),
                   ]
                 ),
               ),
-              // SizedBox(
-              //   height: 40.0,
-              // ),
+              SizedBox(
+                height: 10.0,
+              ),
               Expanded(
                 child: ContainerBox(
                   ListView.builder(
