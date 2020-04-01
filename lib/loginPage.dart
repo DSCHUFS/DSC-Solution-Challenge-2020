@@ -319,7 +319,7 @@ class _LoginPageState extends State<LoginPage> {
                         child: Text(
                           '비밀번호를 잊어버렸습니다',
                           style: TextStyle(
-                            fontSize: 20.0,
+                            fontSize: 15.0,
                             color: Colors.black,
                           ),
                         ),
@@ -334,9 +334,9 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         padding: EdgeInsets.only(right: 0.0),
                         child: Text(
-                          '회원가입 하러가기',
+                          '회원가입',
                           style: TextStyle(
-                            fontSize: 20.0,
+                            fontSize: 15.0,
                             color: Colors.black,
                           ),
                         ),

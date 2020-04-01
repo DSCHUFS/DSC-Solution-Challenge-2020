@@ -1,5 +1,6 @@
 import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
 import 'package:flutter/material.dart';
+import 'package:dsc_solution_challenge_2020/reportPage.dart';
 
 class ReportListPage extends StatefulWidget {
 
@@ -17,27 +18,35 @@ class _ReportListPageState extends State<ReportListPage> {
       body: Container(
         child: SafeArea(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Container(
-                height: 15.0,
+              FlatButton(
+                child: Icon(
+                  Icons.keyboard_arrow_left,
+                  color: Colors.black87,
+                  size: 40.0,
+                ),
+                onPressed: (){
+                  Navigator.pop(context);
+                },
               ),
               Container(
                 padding: EdgeInsets.only(left: 20.0),
-                margin: EdgeInsets.only(top: 20.0, left: 10.0),
+                margin: EdgeInsets.only( left: 10.0, right: 20.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
                       '보고서 리스트',
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 40.0,
+                        fontSize: 30.0,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Container(
-                      width: 80.0,
-                    ),
+                    // Container(
+                    //   width: 80.0,
+                    // ),
                     IconButton(
                       icon: Icon(
                         Icons.add,
@@ -45,9 +54,9 @@ class _ReportListPageState extends State<ReportListPage> {
                         size: 40.0,
                       ),
                       onPressed: () {
-                        // Navigator.push(context, 
-                        // MaterialPageRoute(builder: (context) => ReportListPage())
-                        // );
+                        Navigator.push(context, 
+                        MaterialPageRoute(builder: (context) => ReportPage())
+                        );
                       },
                     ),
                   ]
@@ -58,6 +67,8 @@ class _ReportListPageState extends State<ReportListPage> {
               // ),
               Expanded(
                 child: ContainerBox(
+
+                  
                   ListView.builder(
                     itemBuilder: (context, index) {
                       
