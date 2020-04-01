@@ -1,3 +1,4 @@
+import 'package:dsc_solution_challenge_2020/loginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:email_validator/email_validator.dart';
@@ -5,6 +6,7 @@ import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUpPage extends StatefulWidget {
   static const id = 'signIn_page';
@@ -14,6 +16,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  final _firestore = Firestore.instance;
   final _formKey = GlobalKey<FormState>();
   final _auth = FirebaseAuth.instance;
   String email;
@@ -21,6 +24,8 @@ class _SignUpPageState extends State<SignUpPage> {
   String chkPassword;
   String name;
   bool showSpinner = false;
+  String frontIdNum;
+  String backIdNum;
   FocusNode resNum;
 
   @override
@@ -56,11 +61,28 @@ class _SignUpPageState extends State<SignUpPage> {
                 children: <Widget>[
                   Text('회원가입',
                       style: TextStyle(
-                        fontSize: 50.0,
+                        fontSize: 40.0,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       )),
-                  SizedBox(height: 30.0),
+                  // SizedBox(height: 30.0),
+                  Container(
+                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      alignment: Alignment.centerRight,
+                      child: FlatButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, LoginPage.id);
+                        },
+                        padding: EdgeInsets.only(right: 0.0, bottom: 0.0),
+                        child: Text(
+                          '로그인',
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
                   Container(
                     height: 175,
                     child: ContainerBox(
@@ -216,6 +238,9 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           SizedBox(height: 10.0),
                           TextFormField(
+                            onChanged: (value) {
+                              name = value;
+                            },
                             keyboardType: TextInputType.text,
                             style: TextStyle(
                               color: Colors.black,
@@ -261,9 +286,10 @@ class _SignUpPageState extends State<SignUpPage> {
                               Flexible(
                                 child: TextFormField(
                                   onChanged: (value) {
-                                    if(value.length==6){
+                                    if (value.length == 6) {
                                       resNum.requestFocus();
                                     }
+                                    frontIdNum = value;
                                   },
                                   inputFormatters: [
                                     WhitelistingTextInputFormatter.digitsOnly,
@@ -300,6 +326,9 @@ class _SignUpPageState extends State<SignUpPage> {
                               SizedBox(width: 15),
                               Flexible(
                                 child: TextFormField(
+                                  onChanged: (value) {
+                                    backIdNum = value;
+                                  },
                                   focusNode: resNum,
                                   inputFormatters: [
                                     WhitelistingTextInputFormatter.digitsOnly,
@@ -349,6 +378,14 @@ class _SignUpPageState extends State<SignUpPage> {
                                 await _auth.createUserWithEmailAndPassword(
                                     email: email, password: password);
                             if (newUser != null) {
+                              _firestore
+                                  .collection('Accounts')
+                                  .document(email)
+                                  .setData({
+                                'email': email,
+                                'name': name,
+                                'IdNum': frontIdNum + backIdNum,
+                              });
                               Navigator.pop(context);
                               showDialog(
                                   context: context,

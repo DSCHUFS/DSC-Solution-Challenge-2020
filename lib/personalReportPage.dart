@@ -1,24 +1,30 @@
 import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
 import 'package:flutter/material.dart';
-import 'package:dsc_solution_challenge_2020/reportPage.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:dsc_solution_challenge_2020/components/report_card.dart';
 import 'package:dsc_solution_challenge_2020/models/profile.dart';
 import 'package:dsc_solution_challenge_2020/mainPage.dart';
+import 'package:dsc_solution_challenge_2020/reportListPage.dart';
+import 'package:dsc_solution_challenge_2020/components/report_card.dart';
 
-List<Profile> profiles1 = profiles;
 
-// List<Profile> profiles =[Profile(name: '펭 수펭펭', age: 10, address: 'EBS소품실', photo: AssetImage('images/pengsoo.jpeg'), comments: '펭-하!', phoneNumber: '비밀',gender: '남'), Profile(name: '펭 하', age: 15, address: 'EBS소품실', photo: AssetImage('images/pengsoo.jpeg'), comments: '펭-하!', phoneNumber: '비밀',gender: '여')];
-class ReportListPage extends StatefulWidget {
 
-  static const String id = 'report_list_page';
+class PersonalReportPage extends StatefulWidget {
+  final Profile profile;
+
+  PersonalReportPage(@required this.profile);
 
   @override
-  _ReportListPageState createState() => _ReportListPageState();
+  _PersonalReportPageState createState() => _PersonalReportPageState();
 }
 
-class _ReportListPageState extends State<ReportListPage> {
+class _PersonalReportPageState extends State<PersonalReportPage> {
+  
+
+  static const mainTextStyle = TextStyle(
+    fontSize: 20.0,
+    color: Colors.black87,
+    fontWeight: FontWeight.bold,
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +51,7 @@ class _ReportListPageState extends State<ReportListPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      '보고서 리스트',
+                      'name',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 30.0,
@@ -62,9 +68,9 @@ class _ReportListPageState extends State<ReportListPage> {
                         size: 40.0,
                       ),
                       onPressed: () {
-                        Navigator.push(context, 
-                        MaterialPageRoute(builder: (context) => ReportPage())
-                        );
+                        // Navigator.push(context, 
+                        // MaterialPageRoute(builder: (context) => ReportPage())
+                        // );
                       },
                     ),
                   ]
@@ -75,11 +81,13 @@ class _ReportListPageState extends State<ReportListPage> {
               // ),
               Expanded(
                 child: ContainerBox(
+
+                  
                   ListView.builder(
                     itemBuilder: (context, index) {
-                      return PersonalReportCard(profiles1[index]);
+                      // return PersonalReportCard(profiles1[index]);
                     },
-                    itemCount: profiles1.length,
+                    itemCount: profiles.length,
                   ),
                 ),
               ),

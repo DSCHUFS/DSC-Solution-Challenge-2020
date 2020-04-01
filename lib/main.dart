@@ -15,17 +15,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'DSC HUFS Solution Challenge 2020',
       theme: ThemeData(
-      
         primarySwatch: Colors.blue,
       ),
-      home: CustomAppBar(),
+      // home: CustomAppBar(),
       // initialRoute: MainPage.id,
-      // initialRoute: LoginPage.id,
+      initialRoute: LoginPage.id,
       routes: {
         MainPage.id: (context) => MainPage(),
         LoginPage.id: (context) => LoginPage(),
         SignUpPage.id: (context) => SignUpPage(),
         ReportPage.id: (context) => ReportPage(),
+        CustomAppBar.id: (context) => CustomAppBar(),
       },
     );
   }

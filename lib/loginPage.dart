@@ -1,3 +1,4 @@
+import 'package:dsc_solution_challenge_2020/components/customAppBar.dart';
 import 'package:dsc_solution_challenge_2020/mainPage.dart';
 import 'package:dsc_solution_challenge_2020/signUpPage.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
         final user = await _auth.signInWithEmailAndPassword(
             email: savedUserInfo[0], password: savedUserInfo[1]);
         if (user != null) {
-          Navigator.pushNamed(context, MainPage.id);
+          Navigator.pushNamed(context, CustomAppBar.id);
         }
       } catch (e) {
         print(e);
@@ -318,7 +319,7 @@ class _LoginPageState extends State<LoginPage> {
                         child: Text(
                           '비밀번호를 잊어버렸습니다',
                           style: TextStyle(
-                            fontSize: 20.0,
+                            fontSize: 15.0,
                             color: Colors.black,
                           ),
                         ),
@@ -333,9 +334,9 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         padding: EdgeInsets.only(right: 0.0),
                         child: Text(
-                          '회원가입 하러가기',
+                          '회원가입',
                           style: TextStyle(
-                            fontSize: 20.0,
+                            fontSize: 15.0,
                             color: Colors.black,
                           ),
                         ),
@@ -361,7 +362,7 @@ class _LoginPageState extends State<LoginPage> {
                               final SharedPreferences prefs =
                                   await SharedPreferences.getInstance();
                               if (user != null) {
-                                Navigator.pushNamed(context, MainPage.id);
+                                Navigator.pushNamed(context, CustomAppBar.id);
                                 prefs.setBool('autoLogin', autologin);
                                 if (autologin) {
                                   prefs.setStringList('ID', [email, password]);
