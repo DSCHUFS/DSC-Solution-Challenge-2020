@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
         final user = await _auth.signInWithEmailAndPassword(
             email: savedUserInfo[0], password: savedUserInfo[1]);
         if (user != null) {
-          Navigator.pushNamed(context, CustomAppBar.id);
+          Navigator.pushReplacementNamed(context, CustomAppBar.id);
         }
       } catch (e) {
         print(e);
