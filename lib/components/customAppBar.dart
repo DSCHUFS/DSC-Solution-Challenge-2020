@@ -54,7 +54,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
             title: Text('추가'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.format_align_justify),
+            icon: Icon(Icons.settings),
             title: Text('환경설정'),
           ),
         ],
