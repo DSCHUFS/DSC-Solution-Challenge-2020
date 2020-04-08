@@ -1,6 +1,7 @@
 import 'package:dsc_solution_challenge_2020/loginPage.dart';
 import 'package:dsc_solution_challenge_2020/reportListPage.dart';
 import 'package:dsc_solution_challenge_2020/reportPage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dsc_solution_challenge_2020/components/personal_card.dart';
 import 'package:dsc_solution_challenge_2020/models/profile.dart';
@@ -11,6 +12,7 @@ import 'package:dsc_solution_challenge_2020/managementPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_image/firebase_image.dart';
 
 List<Profile> profiles = [
   Profile(
@@ -66,8 +68,8 @@ class _MainPageState extends State<MainPage> {
 
   @override
   void initState() {
-    getCurrentUser();
     super.initState();
+    getCurrentUser();
   }
 
   @override
@@ -122,16 +124,12 @@ class _MainPageState extends State<MainPage> {
                       margin: EdgeInsets.only(left: 110.0),
                       child: Column(
                         children: <Widget>[
-                          InkWell(
-                            onTap: () {
-
-                            },
-                            child: IconButton(
-                              icon: Icon(
-                                Icons.notifications_none,
-                                color: Colors.black45,
-                                size: 35.0,
-                              ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.notifications_none,
+                              color: Colors.black45,
+                              size: 35.0,
                             ),
                           ),
                           SizedBox(
@@ -186,12 +184,38 @@ class _MainPageState extends State<MainPage> {
               ),
               Expanded(
                 child: ContainerBox(
-                  ListView.builder(
-                    itemBuilder: (context, index) {
-                      return PersonalCard(profiles[index]);
-                    },
-                    itemCount: profiles.length,
-                  ),
+                  StreamBuilder<QuerySnapshot>(
+                      stream: _firestore
+                          .collection('Accounts')
+                          .document(currentEmail)
+                          .collection('ElderInfo')
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return ListView.builder(
+                            itemCount: snapshot.data.documents.length,
+                            itemBuilder: (context, index) {
+                              final elderInfo = snapshot.data.documents[index];
+                              final elderName = elderInfo.data['name'];
+                              final elderAddress = elderInfo.data['address'];
+                              final elderAge = elderInfo.data['age'];
+                              final elderGender = elderInfo.data['gender'];
+                              final elderPhoto = elderInfo.data['photo'];
+                              return PersonalCard(Profile(
+                                name: elderName,
+                                address: elderAddress,
+                                age: elderAge,
+                                photo: FirebaseImage(elderPhoto),
+                                comments: '펭-하!',
+                                phoneNumber: '비밀',
+                                gender: elderGender,
+                              ));
+                            },
+                          );
+                        } else {
+                          return CupertinoActivityIndicator();
+                        }
+                      }),
                 ),
               ),
             ],
