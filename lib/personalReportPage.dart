@@ -49,7 +49,7 @@ class _PersonalReportPageState extends State<PersonalReportPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      'name',
+                      widget.profile.name,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 30.0,
