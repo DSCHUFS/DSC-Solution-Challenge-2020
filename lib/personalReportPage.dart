@@ -67,7 +67,7 @@ class _PersonalReportPageState extends State<PersonalReportPage> {
                       ),
                       onPressed: () {
                         Navigator.push(context, 
-                        MaterialPageRoute(builder: (context) => ReportPage())
+                        MaterialPageRoute(builder: (context) => ReportPage(widget.profile.name))
                         );
                       },
                     ),
