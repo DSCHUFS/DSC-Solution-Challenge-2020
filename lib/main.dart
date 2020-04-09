@@ -5,11 +5,12 @@ import 'package:dsc_solution_challenge_2020/reportPage.dart';
 import 'package:flutter/material.dart';
 import 'package:dsc_solution_challenge_2020/mainPage.dart';
 import 'package:dsc_solution_challenge_2020/signUpPage.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'dart:io';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
