@@ -82,10 +82,10 @@ class SecondRegisterPage extends StatelessWidget {
                         .document('1@mail.com')
                         .collection('ElderInfo')
                         .document(name)
-                        .setData({
+                        .updateData({
                           'note': etcInfo,
                         });
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> CustomAppBar()));
+                     Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>  CustomAppBar()), (Route<dynamic> route) => false);
                   },
                 ),
               ),
