@@ -1,3 +1,4 @@
+import 'package:dsc_solution_challenge_2020/alertListPage.dart';
 import 'package:dsc_solution_challenge_2020/loginPage.dart';
 import 'package:dsc_solution_challenge_2020/reportListPage.dart';
 import 'package:dsc_solution_challenge_2020/reportPage.dart';
@@ -186,13 +187,14 @@ class _MainPageState extends State<MainPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      '보고서',
+                      '알림 목록',
                       style: TextStyle(
                         fontSize: 27.0,
                         color: Colors.black87,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                    //알림 >
                     IconButton(
                       icon: Icon(
                         Icons.keyboard_arrow_right,
@@ -203,7 +205,7 @@ class _MainPageState extends State<MainPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ReportListPage()));
+                                builder: (context) => alertListPage()));
                       },
                     ),
                   ],
