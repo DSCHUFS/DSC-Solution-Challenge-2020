@@ -46,6 +46,7 @@ class _MainPageState extends State<MainPage> {
   FirebaseUser loggedInUser;
   String currentEmail;
   String currentName;
+  bool _isSelectedNotify;
 
   void getCurrentUser() async {
     try {
@@ -66,10 +67,18 @@ class _MainPageState extends State<MainPage> {
     }
   }
 
+  void getSetInfo() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _isSelectedNotify = prefs.getBool('notification') ?? true;
+    });
+  }
+
   @override
   void initState() {
-    super.initState();
     getCurrentUser();
+    getSetInfo();
+    super.initState();
   }
 
   @override
@@ -125,10 +134,28 @@ class _MainPageState extends State<MainPage> {
                       child: Column(
                         children: <Widget>[
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                              final SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              if (_isSelectedNotify) {
+                                setState(() {
+                                  _isSelectedNotify = false;
+                                  prefs.setBool('notification', false);
+                                  // print(prefs.getBool('notification'));
+                                });
+                              } else {
+                                setState(() {
+                                  _isSelectedNotify = true;
+                                  prefs.setBool('notification', true);
+                                  // print(prefs.getBool('notification'));
+                                });
+                              }
+                            },
                             icon: Icon(
                               Icons.notifications_none,
-                              color: Colors.black45,
+                              color: _isSelectedNotify ?? true
+                                  ? Colors.blue
+                                  : Colors.black45,
                               size: 35.0,
                             ),
                           ),
