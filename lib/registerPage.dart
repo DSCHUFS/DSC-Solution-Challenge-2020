@@ -1,16 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:dsc_solution_challenge_2020/models/profile.dart';
 import 'package:dsc_solution_challenge_2020/components/alertPopup.dart';
 import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
 import 'package:dsc_solution_challenge_2020/secondRegistrerPage.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dsc_solution_challenge_2020/components/genderSelectBox.dart';
-
-
-enum Gender{
-  male,
-  female,
-}
 
 class RegisterPage extends StatefulWidget {
   final Function addProfileCallback;
@@ -23,13 +15,11 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   
-  final _firestore = Firestore.instance;
-
   String name;
   int age;
   String address;
   String number;
-  Gender gender;
+  String gender;
 
   ImageProvider photo = AssetImage('images/pengsoo.jpeg');
 
@@ -141,21 +131,21 @@ class _RegisterPageState extends State<RegisterPage> {
                       GenderSelectBox(
                         onPress: (){
                           setState((){
-                            gender = Gender.male;
+                            gender = 'male';
                           });
                         },
                         label: 'MALE',
-                        colour: gender == Gender.male ? Colors.blue[300] : Colors.white,
+                        colour: gender == 'male' ? Colors.blue[300] : Colors.white,
                       ),
                       SizedBox(width: 10),
                       GenderSelectBox(
                         onPress:(){
                           setState((){
-                            gender = Gender.female;
+                            gender = 'female';
                           });
                         },
                         label: 'FEMALE',
-                        colour: gender == Gender.female ? Colors.blue[300] : Colors.white,
+                        colour: gender == 'female' ? Colors.blue[300] : Colors.white,
                       ),
                     ],),
                   ],
@@ -184,34 +174,16 @@ class _RegisterPageState extends State<RegisterPage> {
                       alertPopup(context, 2);
                     }
                     else{
-                      _firestore
-                        .collection('Accounts')
-                        .document('1@mail.com')
-                        .collection('ElderInfo')
-                        .document(name)
-                        .setData({
-                          'name': name,
-                          'gender': gender,
-                          'address': address,
-                          'phoneNum':number,
-                          'IdNum': age,
-                        });
-                        /*
-                      var newProfile = Profile(
-                          name: name, 
-                          age: age,
-                          photo: photo,
-                          comments: number,
-                          address: address,
-                        );*/
-                    print(name); 
-                    print(age);
-                    print(photo);
-                    //widget.addProfileCallback(newProfile);
-                    //name = null;
-                    //age = null;
-                    //Navigator.pop(context);
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> SecondRegisterPage(name)));
+                      print(name); 
+                      print(age);
+                      print(photo);
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> SecondRegisterPage(
+                        name:name,
+                        gender: gender,
+                        age: age,
+                        address: address,
+                        number: number,
+                        )));
                     }
                   },
                 ),

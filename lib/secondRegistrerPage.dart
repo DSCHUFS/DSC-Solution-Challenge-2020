@@ -2,13 +2,50 @@ import 'package:flutter/material.dart';
 import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
 import 'package:dsc_solution_challenge_2020/components/customAppBar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class SecondRegisterPage extends StatelessWidget {
-  SecondRegisterPage(this.name);
+
+class SecondRegisterPage extends StatefulWidget {
+  SecondRegisterPage({this.name, this.age, this.address, this.number, this.gender});
 
   String name;
+  int age;
+  String address;
+  String number;
+  String gender;
+
+  @override
+  _SecondRegisterPageState createState() => _SecondRegisterPageState();
+}
+
+class _SecondRegisterPageState extends State<SecondRegisterPage> {
   String etcInfo;
+
   final _firestore = Firestore.instance;
+
+  final _auth = FirebaseAuth.instance;
+
+  FirebaseUser loggedInUser;
+
+  String currentEmail;
+
+  void getCurrentUser() async {
+    try {
+      final user = await _auth.currentUser();
+      if (user != null) {
+        loggedInUser = user;
+        currentEmail = loggedInUser.email;
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  void initState() {
+    getCurrentUser();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,10 +116,15 @@ class SecondRegisterPage extends StatelessWidget {
                   onPressed: () {
                     _firestore
                         .collection('Accounts')
-                        .document('1@mail.com')
+                        .document(currentEmail)
                         .collection('ElderInfo')
-                        .document(name)
-                        .updateData({
+                        .document(widget.name)
+                        .setData({
+                          'name': widget.name,
+                          'gender': widget.gender,
+                          'address': widget.address,
+                          'phoneNum':widget.number,
+                          'IdNum': widget.age,
                           'note': etcInfo,
                         });
                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>  CustomAppBar()), (Route<dynamic> route) => false);
