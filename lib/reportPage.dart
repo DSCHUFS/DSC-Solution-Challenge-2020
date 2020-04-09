@@ -10,7 +10,7 @@ class ReportPage extends StatefulWidget {
   static const id = 'report_page';
   final String name;
 
-  ReportPage({this.name});
+  ReportPage(this.name);
 
   @override
   _ReportPageState createState() => _ReportPageState();
@@ -25,6 +25,20 @@ class _ReportPageState extends State<ReportPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(
+            Icons.keyboard_arrow_left,
+            color: Colors.black87,
+            size: 40.0,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       backgroundColor: Colors.grey[200],
       body: SafeArea(
           child: ContainerBox(Container(
@@ -52,13 +66,25 @@ class _ReportPageState extends State<ReportPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(
-                        '성함',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            '성함',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            widget.name,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25.0,
+                            ),
+                          )
+                        ],
                       ),
                       Padding(
                         padding: EdgeInsets.all(0),
