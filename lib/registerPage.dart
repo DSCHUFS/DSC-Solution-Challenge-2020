@@ -16,7 +16,7 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   
   String name;
-  int age;
+  String age;
   String address;
   String number;
   String gender;
@@ -26,6 +26,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       body: Container(
         child: SafeArea(
           child: Column(
@@ -109,7 +110,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     TextField(
                       textAlign: TextAlign.center,
                       onChanged: (value) {
-                        age = int.parse(value);
+                        age = value;
                       },
                       decoration: InputDecoration(
                         labelText: "생년월일을 입력하세요",
@@ -168,10 +169,19 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   onPressed: () {
                     if(name == null || name == ''){
-                      alertPopup(context, 1);
+                      alertPopup(context, 'name');
                     }
-                    else if(age == null){
-                      alertPopup(context, 2);
+                    else if(address == null || address == ''){
+                      alertPopup(context, 'address');
+                    }
+                    else if(number == null || number == ''){
+                      alertPopup(context, 'number');
+                    }
+                    else if(age == null || age == ''){
+                      alertPopup(context, 'age');
+                    }
+                    else if(gender == null){
+                      alertPopup(context, 'gender');
                     }
                     else{
                       print(name); 

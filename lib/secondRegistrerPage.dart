@@ -3,13 +3,14 @@ import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
 import 'package:dsc_solution_challenge_2020/components/customAppBar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:dsc_solution_challenge_2020/components/alertPopup.dart';
 
 
 class SecondRegisterPage extends StatefulWidget {
   SecondRegisterPage({this.name, this.age, this.address, this.number, this.gender});
 
   String name;
-  int age;
+  String age;
   String address;
   String number;
   String gender;
@@ -50,6 +51,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       body: Container(
         child: SafeArea(
           child: Column(
@@ -114,20 +116,26 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
                     ),
                     ),
                   onPressed: () {
-                    _firestore
-                        .collection('Accounts')
-                        .document(currentEmail)
-                        .collection('ElderInfo')
-                        .document(widget.name)
-                        .setData({
-                          'name': widget.name,
-                          'gender': widget.gender,
-                          'address': widget.address,
-                          'phoneNum':widget.number,
-                          'IdNum': widget.age,
-                          'note': etcInfo,
-                        });
-                     Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>  CustomAppBar()), (Route<dynamic> route) => false);
+                    if(etcInfo == null || etcInfo == ''){
+                      alertPopup(context, 'etcInfo');
+                    }
+                    else{
+                      _firestore
+                          .collection('Accounts')
+                          .document(currentEmail)
+                          .collection('ElderInfo')
+                          .document(widget.name)
+                          .setData({
+                            'name': widget.name,
+                            'gender': widget.gender,
+                            'address': widget.address,
+                            'phoneNum':widget.number,
+                            'IdNum': widget.age,
+                            'note': etcInfo,
+                            'photo': 'gs://dsc-solution-challenge-6c028.appspot.com/photo/IMG_5862.PNG',
+                          });
+                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>  CustomAppBar()), (Route<dynamic> route) => false);
+                    }
                   },
                 ),
               ),
