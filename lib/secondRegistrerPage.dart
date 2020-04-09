@@ -126,6 +126,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
                           'phoneNum':widget.number,
                           'IdNum': widget.age,
                           'note': etcInfo,
+                          'photo': 'gs://dsc-solution-challenge-6c028.appspot.com/photo/IMG_5862.PNG',
                         });
                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>  CustomAppBar()), (Route<dynamic> route) => false);
                   },
