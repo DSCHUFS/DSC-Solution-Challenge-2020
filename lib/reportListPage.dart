@@ -59,7 +59,7 @@ class _ReportListPageState extends State<ReportListPage> {
       body: Container(
         child: SafeArea(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               // Row(
               //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
