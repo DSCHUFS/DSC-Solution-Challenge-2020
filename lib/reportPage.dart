@@ -439,7 +439,7 @@ class _ReportPageState extends State<ReportPage> {
                             .collection('ElderInfo')
                             .document(widget.name)
                             .collection('Report')
-                            .document(now.toString().substring(0,19))
+                            .document(now.toString().substring(0, 19))
                             .setData({
                           'reportDate': now,
                           'visitDate': visitDate,
@@ -447,6 +447,14 @@ class _ReportPageState extends State<ReportPage> {
                           'contact': _contact.toString(),
                           'social': _social.toString(),
                           'note': _note,
+                        });
+                        _firestore
+                            .collection('Accounts')
+                            .document(widget.currentEmail)
+                            .collection('ElderInfo')
+                            .document(widget.name)
+                            .updateData({
+                          'latestDate': FieldValue.serverTimestamp(),
                         });
                         Navigator.pop(context);
                       },
