@@ -119,12 +119,14 @@ class _ReportListPageState extends State<ReportListPage> {
                               final elderAddress = elderInfo.data['address'];
                               final elderAge = elderInfo.data['age'];
                               final elderGender = elderInfo.data['gender'];
-                              return PersonalReportCard(Profile(
-                                name: elderName,
-                                address: elderAddress,
-                                age: elderAge,
-                                gender: elderGender,
-                              ));
+                              return PersonalReportCard(
+                                  Profile(
+                                    name: elderName,
+                                    address: elderAddress,
+                                    age: elderAge,
+                                    gender: elderGender,
+                                  ),
+                                  currentEmail);
                             },
                           );
                         } else {
