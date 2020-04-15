@@ -5,10 +5,11 @@ import 'package:dsc_solution_challenge_2020/reportListPage.dart';
 
 class PersonalReportCard extends StatelessWidget {
 
-  PersonalReportCard(this.profile, this.currentEmail);
+  PersonalReportCard(this.profile, this.currentEmail, this.latestDate);
 
   final Profile profile;
   final currentEmail;
+  final latestDate;
 
   static const mainTextStyle = TextStyle(
     fontSize: 20.0,
@@ -25,7 +26,7 @@ class PersonalReportCard extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(20.0),
             child: Column(
-              //crossAxisAlignment: CrossAxisAlignment.stretch,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
                   '${profile.name}의 보고서',
@@ -38,7 +39,7 @@ class PersonalReportCard extends StatelessWidget {
                 ),
                 SizedBox(height: 5.0,),
                 Text(
-                  '최근 업데이트 날짜: 날짜들어감',
+                  '최근 업데이트 날짜: $latestDate',
                   style: TextStyle(
                     color: Colors.black54,
                     fontSize: 15.0,

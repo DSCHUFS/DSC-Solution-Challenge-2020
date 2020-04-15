@@ -230,15 +230,27 @@ class _MainPageState extends State<MainPage> {
                               final elderAge = elderInfo.data['age'];
                               final elderGender = elderInfo.data['gender'];
                               final elderPhoto = elderInfo.data['photo'];
-                              return PersonalCard(Profile(
-                                name: elderName,
-                                address: elderAddress,
-                                age: elderAge,
-                                photo: FirebaseImage(elderPhoto),
-                                comments: '펭-하!',
-                                phoneNumber: '비밀',
-                                gender: elderGender,
-                              ));
+                              return StreamBuilder<DocumentSnapshot>(
+                                  stream: _firestore
+                                      .collection('pulse_log')
+                                      .document('NcxLYL2kLhIGaI8e0Yvj')
+                                      .snapshots(),
+                                  builder: (context, snapshot) {
+                                    return PersonalCard(
+                                        Profile(
+                                          name: elderName,
+                                          address: elderAddress,
+                                          age: elderAge,
+                                          photo: FirebaseImage(elderPhoto),
+                                          comments: '펭-하!',
+                                          phoneNumber: '비밀',
+                                          gender: elderGender,
+                                        ),
+                                        snapshot.hasData
+                                            ? snapshot.data.data['pulse']
+                                                .toString()
+                                            : '');
+                                  });
                             },
                           );
                         } else {
