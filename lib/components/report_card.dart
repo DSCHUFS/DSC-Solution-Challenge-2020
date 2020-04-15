@@ -5,9 +5,10 @@ import 'package:dsc_solution_challenge_2020/reportListPage.dart';
 
 class PersonalReportCard extends StatelessWidget {
 
-  PersonalReportCard(this.profile);
+  PersonalReportCard(this.profile, this.currentEmail);
 
   final Profile profile;
+  final currentEmail;
 
   static const mainTextStyle = TextStyle(
     fontSize: 20.0,
@@ -58,7 +59,7 @@ class PersonalReportCard extends StatelessWidget {
             // 화살표 누르면 개인별 보고서 페이지 나오도록
             onPressed: (){
               Navigator.push(context, MaterialPageRoute(
-                builder: (context) => PersonalReportPage(profile),)
+                builder: (context) => PersonalReportPage(profile: profile, currentEmail: currentEmail,),)
               );
               // print('test');
             },

@@ -1,26 +1,31 @@
+import 'package:dsc_solution_challenge_2020/components/alertPopup.dart';
 import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
 import 'package:flutter/material.dart';
 import 'dart:core';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 enum HealthState { good, normal, bad }
 enum ContactYesOrNo { yes, no }
 enum SocialYesOrNo { yes, no }
 
 class ReportPage extends StatefulWidget {
-  static const id = 'report_page';
   final String name;
+  final String currentEmail;
 
-  ReportPage(this.name);
+  ReportPage(this.name, this.currentEmail);
 
   @override
   _ReportPageState createState() => _ReportPageState();
 }
 
 class _ReportPageState extends State<ReportPage> {
-  String today = DateTime.now().toString().substring(0, 10);
+  final _firestore = Firestore.instance;
+  DateTime now = DateTime.now();
+  DateTime visitDate = DateTime.now();
   HealthState _healthState = HealthState.good;
   ContactYesOrNo _contact = ContactYesOrNo.yes;
   SocialYesOrNo _social = SocialYesOrNo.yes;
+  String _note;
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +118,7 @@ class _ReportPageState extends State<ReportPage> {
                             ),
                           ),
                           Text(
-                            today,
+                            now.toString().substring(0, 10),
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 25.0,
@@ -136,13 +141,42 @@ class _ReportPageState extends State<ReportPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(
-                        '방문 날짜',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            '방문 날짜',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          GestureDetector(
+                            child: Text(
+                              visitDate.toString().substring(0, 10),
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 25.0,
+                              ),
+                            ),
+                            onTap: () async {
+                              DateTime picked = await showDatePicker(
+                                  context: context,
+                                  initialDate: visitDate,
+                                  firstDate: DateTime(2019),
+                                  lastDate: DateTime(2101));
+                              if (picked.isAfter(now)) {
+                                alertPopup(context, 3);
+                              } else if (picked != null &&
+                                  picked != visitDate) {
+                                setState(() {
+                                  visitDate = picked;
+                                });
+                              }
+                            },
+                          ),
+                        ],
                       ),
                       Padding(
                         padding: EdgeInsets.all(0),
@@ -384,6 +418,9 @@ class _ReportPageState extends State<ReportPage> {
                           hintText: '여기 입력하세요.',
                           border: OutlineInputBorder(),
                         ),
+                        onChanged: (value) {
+                          _note = value;
+                        },
                       )
                     ],
                   ),
@@ -395,7 +432,24 @@ class _ReportPageState extends State<ReportPage> {
                     width: 200,
                     child: RaisedButton(
                       elevation: 5.0,
-                      onPressed: () {},
+                      onPressed: () {
+                        _firestore
+                            .collection('Accounts')
+                            .document(widget.currentEmail)
+                            .collection('ElderInfo')
+                            .document(widget.name)
+                            .collection('Report')
+                            .document(now.toString().substring(0,19))
+                            .setData({
+                          'reportDate': now,
+                          'visitDate': visitDate,
+                          'helthState': _healthState.toString(),
+                          'contact': _contact.toString(),
+                          'social': _social.toString(),
+                          'note': _note,
+                        });
+                        Navigator.pop(context);
+                      },
                       padding: EdgeInsets.all(20.0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
