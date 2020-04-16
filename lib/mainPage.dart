@@ -180,7 +180,8 @@ class _MainPageState extends State<MainPage> {
                     //알림 >
                     Row(
                       children: <Widget>[
-                        CircleAvatar( //TODO : 업데이트 된 알림 갯수 세야함
+                        CircleAvatar(
+                          //TODO : 업데이트 된 알림 갯수 세야함
                           radius: 15,
                           child: Text('1'),
                           backgroundColor: Colors.yellow[300],
@@ -191,7 +192,7 @@ class _MainPageState extends State<MainPage> {
                           padding: EdgeInsets.all(0),
                           icon: Icon(
                             Icons.keyboard_arrow_right,
-                            color: Colors.black45, 
+                            color: Colors.black45,
                           ),
                           onPressed: () {
                             Navigator.push(
@@ -245,7 +246,8 @@ class _MainPageState extends State<MainPage> {
                                         snapshot.hasData
                                             ? snapshot.data.data['pulse']
                                                 .toString()
-                                            : '');
+                                            : '',
+                                        currentEmail);
                                   });
                             },
                           );
