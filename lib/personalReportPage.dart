@@ -84,7 +84,7 @@ class _PersonalReportPageState extends State<PersonalReportPage> {
                     itemBuilder: (context, index) {
                       // return PersonalReportCard(profiles1[index]);
                     },
-                    itemCount: profiles.length,
+                    // itemCount: profiles.length,
                   ),
                 ),
               ),

@@ -5,10 +5,6 @@ import 'package:dsc_solution_challenge_2020/secondRegistrerPage.dart';
 import 'package:dsc_solution_challenge_2020/components/genderSelectBox.dart';
 
 class RegisterPage extends StatefulWidget {
-  final Function addProfileCallback;
-
-  RegisterPage(this.addProfileCallback);
-
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
