@@ -18,9 +18,9 @@ dependencies:
   shared_preferences: ^0.5.6+3
   cloud_firestore: ^0.13.4+2
   firebase_messaging: ^6.0.13
-  #firebase_image: ^0.1.5
+  firebase_image: ^0.1.5
   image_picker: ^0.5.3+1
-  firebase_storage: ^2.1.0+1
+  #firebase_storage: ^2.1.0+1
 
 
 dev_dependencies:

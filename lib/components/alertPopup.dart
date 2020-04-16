@@ -1,31 +1,6 @@
 import 'package:flutter/material.dart';
 
-Future alertPopup(BuildContext context, String type) {
-
-  String textContent;
-
-  if(type == 'name'){
-    textContent = 'Write name.';
-  }
-  else if(type == 'address'){
-    textContent = 'Write address.';
-  }
-  else if(type == 'number'){
-    textContent = 'Write phone number.';
-  }
-  else if(type == 'address'){
-    textContent = 'Write address.';
-  }
-  else if(type == 'age'){
-    textContent = 'Select age.';
-  }
-  else if(type == 'gender'){
-    textContent = 'Select gender.';
-  }
-  else if(type == 'etcInfo'){
-    textContent = 'Write Information.';
-  }
-
+Future alertPopup(BuildContext context, int number) {
   return showDialog(
       context: context,
       builder: (context) {
