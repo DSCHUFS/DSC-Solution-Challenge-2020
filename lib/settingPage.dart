@@ -1,6 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class SettingPage extends StatelessWidget {
+class SettingPage extends StatefulWidget {
+  @override
+  _SettingPageState createState() => _SettingPageState();
+}
+
+class _SettingPageState extends State<SettingPage> {
+  bool _isSelectedNotify;
+
+  @override
+  void initState() {
+    getSetInfo();
+    super.initState();
+  }
+
+  void getSetInfo() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _isSelectedNotify = prefs.getBool('notification');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,9 +46,17 @@ class SettingPage extends StatelessWidget {
               SwitchListTile(
                 activeColor: Colors.tealAccent[700],
                 contentPadding: const EdgeInsets.only(left: 5),
-                value: false,
+                value: _isSelectedNotify ?? true,
                 title: Text("알림 수신"),
-                onChanged: null,
+                onChanged: (value) async {
+                  final SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  setState(() {
+                    _isSelectedNotify = value;
+                    prefs.setBool('notification', value);
+                    // print(prefs.getBool('notification'));
+                  });
+                },
               ),
               SwitchListTile(
                 activeColor: Colors.tealAccent[700],

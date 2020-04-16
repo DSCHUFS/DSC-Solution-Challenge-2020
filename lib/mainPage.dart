@@ -1,3 +1,4 @@
+import 'package:dsc_solution_challenge_2020/alertListPage.dart';
 import 'package:dsc_solution_challenge_2020/loginPage.dart';
 import 'package:dsc_solution_challenge_2020/reportListPage.dart';
 import 'package:dsc_solution_challenge_2020/reportPage.dart';
@@ -46,6 +47,7 @@ class _MainPageState extends State<MainPage> {
   FirebaseUser loggedInUser;
   String currentEmail;
   String currentName;
+  bool _isSelectedNotify;
 
   void getCurrentUser() async {
     try {
@@ -66,10 +68,18 @@ class _MainPageState extends State<MainPage> {
     }
   }
 
+  void getSetInfo() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _isSelectedNotify = prefs.getBool('notification') ?? true;
+    });
+  }
+
   @override
   void initState() {
-    super.initState();
     getCurrentUser();
+    getSetInfo();
+    super.initState();
   }
 
   @override
@@ -125,10 +135,28 @@ class _MainPageState extends State<MainPage> {
                       child: Column(
                         children: <Widget>[
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                              final SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              if (_isSelectedNotify) {
+                                setState(() {
+                                  _isSelectedNotify = false;
+                                  prefs.setBool('notification', false);
+                                  // print(prefs.getBool('notification'));
+                                });
+                              } else {
+                                setState(() {
+                                  _isSelectedNotify = true;
+                                  prefs.setBool('notification', true);
+                                  // print(prefs.getBool('notification'));
+                                });
+                              }
+                            },
                             icon: Icon(
                               Icons.notifications_none,
-                              color: Colors.black45,
+                              color: _isSelectedNotify ?? true
+                                  ? Colors.blue
+                                  : Colors.black45,
                               size: 35.0,
                             ),
                           ),
@@ -159,13 +187,14 @@ class _MainPageState extends State<MainPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      '보고서',
+                      '알림 목록',
                       style: TextStyle(
                         fontSize: 27.0,
                         color: Colors.black87,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                    //알림 >
                     IconButton(
                       icon: Icon(
                         Icons.keyboard_arrow_right,
@@ -176,7 +205,7 @@ class _MainPageState extends State<MainPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ReportListPage()));
+                                builder: (context) => alertListPage()));
                       },
                     ),
                   ],
@@ -201,15 +230,27 @@ class _MainPageState extends State<MainPage> {
                               final elderAge = elderInfo.data['age'];
                               final elderGender = elderInfo.data['gender'];
                               final elderPhoto = elderInfo.data['photo'];
-                              return PersonalCard(Profile(
-                                name: elderName,
-                                address: elderAddress,
-                                age: elderAge,
-                                photo: FirebaseImage(elderPhoto),
-                                comments: '펭-하!',
-                                phoneNumber: '비밀',
-                                gender: elderGender,
-                              ));
+                              return StreamBuilder<DocumentSnapshot>(
+                                  stream: _firestore
+                                      .collection('pulse_log')
+                                      .document('NcxLYL2kLhIGaI8e0Yvj')
+                                      .snapshots(),
+                                  builder: (context, snapshot) {
+                                    return PersonalCard(
+                                        Profile(
+                                          name: elderName,
+                                          address: elderAddress,
+                                          age: elderAge,
+                                          photo: FirebaseImage(elderPhoto),
+                                          comments: '펭-하!',
+                                          phoneNumber: '비밀',
+                                          gender: elderGender,
+                                        ),
+                                        snapshot.hasData
+                                            ? snapshot.data.data['pulse']
+                                                .toString()
+                                            : '');
+                                  });
                             },
                           );
                         } else {
