@@ -23,9 +23,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
     MainPage(),
     //RegisterPage(),
     ReportListPage(),
-    RegisterPage((newProfile) {
-      profiles.add(newProfile);
-    }),
+    RegisterPage(),
     SettingPage(),
   ];
   void _onItemTapped(int index) {
