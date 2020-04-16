@@ -15,25 +15,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_image/firebase_image.dart';
 
-List<Profile> profiles = [
-  Profile(
-      name: '펭 수펭펭',
-      age: 10,
-      address: 'EBS소품실',
-      photo: AssetImage('images/pengsoo.jpeg'),
-      comments: '펭-하!',
-      phoneNumber: '비밀',
-      gender: '남'),
-  Profile(
-      name: '펭 하',
-      age: 15,
-      address: 'EBS소품실',
-      photo: AssetImage('images/pengsoo.jpeg'),
-      comments: '펭-하!',
-      phoneNumber: '비밀',
-      gender: '여')
-];
-
 class MainPage extends StatefulWidget {
   static const String id = 'main_page';
   @override
@@ -153,7 +134,9 @@ class _MainPageState extends State<MainPage> {
                               }
                             },
                             icon: Icon(
-                              Icons.notifications_none,
+                              _isSelectedNotify ?? true
+                                  ? Icons.notifications_active
+                                  : Icons.notifications_off,
                               color: _isSelectedNotify ?? true
                                   ? Colors.blue
                                   : Colors.black45,
@@ -195,18 +178,31 @@ class _MainPageState extends State<MainPage> {
                       ),
                     ),
                     //알림 >
-                    IconButton(
-                      icon: Icon(
-                        Icons.keyboard_arrow_right,
-                        color: Colors.black45,
-                        size: 40.0,
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => alertListPage()));
-                      },
+                    Row(
+                      children: <Widget>[
+                        CircleAvatar( //TODO : 업데이트 된 알림 갯수 세야함
+                          radius: 15,
+                          child: Text('1'),
+                          backgroundColor: Colors.yellow[300],
+                          foregroundColor: Colors.redAccent,
+                        ),
+                        IconButton(
+                          iconSize: 40,
+                          padding: EdgeInsets.all(0),
+                          icon: Icon(
+                            Icons.keyboard_arrow_right,
+                            color: Colors.black45, 
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AlertListPage(
+                                          currentEmail: currentEmail,
+                                        )));
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),
