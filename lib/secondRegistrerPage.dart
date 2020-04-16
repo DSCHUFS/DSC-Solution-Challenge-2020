@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:io';
 import 'package:path/path.dart';
+import 'package:dsc_solution_challenge_2020/components/alertPopup.dart';
 
 class SecondRegisterPage extends StatefulWidget {
   SecondRegisterPage({this.name, this.age, this.address, this.number, this.gender});
@@ -31,6 +32,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
   String currentEmail;
   String profileImageURL = "gs://dsc-solution-challenge-6c028.appspot.com/photo/";
   File _image;
+  String imageType;
 
   void getCurrentUser() async {
     try {
@@ -55,16 +57,22 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
 
     Future getImage() async {
       var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-
-      setState(() {
+      int fileLength = await image.length();
+      if (fileLength > 2499999){
+        alertPopup(context, 1);
+      }
+      else{
+        setState(() {
+        imageType = extension(image.path).toUpperCase();
         _image = image;
       });
+      }
     }
 
     Future uploadPic(BuildContext context) async{
-       StorageReference firebaseStorageRef = FirebaseStorage.instance.ref().child("photo/${widget.name}");
-       StorageUploadTask uploadTask = firebaseStorageRef.putFile(_image);
-       StorageTaskSnapshot taskSnapshot=await uploadTask.onComplete;
+      StorageReference firebaseStorageRef = FirebaseStorage.instance.ref().child("photo/${widget.name}$imageType");
+      StorageUploadTask uploadTask = firebaseStorageRef.putFile(_image);
+      StorageTaskSnapshot taskSnapshot=await uploadTask.onComplete;
     }
 
     return Scaffold(
@@ -172,7 +180,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
                       else{
                         uploadPic(context);
                         setState(() {
-                          profileImageURL += "${widget.name}";
+                          profileImageURL += "${widget.name}$imageType";
                         });
                         _firestore
                             .collection('Accounts')
