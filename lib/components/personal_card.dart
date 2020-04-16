@@ -3,10 +3,10 @@ import 'package:dsc_solution_challenge_2020/models/profile.dart';
 import 'package:dsc_solution_challenge_2020/managementPage.dart';
 
 class PersonalCard extends StatelessWidget {
-  
-  PersonalCard(this.profile);
+  PersonalCard(this.profile, this.pulse);
 
   final Profile profile;
+  final String pulse;
 
   static const mainTextStyle = TextStyle(
     fontSize: 20.0,
@@ -27,7 +27,7 @@ class PersonalCard extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(20.0),
             child: Column(
-              //crossAxisAlignment: CrossAxisAlignment.stretch,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
                   profile.name,
@@ -38,7 +38,9 @@ class PersonalCard extends StatelessWidget {
                   ),
                   textAlign: TextAlign.left,
                 ),
-                SizedBox(height: 5.0,),
+                SizedBox(
+                  height: 5.0,
+                ),
                 Text(
                   '${profile.age} / ${profile.gender}',
                   style: TextStyle(
@@ -51,17 +53,27 @@ class PersonalCard extends StatelessWidget {
               ],
             ),
           ),
-          //SizedBox(width: 80.0),
+          CircleAvatar(
+            backgroundColor: Colors.blue,
+            child: Text(
+              pulse,
+              style: TextStyle(
+                color: Colors.yellow,
+              ),
+            ),
+          ),
           IconButton(
             icon: Icon(
               Icons.keyboard_arrow_right,
               color: Colors.black45,
               size: 40.0,
             ),
-            onPressed: (){
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) => ManagementPage(profile),)
-              );
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ManagementPage(profile),
+                  ));
             },
           ),
         ],
@@ -69,4 +81,3 @@ class PersonalCard extends StatelessWidget {
     );
   }
 }
-

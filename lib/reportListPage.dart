@@ -59,7 +59,7 @@ class _ReportListPageState extends State<ReportListPage> {
       body: Container(
         child: SafeArea(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               // Row(
               //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -119,12 +119,18 @@ class _ReportListPageState extends State<ReportListPage> {
                               final elderAddress = elderInfo.data['address'];
                               final elderAge = elderInfo.data['age'];
                               final elderGender = elderInfo.data['gender'];
-                              return PersonalReportCard(Profile(
-                                name: elderName,
-                                address: elderAddress,
-                                age: elderAge,
-                                gender: elderGender,
-                              ));
+                              final latestDate = elderInfo.data['latestDate'];
+                              return PersonalReportCard(
+                                  Profile(
+                                    name: elderName,
+                                    address: elderAddress,
+                                    age: elderAge,
+                                    gender: elderGender,
+                                  ),
+                                  currentEmail,
+                                  latestDate != null
+                                      ? latestDate.toDate().toString().substring(0,10)
+                                      : '없음');
                             },
                           );
                         } else {

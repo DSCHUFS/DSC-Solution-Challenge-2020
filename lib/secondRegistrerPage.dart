@@ -4,7 +4,10 @@ import 'package:dsc_solution_challenge_2020/components/customAppBar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:dsc_solution_challenge_2020/components/alertPopup.dart';
-
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'dart:io';
+import 'package:path/path.dart';
 
 class SecondRegisterPage extends StatefulWidget {
   SecondRegisterPage({this.name, this.age, this.address, this.number, this.gender});
@@ -23,12 +26,11 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
   String etcInfo;
 
   final _firestore = Firestore.instance;
-
   final _auth = FirebaseAuth.instance;
-
   FirebaseUser loggedInUser;
-
   String currentEmail;
+
+  File _image;
 
   void getCurrentUser() async {
     try {
@@ -50,6 +52,28 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    Future getImage() async {
+      var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+
+      setState(() {
+        _image = image;
+          print('Image Path $_image');
+      });
+    }
+
+    Future uploadPic(BuildContext context) async{
+      String fileName = basename(_image.path);
+       StorageReference firebaseStorageRef = FirebaseStorage.instance.ref().child(fileName);
+       StorageUploadTask uploadTask = firebaseStorageRef.putFile(_image);
+       StorageTaskSnapshot taskSnapshot=await uploadTask.onComplete;
+       setState(() {
+          print("Profile Picture uploaded");
+          Scaffold.of(context).showSnackBar(SnackBar(content: Text('Profile Picture Uploaded')));
+       });
+    }
+
+
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       body: Container(
@@ -100,6 +124,39 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
                   ],
                 ),
               ),
+              ContainerBox(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    CircleAvatar(
+                      radius: 60.0,
+                      child: ClipOval(
+                        child: new SizedBox(
+                          width: 180.0,
+                          height: 180.0,
+                          child: (_image!=null)?Image.file(
+                            _image,
+                            fit: BoxFit.fill,
+                          ):Image.network(
+                            "https://images.unsplash.com/photo-1502164980785-f8aa41d53611?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      //backgroundImage: AssetImage('images/pengsoo.jpeg'),
+                    ),
+                    IconButton(
+                      icon: Icon(
+                        Icons.add_a_photo,
+                        size: 40.0,
+                        color: Colors.black,
+                        ), 
+                      onPressed: (){
+                        getImage();
+                      }
+                    ),
+                  ],
+                ),
+              ),
               Container(
                 margin: EdgeInsets.fromLTRB(20, 30, 20, 10),
                 child: RaisedButton(
@@ -141,7 +198,6 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
               ),
             ],
           ),
-            
         ),
       ),
     );
