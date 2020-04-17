@@ -73,7 +73,7 @@ class PersonalCard extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ManagementPage(profile, currentEmail),
+                    builder: (context) => ManagementPage(profile: profile, currentEmail: currentEmail),
                   ));
             },
           ),

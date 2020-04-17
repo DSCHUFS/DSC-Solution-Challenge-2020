@@ -8,7 +8,7 @@ class ManagementPage extends StatelessWidget {
   final Profile profile;
   final String currentEmail;
 
-  ManagementPage(@required this.profile, @required this.currentEmail);
+  ManagementPage({@required this.profile, @required this.currentEmail});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class ManagementPage extends StatelessWidget {
                   children: <Widget>[
                     CircleAvatar(
                       radius: 50.0,
-                      backgroundImage: AssetImage('images/pengsoo.jpeg'),
+                      backgroundImage: profile.photo,
                     ),
                     Container(
                       padding: EdgeInsets.all(20.0),
@@ -85,7 +85,7 @@ class ManagementPage extends StatelessWidget {
                     height: 10.0,
                   ),
                   Text(
-                    'abc', //데이터 가져오기
+                    profile.comments, 
                     style: TextStyle(
                       fontSize: 20.0,
                       color: Colors.black87,
@@ -164,7 +164,17 @@ class ManagementPage extends StatelessWidget {
                     height: 10.0,
                   ),
                   Text(
-                    '주소 ${profile.address}',
+                    '연락처 :  ${profile.phoneNumber}',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 6.0,
+                  ),
+                  Text(
+                    ' 주소   :  ${profile.address}',
                     style: TextStyle(
                       fontSize: 20.0,
                       color: Colors.black87,
