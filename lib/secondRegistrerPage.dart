@@ -8,16 +8,15 @@ import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'dart:io';
 import 'package:path/path.dart';
-import 'package:dsc_solution_challenge_2020/components/alertPopup.dart';
 
 class SecondRegisterPage extends StatefulWidget {
   SecondRegisterPage({this.name, this.age, this.address, this.number, this.gender});
 
-  String name;
-  String age;
-  String address;
-  String number;
-  String gender;
+  final String name;
+  final String age;
+  final String address;
+  final String number;
+  final String gender;
 
   @override
   _SecondRegisterPageState createState() => _SecondRegisterPageState();
@@ -59,7 +58,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
       var image = await ImagePicker.pickImage(source: ImageSource.gallery);
       int fileLength = await image.length();
       if (fileLength > 2499999){
-        alertPopup(context, 1);
+        alertPopup(context, 7);
       }
       else{
         setState(() {
@@ -175,7 +174,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
                       ),
                     onPressed: () {
                       if(etcInfo == null || etcInfo == ''){
-                        alertPopup(context, 2);
+                        alertPopup(context, 8);
                       }
                       else{
                         uploadPic(context);
