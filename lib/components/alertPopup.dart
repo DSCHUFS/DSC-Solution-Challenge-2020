@@ -14,8 +14,26 @@ Future alertPopup(BuildContext context, int number) {
               case 2:
                 return 'Write age.';
                 break;
-              default:
+              case 3:
                 return '방문 날짜는 작성날짜 이후가 될 수 없습니다.';
+                break;
+              case 4:
+                return 'Write address.';
+                break;
+              case 5:
+                return 'Write phone number';
+                break;
+              case 6:
+                return 'Select gender.';
+                break;
+              case 7:
+                return 'Select smaller image than 2500000 bytes.';
+                break;
+              case 8:
+                return 'Write information.';
+                break;
+              default:
+                return '';
             }
           })()),
           // number == 1? Text('Write name.'): Text('Write age'),

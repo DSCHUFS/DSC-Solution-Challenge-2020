@@ -169,16 +169,16 @@ class _RegisterPageState extends State<RegisterPage> {
                         alertPopup(context, 1);
                       }
                       else if(address == null || address == ''){
-                        alertPopup(context, 2);
+                        alertPopup(context, 4);
                       }
                       else if(number == null || number == ''){
-                        alertPopup(context, 1);
+                        alertPopup(context, 5);
                       }
                       else if(age == null || age == ''){
-                        alertPopup(context, 1);
+                        alertPopup(context, 2);
                       }
                       else if(gender == null){
-                        alertPopup(context, 1);
+                        alertPopup(context, 6);
                       }
                       else{
                         print(name); 

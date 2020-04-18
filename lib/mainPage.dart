@@ -180,7 +180,8 @@ class _MainPageState extends State<MainPage> {
                     //알림 >
                     Row(
                       children: <Widget>[
-                        CircleAvatar( //TODO : 업데이트 된 알림 갯수 세야함
+                        CircleAvatar(
+                          //TODO : 업데이트 된 알림 갯수 세야함
                           radius: 15,
                           child: Text('1'),
                           backgroundColor: Colors.yellow[300],
@@ -191,7 +192,7 @@ class _MainPageState extends State<MainPage> {
                           padding: EdgeInsets.all(0),
                           icon: Icon(
                             Icons.keyboard_arrow_right,
-                            color: Colors.black45, 
+                            color: Colors.black45,
                           ),
                           onPressed: () {
                             Navigator.push(
@@ -223,9 +224,11 @@ class _MainPageState extends State<MainPage> {
                               final elderInfo = snapshot.data.documents[index];
                               final elderName = elderInfo.data['name'];
                               final elderAddress = elderInfo.data['address'];
-                              final elderAge = elderInfo.data['age'];
+                              final elderAge = elderInfo.data['IdNum'];
                               final elderGender = elderInfo.data['gender'];
                               final elderPhoto = elderInfo.data['photo'];
+                              final elderNumber = elderInfo.data['phoneNum'];
+                              final elderETCinfo = elderInfo.data['note'];
                               return StreamBuilder<DocumentSnapshot>(
                                   stream: _firestore
                                       .collection('pulse_log')
@@ -238,14 +241,15 @@ class _MainPageState extends State<MainPage> {
                                           address: elderAddress,
                                           age: elderAge,
                                           photo: FirebaseImage(elderPhoto),
-                                          comments: '펭-하!',
-                                          phoneNumber: '비밀',
+                                          comments: elderETCinfo,
+                                          phoneNumber: elderNumber,
                                           gender: elderGender,
                                         ),
                                         snapshot.hasData
                                             ? snapshot.data.data['pulse']
                                                 .toString()
-                                            : '');
+                                            : '',
+                                        currentEmail);
                                   });
                             },
                           );

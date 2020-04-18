@@ -167,7 +167,7 @@ class _ReportPageState extends State<ReportPage> {
                                   firstDate: DateTime(2019),
                                   lastDate: DateTime(2101));
                               if (picked.isAfter(now)) {
-                                //alertPopup(context, 3);
+                                alertPopup(context, 3);
                               } else if (picked != null &&
                                   picked != visitDate) {
                                 setState(() {

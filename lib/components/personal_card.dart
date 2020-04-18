@@ -3,10 +3,11 @@ import 'package:dsc_solution_challenge_2020/models/profile.dart';
 import 'package:dsc_solution_challenge_2020/managementPage.dart';
 
 class PersonalCard extends StatelessWidget {
-  PersonalCard(this.profile, this.pulse);
+  PersonalCard(this.profile, this.pulse, this.currentEmail);
 
   final Profile profile;
   final String pulse;
+  final String currentEmail;
 
   static const mainTextStyle = TextStyle(
     fontSize: 20.0,
@@ -72,7 +73,7 @@ class PersonalCard extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ManagementPage(profile),
+                    builder: (context) => ManagementPage(profile: profile, currentEmail: currentEmail),
                   ));
             },
           ),
