@@ -14,6 +14,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_image/firebase_image.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class MainPage extends StatefulWidget {
   static const String id = 'main_page';
@@ -24,6 +25,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   final _auth = FirebaseAuth.instance;
   final _firestore = Firestore.instance;
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   DocumentSnapshot snapshot;
   FirebaseUser loggedInUser;
   String currentEmail;
@@ -53,6 +55,13 @@ class _MainPageState extends State<MainPage> {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       _isSelectedNotify = prefs.getBool('notification') ?? true;
+    });
+    _firebaseMessaging.getToken().then((token) {
+      _firestore
+          .collection('Accounts')
+          .document(currentEmail)
+          .updateData({"registrationTokens": FieldValue.arrayUnion([token])});
+      print('token:' + token);
     });
   }
 
