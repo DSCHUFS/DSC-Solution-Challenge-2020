@@ -8,8 +8,18 @@ exports.notifyNewMessage = functions.firestore
     .onCreate((docSnapshot, context) => {
         const pulseData = docSnapshot.data();
         const userId = pulseData['user_id'];
+        const name = pulseData['ElderName'];
         const pulse = pulseData['pulse'];
-        const time = Date(pulseData['timestamp']);
+        const managerNotify = pulseData['manager_notify'];
+        const timestamp = pulseData['timestamp'];
+        const time = timestamp.toDate().toISOString();
+
+        admin.firestore().collection(managerNotify).doc(time).set({
+            ElderName: name,
+            pulse: pulse,
+            isChecked: false,
+            timestamp: timestamp,
+        });
  
         return admin.firestore().doc(userId).get().then(userDoc => {
             const registrationTokens = userDoc.get('registrationTokens');
