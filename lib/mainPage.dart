@@ -180,13 +180,32 @@ class _MainPageState extends State<MainPage> {
                     //알림 >
                     Row(
                       children: <Widget>[
-                        CircleAvatar(
-                          //TODO : 업데이트 된 알림 갯수 세야함
-                          radius: 15,
-                          child: Text('1'),
-                          backgroundColor: Colors.yellow[300],
-                          foregroundColor: Colors.redAccent,
-                        ),
+                        StreamBuilder<QuerySnapshot>(
+                            stream: _firestore
+                                .collection('Accounts')
+                                .document(currentEmail)
+                                .collection('notifications')
+                                .snapshots(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                int i = 0;
+                                for (final notification
+                                    in snapshot.data.documents) {
+                                  if (notification.data['isChecked'] == false)
+                                    i++;
+                                }
+                                if (i != 0) {
+                                  return CircleAvatar(
+                                    radius: 15,
+                                    child: Text(i.toString()),
+                                    backgroundColor: Colors.yellow[300],
+                                    foregroundColor: Colors.redAccent,
+                                  );
+                                } else
+                                  return Opacity(opacity: 0);
+                              } else
+                                return CupertinoActivityIndicator();
+                            }),
                         IconButton(
                           iconSize: 40,
                           padding: EdgeInsets.all(0),
@@ -211,52 +230,53 @@ class _MainPageState extends State<MainPage> {
               Expanded(
                 child: ContainerBox(
                   StreamBuilder<QuerySnapshot>(
-                      stream: _firestore
-                          .collection('Accounts')
-                          .document(currentEmail)
-                          .collection('ElderInfo')
-                          .snapshots(),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          return ListView.builder(
-                            itemCount: snapshot.data.documents.length,
-                            itemBuilder: (context, index) {
-                              final elderInfo = snapshot.data.documents[index];
-                              final elderName = elderInfo.data['name'];
-                              final elderAddress = elderInfo.data['address'];
-                              final elderAge = elderInfo.data['IdNum'];
-                              final elderGender = elderInfo.data['gender'];
-                              final elderPhoto = elderInfo.data['photo'];
-                              final elderNumber = elderInfo.data['phoneNum'];
-                              final elderETCinfo = elderInfo.data['note'];
-                              return StreamBuilder<DocumentSnapshot>(
-                                  stream: _firestore
-                                      .collection('pulse_log')
-                                      .document('NcxLYL2kLhIGaI8e0Yvj')
-                                      .snapshots(),
-                                  builder: (context, snapshot) {
-                                    return PersonalCard(
-                                        Profile(
-                                          name: elderName,
-                                          address: elderAddress,
-                                          age: elderAge,
-                                          photo: FirebaseImage(elderPhoto),
-                                          comments: elderETCinfo,
-                                          phoneNumber: elderNumber,
-                                          gender: elderGender,
-                                        ),
-                                        snapshot.hasData
-                                            ? snapshot.data.data['pulse']
-                                                .toString()
-                                            : '',
-                                        currentEmail);
-                                  });
-                            },
-                          );
-                        } else {
-                          return CupertinoActivityIndicator();
-                        }
-                      }),
+                    stream: _firestore
+                        .collection('Accounts')
+                        .document(currentEmail)
+                        .collection('ElderInfo')
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return ListView.builder(
+                          itemCount: snapshot.data.documents.length,
+                          itemBuilder: (context, index) {
+                            final elderInfo = snapshot.data.documents[index];
+                            final elderName = elderInfo.data['name'];
+                            final elderAddress = elderInfo.data['address'];
+                            final elderAge = elderInfo.data['IdNum'];
+                            final elderGender = elderInfo.data['gender'];
+                            final elderPhoto = elderInfo.data['photo'];
+                            final elderNumber = elderInfo.data['phoneNum'];
+                            final elderETCinfo = elderInfo.data['note'];
+                            return StreamBuilder<DocumentSnapshot>(
+                                stream: _firestore
+                                    .collection('pulse_log')
+                                    .document('NcxLYL2kLhIGaI8e0Yvj')
+                                    .snapshots(),
+                                builder: (context, snapshot) {
+                                  return PersonalCard(
+                                      Profile(
+                                        name: elderName,
+                                        address: elderAddress,
+                                        age: elderAge,
+                                        photo: FirebaseImage(elderPhoto),
+                                        comments: elderETCinfo,
+                                        phoneNumber: elderNumber,
+                                        gender: elderGender,
+                                      ),
+                                      snapshot.hasData
+                                          ? snapshot.data.data['pulse']
+                                              .toString()
+                                          : '',
+                                      currentEmail);
+                                });
+                          },
+                        );
+                      } else {
+                        return CupertinoActivityIndicator();
+                      }
+                    },
+                  ),
                 ),
               ),
             ],
