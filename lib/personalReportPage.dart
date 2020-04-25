@@ -1,9 +1,16 @@
 import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
 import 'package:flutter/material.dart';
 import 'package:dsc_solution_challenge_2020/models/profile.dart';
-import 'package:dsc_solution_challenge_2020/mainPage.dart';
 import 'package:dsc_solution_challenge_2020/reportPage.dart';
-import 'package:dsc_solution_challenge_2020/components/report_card.dart';
+import 'package:dsc_solution_challenge_2020/components/singleReport_card.dart';
+
+// 테스트용
+List<ReportInfo> reports = [
+  ReportInfo(contact: 'hi', health: 'we', social: 'jwe', visitDate: 'we', reportDate: 'we', note:' wersajkdflksdfjksadfjlskfjsdlkfjsdlkfjskdlfjsdlkfjsdlkfjsdlkfjsdkfjsdfsdklfjslfksjfslkfsjdlkfj'),
+  ReportInfo(contact: 'hi', health: 'we', social: 'jwe', visitDate: 'we', reportDate: 'we', note:' wersajkdflksdfjksadfjlskfjsdlkfjsdlkfjskdlfjsdlkfjsdlkfjsdlkfjsdkfjsdfsdklfjslfksjfslkfsjdlkfj'),
+];
+
+
 
 class PersonalReportPage extends StatefulWidget {
   final Profile profile;
@@ -55,9 +62,6 @@ class _PersonalReportPageState extends State<PersonalReportPage> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      // Container(
-                      //   width: 80.0,
-                      // ),
                       IconButton(
                         icon: Icon(
                           Icons.add,
@@ -75,14 +79,20 @@ class _PersonalReportPageState extends State<PersonalReportPage> {
                       ),
                     ]),
               ),
-              // SizedBox(
-              //   height: 40.0,
-              // ),
+              // 카드들 들어갈 내용
               Expanded(
                 child: ContainerBox(
                   ListView.builder(
                     itemBuilder: (context, index) {
-                      // return PersonalReportCard(profiles1[index]);
+                      return ReportInfo(
+                        contact: reports[index].contact,
+                        health: reports[index].contact,
+                        social: reports[index].contact,
+                        visitDate: reports[index].contact,
+                        reportDate: reports[index].contact,
+                        note: reports[index].note,
+
+                      );
                     },
                     // itemCount: profiles.length,
                   ),

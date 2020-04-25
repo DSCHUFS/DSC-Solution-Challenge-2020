@@ -58,21 +58,6 @@ class _ReportListPageState extends State<ReportListPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: <Widget>[
-              //     FlatButton(
-              //       child: Icon(
-              //         Icons.keyboard_arrow_left,
-              //         color: Colors.black87,
-              //         size: 40.0,
-              //       ),
-              //       onPressed: (){
-              //         Navigator.pop(context);
-              //       },
-              //     ),
-              //   ],
-              // ),
               SizedBox(
                 height: 30.0,
               ),
@@ -90,9 +75,6 @@ class _ReportListPageState extends State<ReportListPage> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      // Container(
-                      //   width: 80.0,
-                      // ),
                     ]),
               ),
               SizedBox(
