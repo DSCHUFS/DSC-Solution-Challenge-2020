@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ReportInfo extends StatelessWidget {
-  ReportInfo({this.contact, this.health, this.social, this.visitDate,
-      this.reportDate, this.note});
+  ReportInfo(
+      {this.contact,
+      this.health,
+      this.social,
+      this.visitDate,
+      this.reportDate,
+      this.note});
 
   final String contact;
   final String health;
@@ -20,23 +25,24 @@ class ReportInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      padding: EdgeInsets.only(bottom: 40.0),
+      child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Container(
-            padding: EdgeInsets.all(20.0),
+            padding: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 10.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
                     child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      '작성 날짜: ${reportDate.toString().substring(0,10)}',
+                      '작성 날짜: ${reportDate.toString().substring(0, 10)}',
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 25.0,
+                        fontSize: 20.0,
                         fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.left,
@@ -45,7 +51,7 @@ class ReportInfo extends StatelessWidget {
                       height: 5.0,
                     ),
                     Text(
-                      '방문 날짜: ${visitDate.toString().substring(0,10)}',
+                      ' 방문 날짜: ${visitDate.toString().substring(0, 10)}',
                       style: TextStyle(
                         color: Colors.black54,
                         fontSize: 15.0,
@@ -88,18 +94,31 @@ class ReportInfo extends StatelessWidget {
                 ),
               ],
             )),
-        Text(
-          '활동 및 특이사항',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 25.0,
-            fontWeight: FontWeight.bold,
+        // SizedBox(
+        //   height:10.0,
+        // ),
+        Container(
+          padding: EdgeInsets.all(10.0),
+          child: Text(
+            '활동 및 특이사항',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 17.0,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.left,
           ),
-          textAlign: TextAlign.left,
         ),
         Container(
+          height: 200.0,
+          width: 500.0,
+          padding: EdgeInsets.all(10.0),
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.black54),
+            borderRadius: BorderRadius.circular(10.0),
+          ),
           child: Text('$note'),
-        )
+        ),
       ],
     ));
   }
