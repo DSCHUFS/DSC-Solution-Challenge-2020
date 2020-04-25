@@ -1,14 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
 import 'package:dsc_solution_challenge_2020/models/profile.dart';
 
 class ManagementPage extends StatelessWidget {
   final Profile profile;
+  final String currentEmail;
 
-  ManagementPage(@required this.profile);
+  ManagementPage({@required this.profile, @required this.currentEmail});
 
   @override
   Widget build(BuildContext context) {
+    final _firestore = Firestore.instance;
     return Scaffold(
       body: Container(
         child: SafeArea(
@@ -21,7 +25,7 @@ class ManagementPage extends StatelessWidget {
                   color: Colors.black87,
                   size: 40.0,
                 ),
-                onPressed: (){
+                onPressed: () {
                   Navigator.pop(context);
                 },
               ),
@@ -32,7 +36,7 @@ class ManagementPage extends StatelessWidget {
                   children: <Widget>[
                     CircleAvatar(
                       radius: 50.0,
-                      backgroundImage: AssetImage('images/pengsoo.jpeg'),
+                      backgroundImage: profile.photo,
                     ),
                     Container(
                       padding: EdgeInsets.all(20.0),
@@ -48,7 +52,9 @@ class ManagementPage extends StatelessWidget {
                             ),
                             textAlign: TextAlign.left,
                           ),
-                          SizedBox(height: 5.0,),
+                          SizedBox(
+                            height: 5.0,
+                          ),
                           Text(
                             '${profile.age} / ${profile.gender}',
                             style: TextStyle(
@@ -64,30 +70,29 @@ class ManagementPage extends StatelessWidget {
                   ],
                 ),
               ),
-              ContainerBox(
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    Text(
-                      '특이사항',
-                      style: TextStyle(
-                        fontSize: 27.0,
-                        color: Colors.black87,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ), 
-                    SizedBox(height: 10.0,),
-                    Text(
-                      'abc', //데이터 가져오기
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.black87,
-                      ),),
-                  ],
-                )
-                
-                
-              ),
+              ContainerBox(Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Text(
+                    '특이사항',
+                    style: TextStyle(
+                      fontSize: 27.0,
+                      color: Colors.black87,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Text(
+                    profile.comments, 
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.black87,
+                    ),
+                  ),
+                ],
+              )),
               ContainerBox(
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,39 +116,72 @@ class ManagementPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 10.0,),
-                    Text(
-                      '2020/01/31 보고서',
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          color: Colors.black87,
-                        ),),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    StreamBuilder<DocumentSnapshot>(
+                      stream: _firestore
+                          .collection('Accounts')
+                          .document(currentEmail)
+                          .collection('ElderInfo')
+                          .document(profile.name)
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          final latestDate = snapshot.data.data['latestDate'];
+                          return Text(
+                            latestDate != null
+                                ? latestDate
+                                    .toDate()
+                                    .toString()
+                                    .substring(0, 10)
+                                : '없음',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.black87,
+                            ),
+                          );
+                        } else {
+                          return CupertinoActivityIndicator();
+                        }
+                      },
+                    ),
                   ],
                 ),
               ),
-              ContainerBox(
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    Text(
-                      '기본 정보',
-                      style: TextStyle(
-                        fontSize: 27.0,
-                        color: Colors.black87,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ), 
-                    SizedBox(height: 10.0,),
-                    Text(
-                      '주소 ${profile.address}',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.black87,
-                      ),),
-                  ],
-                )
-                
-              ),
+              ContainerBox(Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Text(
+                    '기본 정보',
+                    style: TextStyle(
+                      fontSize: 27.0,
+                      color: Colors.black87,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Text(
+                    '연락처 :  ${profile.phoneNumber}',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 6.0,
+                  ),
+                  Text(
+                    ' 주소   :  ${profile.address}',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.black87,
+                    ),
+                  ),
+                ],
+              )),
             ],
           ),
         ),

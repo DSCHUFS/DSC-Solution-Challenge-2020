@@ -4,7 +4,7 @@ class Profile{
 
   final String name;
   final String address;
-  final int age;
+  final String age;
   final ImageProvider photo;
   final String comments;
   final String phoneNumber;

@@ -70,16 +70,43 @@ class AlertListPageState extends State<AlertListPage> {
                                   .toString()
                                   .substring(0, 19);
                               bool isChecked = notification.data['isChecked'];
-                              return Card(
+                              return Dismissible(
+                                key: Key(notification.documentID),
+                                direction: DismissDirection.endToStart,
+                                background: Container(
+                                  margin: EdgeInsets.symmetric(vertical:5),
+                                  padding: EdgeInsets.symmetric(horizontal:10),
+                                  color: Colors.red,
+                                  child: Align(
+                                      alignment: Alignment.centerRight,
+                                      child: Icon(
+                                        Icons.delete,
+                                        size: 40,
+                                      )),
+                                ),
+                                onDismissed: (direction) {
+                                  _firestore
+                                      .collection('Accounts')
+                                      .document(widget.currentEmail)
+                                      .collection('notifications')
+                                      .document(notification.documentID)
+                                      .delete();
+                                },
+                                child: Card(
                                   color: isChecked
-                                      ? Colors.white38
+                                      ? Colors.white70
                                       : Colors.yellow[100],
                                   child: ExpansionTile(
-                                    title: Text(elderName+'님의 위험이 감지되었습니다.'),
+                                    title: Text(elderName + '님의 위험이 감지되었습니다.'),
                                     subtitle: Text(time),
                                     onExpansionChanged: (value) async {
                                       if (!isChecked) {
-                                        //TODO : 업데이트 해야함
+                                        _firestore
+                                            .collection('Accounts')
+                                            .document(widget.currentEmail)
+                                            .collection('notifications')
+                                            .document(notification.documentID)
+                                            .updateData({"isChecked": true});
                                       }
                                     },
                                     children: <Widget>[
@@ -87,7 +114,9 @@ class AlertListPageState extends State<AlertListPage> {
                                           title:
                                               Text('맥박 : ' + pulse.toString()))
                                     ],
-                                  ));
+                                  ),
+                                ),
+                              );
                             },
                           );
                         } else {
