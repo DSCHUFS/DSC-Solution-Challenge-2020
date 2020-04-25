@@ -9,6 +9,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'dart:io';
 import 'package:path/path.dart';
+import 'dart:math';
 
 class SecondRegisterPage extends StatefulWidget {
   SecondRegisterPage(
@@ -33,8 +34,11 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
   String currentEmail;
   String profileImageURL =
       "gs://dsc-solution-challenge-6c028.appspot.com/photo/";
+  String timeVar = DateTime.now().year.toString() + DateTime.now().month.toString() + DateTime.now().day.toString() + DateTime.now().hour.toString() + DateTime.now().minute.toString();
+  int randomNumber;
   File _image;
   String imageType;
+  
 
   void getCurrentUser() async {
     try {
@@ -72,9 +76,10 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
     }
 
     Future uploadPic(BuildContext context) async {
+      randomNumber = Random().nextInt(10000) + 1;
       StorageReference firebaseStorageRef = FirebaseStorage.instance
           .ref()
-          .child("photo/${widget.name}$imageType");
+          .child("photo/$timeVar$randomNumber$imageType");
       StorageUploadTask uploadTask = firebaseStorageRef.putFile(_image);
       StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
     }
@@ -191,7 +196,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
                           });
                           await uploadPic(context);
                           setState(() {
-                            profileImageURL += "${widget.name}$imageType";
+                            profileImageURL += "$timeVar$randomNumber$imageType";
                           });
                           await _firestore
                               .collection('Accounts')
