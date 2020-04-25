@@ -1,16 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dsc_solution_challenge_2020/models/profile.dart';
 import 'package:dsc_solution_challenge_2020/reportPage.dart';
 import 'package:dsc_solution_challenge_2020/components/singleReport_card.dart';
-
-// 테스트용
-List<ReportInfo> reports = [
-  ReportInfo(contact: 'hi', health: 'we', social: 'jwe', visitDate: 'we', reportDate: 'we', note:' wersajkdflksdfjksadfjlskfjsdlkfjsdlkfjskdlfjsdlkfjsdlkfjsdlkfjsdkfjsdfsdklfjslfksjfslkfsjdlkfj'),
-  ReportInfo(contact: 'hi', health: 'we', social: 'jwe', visitDate: 'we', reportDate: 'we', note:' wersajkdflksdfjksadfjlskfjsdlkfjsdlkfjskdlfjsdlkfjsdlkfjsdlkfjsdkfjsdfsdklfjslfksjfslkfsjdlkfj'),
-];
-
-
 
 class PersonalReportPage extends StatefulWidget {
   final Profile profile;
@@ -23,6 +17,8 @@ class PersonalReportPage extends StatefulWidget {
 }
 
 class _PersonalReportPageState extends State<PersonalReportPage> {
+  final _firestore = Firestore.instance;
+
   static const mainTextStyle = TextStyle(
     fontSize: 20.0,
     color: Colors.black87,
@@ -36,17 +32,20 @@ class _PersonalReportPageState extends State<PersonalReportPage> {
       body: Container(
         child: SafeArea(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              FlatButton(
-                child: Icon(
-                  Icons.keyboard_arrow_left,
-                  color: Colors.black87,
-                  size: 40.0,
+              Align(
+                alignment: Alignment.centerLeft,
+                child: FlatButton(
+                  child: Icon(
+                    Icons.keyboard_arrow_left,
+                    color: Colors.black87,
+                    size: 40.0,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                 ),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
               ),
               Container(
                 padding: EdgeInsets.only(left: 20.0),
@@ -82,19 +81,47 @@ class _PersonalReportPageState extends State<PersonalReportPage> {
               // 카드들 들어갈 내용
               Expanded(
                 child: ContainerBox(
-                  ListView.builder(
-                    itemBuilder: (context, index) {
-                      return ReportInfo(
-                        contact: reports[index].contact,
-                        health: reports[index].contact,
-                        social: reports[index].contact,
-                        visitDate: reports[index].contact,
-                        reportDate: reports[index].contact,
-                        note: reports[index].note,
-
-                      );
+                  StreamBuilder<QuerySnapshot>(
+                    stream: _firestore
+                        .collection('Accounts')
+                        .document(widget.currentEmail)
+                        .collection('ElderInfo')
+                        .document(widget.profile.name)
+                        .collection('Report')
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return ListView.builder(
+                          itemCount: snapshot.data.documents.length,
+                          itemBuilder: (context, index) {
+                            final report = snapshot.data.documents[index];
+                            final health = report.data['healthState'];
+                            final contact = report.data['contact'];
+                            final social = report.data['social'];
+                            final visitDate = report.data['visitDate'];
+                            final reportDate = report.data['reportDate'];
+                            final note = report.data['note'] ?? '';
+                            return ReportInfo(
+                              health: health == 'HealthState.good'
+                                  ? '졸음'
+                                  : health == 'HealthState.noraml'
+                                      ? '보통'
+                                      : '나쁨',
+                              contact:
+                                  contact == 'ContactYesOrNo.yes' ? '예' : '아니오',
+                              social:
+                                  social == 'SocialYesOrNo.yes' ? '예' : '아니오',
+                              visitDate: visitDate.toDate(),
+                              reportDate: reportDate.toDate(),
+                              note: note,
+                            );
+                          },
+                          // itemCount: profiles.length,
+                        );
+                      } else {
+                        return CupertinoActivityIndicator();
+                      }
                     },
-                    // itemCount: profiles.length,
                   ),
                 ),
               ),
