@@ -57,11 +57,9 @@ class _MainPageState extends State<MainPage> {
       _isSelectedNotify = prefs.getBool('notification') ?? true;
     });
     _firebaseMessaging.getToken().then((token) {
-      _firestore
-          .collection('Accounts')
-          .document(currentEmail)
-          .updateData({"registrationTokens": FieldValue.arrayUnion([token])});
-      print('token:' + token);
+      _firestore.collection('Accounts').document(currentEmail).updateData({
+        "registrationTokens": FieldValue.arrayUnion([token])
+      });
     });
   }
 
@@ -160,6 +158,15 @@ class _MainPageState extends State<MainPage> {
                               final SharedPreferences prefs =
                                   await SharedPreferences.getInstance();
                               _auth.signOut();
+                              _firebaseMessaging.getToken().then((token) {
+                                _firestore
+                                    .collection('Accounts')
+                                    .document(currentEmail)
+                                    .updateData({
+                                  "registrationTokens":
+                                      FieldValue.arrayRemove([token])
+                                });
+                              });
                               Navigator.pushReplacementNamed(
                                   context, LoginPage.id);
                               prefs.setBool('autoLogin', false);
@@ -190,31 +197,32 @@ class _MainPageState extends State<MainPage> {
                     Row(
                       children: <Widget>[
                         StreamBuilder<QuerySnapshot>(
-                            stream: _firestore
-                                .collection('Accounts')
-                                .document(currentEmail)
-                                .collection('notifications')
-                                .snapshots(),
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData) {
-                                int i = 0;
-                                for (final notification
-                                    in snapshot.data.documents) {
-                                  if (notification.data['isChecked'] == false)
-                                    i++;
-                                }
-                                if (i != 0) {
-                                  return CircleAvatar(
-                                    radius: 15,
-                                    child: Text(i.toString()),
-                                    backgroundColor: Colors.yellow[300],
-                                    foregroundColor: Colors.redAccent,
-                                  );
-                                } else
-                                  return Opacity(opacity: 0);
+                          stream: _firestore
+                              .collection('Accounts')
+                              .document(currentEmail)
+                              .collection('notifications')
+                              .snapshots(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              int i = 0;
+                              for (final notification
+                                  in snapshot.data.documents) {
+                                if (notification.data['isChecked'] == false)
+                                  i++;
+                              }
+                              if (i != 0) {
+                                return CircleAvatar(
+                                  radius: 15,
+                                  child: Text(i.toString()),
+                                  backgroundColor: Colors.yellow[300],
+                                  foregroundColor: Colors.redAccent,
+                                );
                               } else
-                                return CupertinoActivityIndicator();
-                            }),
+                                return Opacity(opacity: 0);
+                            } else
+                              return CupertinoActivityIndicator();
+                          },
+                        ),
                         IconButton(
                           iconSize: 40,
                           padding: EdgeInsets.all(0),
@@ -258,27 +266,27 @@ class _MainPageState extends State<MainPage> {
                             final elderNumber = elderInfo.data['phoneNum'];
                             final elderETCinfo = elderInfo.data['note'];
                             return StreamBuilder<DocumentSnapshot>(
-                                stream: _firestore
-                                    .collection('pulse_log')
-                                    .document('NcxLYL2kLhIGaI8e0Yvj')
-                                    .snapshots(),
-                                builder: (context, snapshot) {
-                                  return PersonalCard(
-                                      Profile(
-                                        name: elderName,
-                                        address: elderAddress,
-                                        age: elderAge,
-                                        photo: FirebaseImage(elderPhoto),
-                                        comments: elderETCinfo,
-                                        phoneNumber: elderNumber,
-                                        gender: elderGender,
-                                      ),
-                                      snapshot.hasData
-                                          ? snapshot.data.data['pulse']
-                                              .toString()
-                                          : '',
-                                      currentEmail);
-                                });
+                              stream: _firestore
+                                  .collection('pulse_log')
+                                  .document('NcxLYL2kLhIGaI8e0Yvj')
+                                  .snapshots(),
+                              builder: (context, snapshot) {
+                                return PersonalCard(
+                                    Profile(
+                                      name: elderName,
+                                      address: elderAddress,
+                                      age: elderAge,
+                                      photo: FirebaseImage(elderPhoto),
+                                      comments: elderETCinfo,
+                                      phoneNumber: elderNumber,
+                                      gender: elderGender,
+                                    ),
+                                    snapshot.hasData
+                                        ? snapshot.data.data['pulse'].toString()
+                                        : '',
+                                    currentEmail);
+                              },
+                            );
                           },
                         );
                       } else {

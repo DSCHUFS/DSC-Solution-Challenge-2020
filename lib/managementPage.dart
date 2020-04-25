@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dsc_solution_challenge_2020/personalReportPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
@@ -85,7 +86,7 @@ class ManagementPage extends StatelessWidget {
                     height: 10.0,
                   ),
                   Text(
-                    profile.comments, 
+                    profile.comments,
                     style: TextStyle(
                       fontSize: 20.0,
                       color: Colors.black87,
@@ -109,10 +110,22 @@ class ManagementPage extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Icon(
-                          Icons.keyboard_arrow_right,
-                          color: Colors.black45,
-                          size: 40.0,
+                        IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PersonalReportPage(
+                                    profile: profile,
+                                    currentEmail: currentEmail,
+                                  ),
+                                ));
+                          },
+                          icon: Icon(
+                            Icons.keyboard_arrow_right,
+                            color: Colors.black45,
+                            size: 40.0,
+                          ),
                         ),
                       ],
                     ),

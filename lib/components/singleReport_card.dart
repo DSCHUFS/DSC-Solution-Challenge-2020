@@ -7,8 +7,8 @@ class ReportInfo extends StatelessWidget {
   final String contact;
   final String health;
   final String social;
-  final String visitDate;
-  final String reportDate;
+  final DateTime visitDate;
+  final DateTime reportDate;
   final String note;
 
   static const mainTextStyle = TextStyle(
@@ -33,7 +33,7 @@ class ReportInfo extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      '작성 날짜: $reportDate',
+                      '작성 날짜: ${reportDate.toString().substring(0,10)}',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 25.0,
@@ -45,7 +45,7 @@ class ReportInfo extends StatelessWidget {
                       height: 5.0,
                     ),
                     Text(
-                      '방문 날짜: $visitDate',
+                      '방문 날짜: ${visitDate.toString().substring(0,10)}',
                       style: TextStyle(
                         color: Colors.black54,
                         fontSize: 15.0,
