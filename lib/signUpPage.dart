@@ -59,7 +59,7 @@ class _SignUpPageState extends State<SignUpPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text('회원가입',
+                  Text('Sign Up',
                       style: TextStyle(
                         fontSize: 40.0,
                         fontWeight: FontWeight.bold,
@@ -75,7 +75,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         },
                         padding: EdgeInsets.only(right: 0.0, bottom: 0.0),
                         child: Text(
-                          '로그인',
+                          'Sign In',
                           style: TextStyle(
                             fontSize: 15.0,
                             color: Colors.black,
@@ -90,7 +90,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            'E-mail(이메일)',
+                            'E-mail',
                             style: TextStyle(
                               fontSize: 25.0,
                               color: Colors.black,
@@ -105,7 +105,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               fontSize: 20,
                             ),
                             decoration: InputDecoration(
-                              hintText: '이메일을 입력해주세요.',
+                              hintText: 'Write e-mail.',
                               hintStyle: TextStyle(
                                 color: Colors.black54,
                               ),
@@ -118,7 +118,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             key: Key('email'),
                             validator: (value) {
                               if (!EmailValidator.validate(value, true)) {
-                                return '이메일 형식이 아닙니다.';
+                                return 'It\'s not email format.';
                               }
                               return null;
                             },
@@ -137,7 +137,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            '비밀번호',
+                            'Password',
                             style: TextStyle(
                               fontSize: 25.0,
                               color: Colors.black,
@@ -153,7 +153,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             key: Key('password'),
                             validator: (value) {
                               if (value.length < 6) {
-                                return '6자리 이상 입력해주세요.';
+                                return 'Write more than 6 letters.';
                               }
                               return null;
                             },
@@ -167,7 +167,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 color: Colors.blue,
                                 size: 30,
                               ),
-                              hintText: '비밀번호를 입력해주세요.',
+                              hintText: 'Write password.',
                               hintStyle: TextStyle(
                                 color: Colors.black54,
                               ),
@@ -184,7 +184,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            '비밀번호 확인',
+                            'Confirm password',
                             style: TextStyle(
                               fontSize: 25.0,
                               color: Colors.black,
@@ -199,7 +199,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                             validator: (value) {
                               return (password != value)
-                                  ? '비밀번호가 일치하지 않습니다.'
+                                  ? 'Password do not match.'
                                   : null;
                             },
                             obscureText: true,
@@ -212,7 +212,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 color: Colors.blue,
                                 size: 30,
                               ),
-                              hintText: '비밀번호를 다시 입력해주세요.',
+                              hintText: 'Please enter your password again.',
                               hintStyle: TextStyle(
                                 color: Colors.black54,
                               ),
@@ -229,7 +229,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            '이름',
+                            'Name',
                             style: TextStyle(
                               fontSize: 25.0,
                               color: Colors.black,
@@ -247,7 +247,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               fontSize: 20,
                             ),
                             decoration: InputDecoration(
-                              hintText: '이름을 입력해주세요.',
+                              hintText: 'Write name.',
                               hintStyle: TextStyle(
                                 color: Colors.black54,
                               ),
@@ -258,7 +258,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                             ),
                             validator: (value) {
-                              return value.isEmpty ? "이름을 작성해주세요." : null;
+                              return value.isEmpty ? "Write name." : null;
                             },
                           ),
                         ],
@@ -272,7 +272,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            '주민번호',
+                            'Social Security Number',
                             style: TextStyle(
                               fontSize: 25.0,
                               color: Colors.black,
@@ -301,14 +301,14 @@ class _SignUpPageState extends State<SignUpPage> {
                                     fontSize: 20,
                                   ),
                                   decoration: InputDecoration(
-                                    hintText: '생년월일',
+                                    hintText: 'Birthday',
                                     hintStyle: TextStyle(
                                       color: Colors.black54,
                                     ),
                                   ),
                                   validator: (value) {
                                     if (value.length != 6) {
-                                      return "6자리를 입력해주세요.";
+                                      return "Please enter 6 digits.";
                                     } else {
                                       return null;
                                     }
@@ -340,14 +340,14 @@ class _SignUpPageState extends State<SignUpPage> {
                                     fontSize: 20,
                                   ),
                                   decoration: InputDecoration(
-                                    hintText: '앞 1자리',
+                                    hintText: '1 digit in front',
                                     hintStyle: TextStyle(
                                       color: Colors.black54,
                                     ),
                                   ),
                                   validator: (value) {
                                     if (value.isEmpty) {
-                                      return "앞 1자리를 입력해주세요.";
+                                      return "Enter 1 digit in front.";
                                     } else {
                                       return null;
                                     }
@@ -394,7 +394,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(10)),
-                                      content: Text("성공적으로 가입되었습니다."),
+                                      content: Text("Success"),
                                       actions: <Widget>[
                                         new FlatButton(
                                           onPressed: () {
@@ -415,13 +415,13 @@ class _SignUpPageState extends State<SignUpPage> {
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(10)),
-                                    content: Text("이미 존재하는 계정입니다."),
+                                    content: Text("This account already exists."),
                                     actions: <Widget>[
                                       new FlatButton(
                                         onPressed: () {
                                           Navigator.pop(context);
                                         },
-                                        child: Text("확인"),
+                                        child: Text("Confirm"),
                                       )
                                     ],
                                   );
@@ -438,7 +438,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       color: Colors.white,
                       child: Text(
-                        '제출',
+                        'Submit',
                         style: TextStyle(
                           color: Colors.black,
                           letterSpacing: 2,

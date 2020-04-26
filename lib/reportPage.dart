@@ -57,7 +57,7 @@ class _ReportPageState extends State<ReportPage> {
                 Container(
                   margin: EdgeInsets.all(10.0),
                   child: Text(
-                    '보고서',
+                    'Report',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 40.0,
@@ -75,7 +75,7 @@ class _ReportPageState extends State<ReportPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text(
-                            '성함',
+                            'Name',
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 30.0,
@@ -110,7 +110,7 @@ class _ReportPageState extends State<ReportPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text(
-                            '작성 날짜',
+                            'Creation Date',
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 30.0,
@@ -145,7 +145,7 @@ class _ReportPageState extends State<ReportPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text(
-                            '방문 날짜',
+                            'Visit Date',
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 30.0,
@@ -194,7 +194,7 @@ class _ReportPageState extends State<ReportPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        '건강 상태',
+                        'Physical condition',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 30.0,
@@ -208,7 +208,7 @@ class _ReportPageState extends State<ReportPage> {
                           Column(
                             children: <Widget>[
                               Text(
-                                '양호',
+                                'good',
                                 style: new TextStyle(
                                   fontSize: 25.0,
                                   fontWeight: FontWeight.bold,
@@ -228,7 +228,7 @@ class _ReportPageState extends State<ReportPage> {
                           Column(
                             children: <Widget>[
                               Text(
-                                '보통',
+                                'normal',
                                 style: new TextStyle(
                                   fontSize: 25.0,
                                   fontWeight: FontWeight.bold,
@@ -248,7 +248,7 @@ class _ReportPageState extends State<ReportPage> {
                           Column(
                             children: <Widget>[
                               Text(
-                                '위급',
+                                'emergency',
                                 style: new TextStyle(
                                   fontSize: 25.0,
                                   fontWeight: FontWeight.bold,
@@ -276,7 +276,7 @@ class _ReportPageState extends State<ReportPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        '보호자 연락 여부',
+                        'Parental contact',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 30.0,
@@ -290,7 +290,7 @@ class _ReportPageState extends State<ReportPage> {
                           Column(
                             children: <Widget>[
                               Text(
-                                '예',
+                                'Yes',
                                 style: new TextStyle(
                                   fontSize: 25.0,
                                   fontWeight: FontWeight.bold,
@@ -310,7 +310,7 @@ class _ReportPageState extends State<ReportPage> {
                           Column(
                             children: <Widget>[
                               Text(
-                                '아니요',
+                                'No',
                                 style: new TextStyle(
                                   fontSize: 25.0,
                                   fontWeight: FontWeight.bold,
@@ -338,7 +338,7 @@ class _ReportPageState extends State<ReportPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        '사회활동 참여 여부',
+                        'Participation in social activities',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 30.0,
@@ -352,7 +352,7 @@ class _ReportPageState extends State<ReportPage> {
                           Column(
                             children: <Widget>[
                               Text(
-                                '예',
+                                'Yes',
                                 style: new TextStyle(
                                   fontSize: 25.0,
                                   fontWeight: FontWeight.bold,
@@ -372,7 +372,7 @@ class _ReportPageState extends State<ReportPage> {
                           Column(
                             children: <Widget>[
                               Text(
-                                '아니요',
+                                'No',
                                 style: new TextStyle(
                                   fontSize: 25.0,
                                   fontWeight: FontWeight.bold,
@@ -400,7 +400,7 @@ class _ReportPageState extends State<ReportPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        '활동기 및 특이사항',
+                        'Activity and Special note',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 30.0,
@@ -415,7 +415,7 @@ class _ReportPageState extends State<ReportPage> {
                           fontSize: 20,
                         ),
                         decoration: InputDecoration(
-                          hintText: '여기 입력하세요.',
+                          hintText: 'Write here',
                           border: OutlineInputBorder(),
                         ),
                         onChanged: (value) {
@@ -464,7 +464,7 @@ class _ReportPageState extends State<ReportPage> {
                       ),
                       color: Colors.white,
                       child: Text(
-                        '저장하기',
+                        'Save',
                         style: TextStyle(
                           color: Colors.black,
                           letterSpacing: 1,

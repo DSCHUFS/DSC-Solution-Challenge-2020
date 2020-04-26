@@ -29,7 +29,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 Container(
                   margin: EdgeInsets.all(10.0),
                   child: Text(
-                    '등록하기',
+                    'Register',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 40.0,
@@ -42,7 +42,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        '성함(이름)',
+                        'Name',
                         style: TextStyle(
                           fontSize: 25.0,
                           fontWeight: FontWeight.bold,
@@ -54,7 +54,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           name = value;
                         },
                         decoration: InputDecoration(
-                          labelText: "이름을 입력하세요",
+                          labelText: "Write name",
                           labelStyle: TextStyle(
                               fontSize: 20.0,
                               color: Colors.grey),
@@ -62,7 +62,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       SizedBox(height:30.0),
                       Text(
-                        '주소',
+                        'Address',
                         style: TextStyle(
                           fontSize: 25.0,
                           fontWeight: FontWeight.bold,
@@ -74,7 +74,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           address = value;
                         },
                         decoration: InputDecoration(
-                          labelText: "주소를 입력하세요",
+                          labelText: "Write address",
                           labelStyle: TextStyle(
                               fontSize: 20.0,
                               color: Colors.grey),
@@ -82,7 +82,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       SizedBox(height:30.0),
                       Text(
-                        '연락처',
+                        'Contact',
                         style: TextStyle(
                           fontSize: 25.0,
                           fontWeight: FontWeight.bold,
@@ -96,7 +96,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       SizedBox(height:30.0),
                       Text(
-                        '생년월일',
+                        'Birthday',
                         style: TextStyle(
                           fontSize: 25.0,
                           fontWeight: FontWeight.bold,
@@ -108,7 +108,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           age = value;
                         },
                         decoration: InputDecoration(
-                          labelText: "생년월일을 입력하세요",
+                          labelText: "Write birthday",
                           labelStyle: TextStyle(
                               fontSize: 20.0,
                               color: Colors.grey),
@@ -116,7 +116,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       SizedBox(height:30.0),
                       Text(
-                        '성별',
+                        'Gender',
                         style: TextStyle(
                           fontSize: 25.0,
                           fontWeight: FontWeight.bold,
@@ -156,7 +156,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     color: Colors.white,
                     padding: EdgeInsets.symmetric(horizontal: 50.0,vertical: 10.0),
                     child: Text(
-                      '다음',
+                      'Next',
                       style: TextStyle(
                         fontSize: 30.0,
                         fontWeight: FontWeight.bold,

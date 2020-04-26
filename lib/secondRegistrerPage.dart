@@ -96,7 +96,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
                   Container(
                     margin: EdgeInsets.all(10.0),
                     child: Text(
-                      '등록하기',
+                      'Register',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 40.0,
@@ -109,7 +109,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          '기타사항',
+                          'Other matters',
                           style: TextStyle(
                             fontSize: 25.0,
                             fontWeight: FontWeight.bold,
@@ -126,7 +126,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
                           keyboardType: TextInputType.text, //줄바꿈
                           decoration: InputDecoration(
                             hintText:
-                                "가족사항, 사회참여, 경제상태, 주거환경, 질병, 주요 욕구 등을 입력하세요.",
+                                "Write family information, social participation, economic status, residential environment, disease, major needs, etc.",
                             labelStyle:
                                 TextStyle(fontSize: 20.0, color: Colors.grey),
                             contentPadding: EdgeInsets.symmetric(
@@ -180,7 +180,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
                       padding: EdgeInsets.symmetric(
                           horizontal: 50.0, vertical: 10.0),
                       child: Text(
-                        '다음',
+                        'Submit',
                         style: TextStyle(
                           fontSize: 30.0,
                           fontWeight: FontWeight.bold,
