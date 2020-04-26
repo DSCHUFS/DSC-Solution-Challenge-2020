@@ -20,6 +20,10 @@ exports.notifyNewMessage = functions.firestore
             isChecked: false,
             timestamp: timestamp,
         });
+
+        admin.firestore().doc(userId).collection('ElderInfo').doc(name).update({
+            pulse : pulse,
+        });
  
         return admin.firestore().doc(userId).get().then(userDoc => {
             const registrationTokens = userDoc.get('registrationTokens');
