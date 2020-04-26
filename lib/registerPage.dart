@@ -20,6 +20,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       resizeToAvoidBottomPadding: false,
       body: SingleChildScrollView(
         child: Container(
