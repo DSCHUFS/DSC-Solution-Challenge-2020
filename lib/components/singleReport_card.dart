@@ -33,7 +33,7 @@ class ReportInfo extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      '작성 날짜: ${reportDate.toString().substring(0,10)}',
+                      'Creation Date: ${reportDate.toString().substring(0,10)}',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 25.0,
@@ -45,7 +45,7 @@ class ReportInfo extends StatelessWidget {
                       height: 5.0,
                     ),
                     Text(
-                      '방문 날짜: ${visitDate.toString().substring(0,10)}',
+                      'Visit Date: ${visitDate.toString().substring(0,10)}',
                       style: TextStyle(
                         color: Colors.black54,
                         fontSize: 15.0,
@@ -60,7 +60,7 @@ class ReportInfo extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        '간강상태: $health',
+                        'Physical condition: $health',
                         style: TextStyle(
                           color: Colors.black54,
                           fontSize: 10.0,
@@ -68,7 +68,7 @@ class ReportInfo extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '연락여부: $contact',
+                        'Contact: $contact',
                         style: TextStyle(
                           color: Colors.black54,
                           fontSize: 10.0,
@@ -76,7 +76,7 @@ class ReportInfo extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '사회활동: $social',
+                        'Social Activity: $social',
                         style: TextStyle(
                           color: Colors.black54,
                           fontSize: 10.0,
@@ -89,7 +89,7 @@ class ReportInfo extends StatelessWidget {
               ],
             )),
         Text(
-          '활동 및 특이사항',
+          'Activity and Special note',
           style: TextStyle(
             color: Colors.black,
             fontSize: 25.0,

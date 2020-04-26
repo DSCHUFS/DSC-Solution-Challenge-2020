@@ -29,7 +29,7 @@ class PersonalReportCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  '${profile.name}의 보고서',
+                  '${profile.name}\'s report',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 25.0,
@@ -39,7 +39,7 @@ class PersonalReportCard extends StatelessWidget {
                 ),
                 SizedBox(height: 5.0,),
                 Text(
-                  '최근 업데이트 날짜: $latestDate',
+                  'Last Update Date: $latestDate',
                   style: TextStyle(
                     color: Colors.black54,
                     fontSize: 15.0,
@@ -50,7 +50,6 @@ class PersonalReportCard extends StatelessWidget {
               ],
             ),
           ),
-          //SizedBox(width: 80.0),
           IconButton(
             icon: Icon(
               Icons.keyboard_arrow_right,
@@ -62,7 +61,6 @@ class PersonalReportCard extends StatelessWidget {
               Navigator.push(context, MaterialPageRoute(
                 builder: (context) => PersonalReportPage(profile: profile, currentEmail: currentEmail,),)
               );
-              // print('test');
             },
           ),
         ],

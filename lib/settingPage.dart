@@ -35,7 +35,7 @@ class _SettingPageState extends State<SettingPage> {
             children: <Widget>[
               SizedBox(height: 20.0),
               Text(
-                "알림 설정",
+                "Notifications Setting",
                 style: TextStyle(
                   fontSize: 30.0,
                   fontWeight: FontWeight.bold,
@@ -47,7 +47,7 @@ class _SettingPageState extends State<SettingPage> {
                 activeColor: Colors.tealAccent[700],
                 contentPadding: const EdgeInsets.only(left: 5),
                 value: _isSelectedNotify ?? true,
-                title: Text("알림 수신"),
+                title: Text("Receive notifications"),
                 onChanged: (value) async {
                   final SharedPreferences prefs =
                       await SharedPreferences.getInstance();
@@ -62,21 +62,21 @@ class _SettingPageState extends State<SettingPage> {
                 activeColor: Colors.tealAccent[700],
                 contentPadding: const EdgeInsets.only(left: 5),
                 value: false,
-                title: Text("메일 수신"),
+                title: Text("Receive email notifications"),
                 onChanged: null,
               ),
               SwitchListTile(
                 activeColor: Colors.tealAccent[700],
                 contentPadding: const EdgeInsets.only(left: 5),
                 value: false,
-                title: Text("업데이트 확인"),
+                title: Text("Check for updates"),
                 onChanged: null,
               ),
               SizedBox(height: 20.0),
               _buildDivider(),
               SizedBox(height: 20.0),
               Text(
-                "개인정보",
+                "Personal information",
                 style: TextStyle(
                   fontSize: 30.0,
                   fontWeight: FontWeight.bold,
@@ -96,7 +96,7 @@ class _SettingPageState extends State<SettingPage> {
                     Icons.perm_identity,
                     color: Colors.black,
                   ),
-                  title: Text('정보 변경'),
+                  title: Text('Change information'),
                   trailing: Icon(Icons.keyboard_arrow_right),
                   onTap: () {},
                 ),
@@ -113,7 +113,7 @@ class _SettingPageState extends State<SettingPage> {
                     Icons.security,
                     color: Colors.black,
                   ),
-                  title: Text('비밀번호 변경'),
+                  title: Text('Change password'),
                   trailing: Icon(Icons.keyboard_arrow_right),
                   onTap: () {},
                 ),
@@ -122,7 +122,7 @@ class _SettingPageState extends State<SettingPage> {
               _buildDivider(),
               SizedBox(height: 20.0),
               Text(
-                "개발자와 소통하기",
+                "Communicate with developers",
                 style: TextStyle(
                   fontSize: 30.0,
                   fontWeight: FontWeight.bold,
@@ -142,7 +142,7 @@ class _SettingPageState extends State<SettingPage> {
                     Icons.notifications_active,
                     color: Colors.black,
                   ),
-                  title: Text('공지사항'),
+                  title: Text('Notice'),
                   trailing: Icon(Icons.keyboard_arrow_right),
                   onTap: () {},
                 ),
@@ -159,7 +159,7 @@ class _SettingPageState extends State<SettingPage> {
                     Icons.bug_report,
                     color: Colors.black,
                   ),
-                  title: Text('버그 제보하기'),
+                  title: Text('Bug report'),
                   trailing: Icon(Icons.keyboard_arrow_right),
                   onTap: () {},
                 ),
@@ -168,7 +168,7 @@ class _SettingPageState extends State<SettingPage> {
               _buildDivider(),
               SizedBox(height: 20.0),
               Text(
-                "앱 정보",
+                "About apps",
                 style: TextStyle(
                   fontSize: 30.0,
                   fontWeight: FontWeight.bold,
