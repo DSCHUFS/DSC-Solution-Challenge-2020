@@ -76,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text('로그인',
+                    Text('Login',
                         style: TextStyle(
                           fontSize: 50.0,
                           fontWeight: FontWeight.bold,
@@ -90,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              'E-mail(이메일)',
+                              'E-mail',
                               style: TextStyle(
                                 fontSize: 25.0,
                                 color: Colors.black,
@@ -105,7 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                                 fontSize: 20,
                               ),
                               decoration: InputDecoration(
-                                hintText: '이메일을 입력해주세요.',
+                                hintText: 'Write your E-mail address.',
                                 hintStyle: TextStyle(
                                   color: Colors.black54,
                                 ),
@@ -118,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                               key: Key('email'),
                               validator: (value) {
                                 if (!EmailValidator.validate(value, true)) {
-                                  return '이메일 형식이 아닙니다.';
+                                  return 'wrong E-mail address format.';
                                 }
                                 return null;
                               },
@@ -137,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              '비밀번호',
+                              'Password',
                               style: TextStyle(
                                 fontSize: 25.0,
                                 color: Colors.black,
@@ -153,7 +153,7 @@ class _LoginPageState extends State<LoginPage> {
                               key: Key('password'),
                               validator: (value) {
                                 if (value.length < 6) {
-                                  return '6자리 이상 입력해주세요.';
+                                  return 'write more than 6 words.';
                                 }
                                 return null;
                               },
@@ -167,7 +167,7 @@ class _LoginPageState extends State<LoginPage> {
                                   color: Colors.blue,
                                   size: 30,
                                 ),
-                                hintText: '비밀번호를 입력해주세요.',
+                                hintText: 'write your password.',
                                 hintStyle: TextStyle(
                                   color: Colors.black54,
                                 ),
@@ -199,7 +199,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           Text(
-                            '자동 로그인',
+                            'Auto Login',
                             style: TextStyle(
                               fontSize: 20.0,
                               color: Colors.black,
@@ -228,7 +228,7 @@ class _LoginPageState extends State<LoginPage> {
                                       validator: (value) {
                                         if (!EmailValidator.validate(
                                             value, true)) {
-                                          return '이메일 형식이 아닙니다.';
+                                          return 'wrong E-mail address format.';
                                         }
                                         return null;
                                       },
@@ -236,11 +236,11 @@ class _LoginPageState extends State<LoginPage> {
                                         reEmail = value;
                                       },
                                       decoration:
-                                          InputDecoration(hintText: '이메일'),
+                                          InputDecoration(hintText: 'E-mail'),
                                     ),
                                     actions: <Widget>[
                                       new FlatButton(
-                                        child: new Text("확인"),
+                                        child: new Text("confirm"),
                                         onPressed: () async {
                                           if (_formKeySecond.currentState
                                               .validate()) {
@@ -264,14 +264,14 @@ class _LoginPageState extends State<LoginPage> {
                                                                       .circular(
                                                                           10)),
                                                       content:
-                                                          Text("이메일을 확인해주세요."),
+                                                          Text("Check the E-mail address."),
                                                       actions: <Widget>[
                                                         new FlatButton(
                                                           onPressed: () {
                                                             Navigator.pop(
                                                                 context);
                                                           },
-                                                          child: Text("확인"),
+                                                          child: Text("confirm"),
                                                         )
                                                       ],
                                                     );
@@ -291,14 +291,14 @@ class _LoginPageState extends State<LoginPage> {
                                                                       .circular(
                                                                           10)),
                                                       content: Text(
-                                                          "존재하지 않는 계정입니다."),
+                                                          "Do not exist the account."),
                                                       actions: <Widget>[
                                                         new FlatButton(
                                                           onPressed: () {
                                                             Navigator.pop(
                                                                 context);
                                                           },
-                                                          child: Text("확인"),
+                                                          child: Text("confirm"),
                                                         )
                                                       ],
                                                     );
@@ -317,7 +317,7 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         padding: EdgeInsets.only(right: 0.0),
                         child: Text(
-                          '비밀번호를 잊어버렸습니다',
+                          'I\'ve forgot my password',
                           style: TextStyle(
                             fontSize: 15.0,
                             color: Colors.black,
@@ -334,7 +334,7 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         padding: EdgeInsets.only(right: 0.0),
                         child: Text(
-                          '회원가입',
+                          'Sign Up',
                           style: TextStyle(
                             fontSize: 15.0,
                             color: Colors.black,
@@ -379,13 +379,13 @@ class _LoginPageState extends State<LoginPage> {
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(10)),
-                                      content: Text("이메일과 비밀번호를 확인해주세요."),
+                                      content: Text("Check the E-mail and Password."),
                                       actions: <Widget>[
                                         new FlatButton(
                                           onPressed: () {
                                             Navigator.pop(context);
                                           },
-                                          child: Text("확인"),
+                                          child: Text("Confirm"),
                                         )
                                       ],
                                     );
@@ -402,7 +402,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         color: Colors.white,
                         child: Text(
-                          '로그인',
+                          'Login',
                           style: TextStyle(
                             color: Colors.black,
                             letterSpacing: 2,

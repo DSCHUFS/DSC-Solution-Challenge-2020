@@ -15,7 +15,7 @@ Future alertPopup(BuildContext context, int number) {
                 return 'Write age.';
                 break;
               case 3:
-                return '방문 날짜는 작성날짜 이후가 될 수 없습니다.';
+                return 'Creation date can\'t be before Visit date.';
                 break;
               case 4:
                 return 'Write address.';
