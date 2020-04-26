@@ -85,6 +85,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
     }
 
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       resizeToAvoidBottomPadding: false,
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
