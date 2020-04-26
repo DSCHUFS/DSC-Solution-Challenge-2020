@@ -94,7 +94,7 @@ class _PersonalReportPageState extends State<PersonalReportPage> {
                         return ListView.builder(
                           itemCount: snapshot.data.documents.length,
                           itemBuilder: (context, index) {
-                            final report = snapshot.data.documents[index];
+                            final report = snapshot.data.documents[snapshot.data.documents.length - index - 1];
                             final health = report.data['healthState'];
                             final contact = report.data['contact'];
                             final social = report.data['social'];
