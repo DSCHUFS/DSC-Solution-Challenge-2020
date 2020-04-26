@@ -39,7 +39,7 @@ class ReportInfo extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      'Creation Date: ${reportDate.toString().substring(0,10)}',
+                      'Create Date: ${reportDate.toString().substring(0,10)}',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 20.0,
@@ -66,7 +66,7 @@ class ReportInfo extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        'Physical condition: $health',
+                        'Health: $health',
                         style: TextStyle(
                           color: Colors.black54,
                           fontSize: 10.0,
@@ -82,7 +82,7 @@ class ReportInfo extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Social Activity: $social',
+                        'Social: $social',
                         style: TextStyle(
                           color: Colors.black54,
                           fontSize: 10.0,
@@ -100,7 +100,7 @@ class ReportInfo extends StatelessWidget {
         Container(
           padding: EdgeInsets.all(10.0),
           child: Text(
-          'Activity and Special note',
+          'Special note',
           style: TextStyle(
             color: Colors.black,
             fontSize: 25.0,
