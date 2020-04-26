@@ -92,7 +92,7 @@ class _ReportListPageState extends State<ReportListPage> {
                           return ListView.builder(
                             itemCount: snapshot.data.documents.length,
                             itemBuilder: (context, index) {
-                              final elderInfo = snapshot.data.documents[index];
+                              final elderInfo = snapshot.data.documents[snapshot.data.documents.length - index - 1];
                               final elderName = elderInfo.data['name'];
                               final elderAddress = elderInfo.data['address'];
                               final elderAge = elderInfo.data['age'];
