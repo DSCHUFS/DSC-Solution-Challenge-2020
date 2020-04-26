@@ -110,7 +110,7 @@ class _ReportPageState extends State<ReportPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text(
-                            'Creation Date',
+                            'Create Date',
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 30.0,
@@ -194,7 +194,7 @@ class _ReportPageState extends State<ReportPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        'Physical condition',
+                        'Health',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 30.0,
@@ -248,7 +248,7 @@ class _ReportPageState extends State<ReportPage> {
                           Column(
                             children: <Widget>[
                               Text(
-                                'emergency',
+                                'bad',
                                 style: new TextStyle(
                                   fontSize: 25.0,
                                   fontWeight: FontWeight.bold,
@@ -276,7 +276,7 @@ class _ReportPageState extends State<ReportPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        'Parental contact',
+                        'Family contact',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 30.0,
@@ -338,7 +338,7 @@ class _ReportPageState extends State<ReportPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        'Participation in social activities',
+                        'Social activities',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 30.0,
@@ -400,7 +400,7 @@ class _ReportPageState extends State<ReportPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        'Activity and Special note',
+                        'Activity',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 30.0,
