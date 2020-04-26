@@ -46,7 +46,7 @@ class PersonalCard extends StatelessWidget {
                   '${profile.age} / ${profile.gender}',
                   style: TextStyle(
                     color: Colors.black54,
-                    fontSize: 15.0,
+                    fontSize: 12.0,
                     fontWeight: FontWeight.bold,
                   ),
                   textAlign: TextAlign.left,

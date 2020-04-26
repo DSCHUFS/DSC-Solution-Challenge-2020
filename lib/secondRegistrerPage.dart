@@ -34,7 +34,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
   String currentEmail;
   String profileImageURL =
       "gs://dsc-solution-challenge-6c028.appspot.com/photo/";
-  String timeVar = DateTime.now().year.toString() + DateTime.now().month.toString() + DateTime.now().day.toString() + DateTime.now().hour.toString() + DateTime.now().minute.toString();
+  String timeVar = DateTime.now().year.toString() + "_" + DateTime.now().month.toString() + "_" + DateTime.now().day.toString() + "_" + DateTime.now().hour.toString() + "_" + DateTime.now().minute.toString() +  "_";
   int randomNumber;
   File _image;
   String imageType;
@@ -152,8 +152,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
                                       _image,
                                       fit: BoxFit.fill,
                                     )
-                                  : Image.network(
-                                      "https://images.unsplash.com/photo-1502164980785-f8aa41d53611?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+                                  : Image.asset('images/DSCHUFS.png',
                                       fit: BoxFit.fill,
                                     ),
                             ),
@@ -194,10 +193,18 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
                           setState(() {
                             showSpinner = true;
                           });
-                          await uploadPic(context);
+                          if(_image != null){
+                            await uploadPic(context);
+                          }
                           setState(() {
-                            profileImageURL += "$timeVar$randomNumber$imageType";
+                            if(_image == null){
+                              profileImageURL = "gs://dsc-solution-challenge-6c028.appspot.com/photo/IMG_5862.PNG";
+                            }
+                            else {
+                              profileImageURL += "$timeVar$randomNumber$imageType";
+                            }
                           });
+                          
                           await _firestore
                               .collection('Accounts')
                               .document(currentEmail)

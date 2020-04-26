@@ -17,8 +17,6 @@ class _RegisterPageState extends State<RegisterPage> {
   String number;
   String gender;
 
-  ImageProvider photo = AssetImage('images/pengsoo.jpeg');
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -183,7 +181,6 @@ class _RegisterPageState extends State<RegisterPage> {
                       else{
                         print(name); 
                         print(age);
-                        print(photo);
                         Navigator.push(context, MaterialPageRoute(builder: (context)=> SecondRegisterPage(
                           name:name,
                           gender: gender,

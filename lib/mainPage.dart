@@ -86,7 +86,7 @@ class _MainPageState extends State<MainPage> {
                   children: <Widget>[
                     CircleAvatar(
                       radius: 40.0,
-                      backgroundImage: AssetImage('images/pengsoo.jpeg'),
+                      backgroundImage: AssetImage('images/DSCHUFS.png'),
                     ),
                     Container(
                       padding: EdgeInsets.all(20.0),
