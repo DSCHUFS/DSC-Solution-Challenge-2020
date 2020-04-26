@@ -103,14 +103,14 @@ class _PersonalReportPageState extends State<PersonalReportPage> {
                             final note = report.data['note'] ?? '';
                             return ReportInfo(
                               health: health == 'HealthState.good'
-                                  ? '졸음'
+                                  ? 'good'
                                   : health == 'HealthState.noraml'
-                                      ? '보통'
-                                      : '나쁨',
+                                      ? 'normal'
+                                      : 'bad',
                               contact:
-                                  contact == 'ContactYesOrNo.yes' ? '예' : '아니오',
+                                  contact == 'ContactYesOrNo.yes' ? 'yes' : 'no',
                               social:
-                                  social == 'SocialYesOrNo.yes' ? '예' : '아니오',
+                                  social == 'SocialYesOrNo.yes' ? 'yes' : 'no',
                               visitDate: visitDate.toDate(),
                               reportDate: reportDate.toDate(),
                               note: note,

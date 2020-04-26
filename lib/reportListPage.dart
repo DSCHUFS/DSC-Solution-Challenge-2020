@@ -8,7 +8,6 @@ import 'package:dsc_solution_challenge_2020/components/report_card.dart';
 import 'package:dsc_solution_challenge_2020/models/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-// List<Profile> profiles =[Profile(name: '펭 수펭펭', age: 10, address: 'EBS소품실', photo: AssetImage('images/pengsoo.jpeg'), comments: '펭-하!', phoneNumber: '비밀',gender: '남'), Profile(name: '펭 하', age: 15, address: 'EBS소품실', photo: AssetImage('images/pengsoo.jpeg'), comments: '펭-하!', phoneNumber: '비밀',gender: '여')];
 class ReportListPage extends StatefulWidget {
   static const String id = 'report_list_page';
 
@@ -68,7 +67,7 @@ class _ReportListPageState extends State<ReportListPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       Text(
-                        '보고서 리스트',
+                        'Report List',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 30.0,
@@ -109,7 +108,7 @@ class _ReportListPageState extends State<ReportListPage> {
                                   currentEmail,
                                   latestDate != null
                                       ? latestDate.toDate().toString().substring(0,10)
-                                      : '없음');
+                                      : 'None');
                             },
                           );
                         } else {

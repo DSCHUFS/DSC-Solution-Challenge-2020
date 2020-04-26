@@ -25,7 +25,7 @@ class AlertListPageState extends State<AlertListPage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          '알림 목록',
+          'Notification List',
           style: TextStyle(
             color: Colors.black,
             fontSize: 30.0,
@@ -97,7 +97,7 @@ class AlertListPageState extends State<AlertListPage> {
                                       ? Colors.white70
                                       : Colors.yellow[100],
                                   child: ExpansionTile(
-                                    title: Text(elderName + '님의 위험이 감지되었습니다.'),
+                                    title: Text('App detects '+ elderName + '\'s danger.'),
                                     subtitle: Text(time),
                                     onExpansionChanged: (value) async {
                                       if (!isChecked) {
@@ -112,7 +112,7 @@ class AlertListPageState extends State<AlertListPage> {
                                     children: <Widget>[
                                       ListTile(
                                           title:
-                                              Text('맥박 : ' + pulse.toString()))
+                                              Text('Pulse : ' + pulse.toString()))
                                     ],
                                   ),
                                 ),

@@ -86,7 +86,7 @@ class _MainPageState extends State<MainPage> {
                   children: <Widget>[
                     CircleAvatar(
                       radius: 40.0,
-                      backgroundImage: AssetImage('images/pengsoo.jpeg'),
+                      backgroundImage: AssetImage('images/DSCHUFS.png'),
                     ),
                     Container(
                       padding: EdgeInsets.all(20.0),
@@ -106,7 +106,7 @@ class _MainPageState extends State<MainPage> {
                             height: 5.0,
                           ),
                           Text(
-                            '사회복지사',
+                            'Social Worker',
                             style: TextStyle(
                               color: Colors.black54,
                               fontSize: 15.0,
@@ -118,63 +118,66 @@ class _MainPageState extends State<MainPage> {
                       ),
                     ),
                     // 로그아웃 버튼
-                    Container(
-                      margin: EdgeInsets.only(left: 110.0),
-                      child: Column(
-                        children: <Widget>[
-                          IconButton(
-                            onPressed: () async {
-                              final SharedPreferences prefs =
-                                  await SharedPreferences.getInstance();
-                              if (_isSelectedNotify) {
-                                setState(() {
-                                  _isSelectedNotify = false;
-                                  prefs.setBool('notification', false);
-                                  // print(prefs.getBool('notification'));
-                                });
-                              } else {
-                                setState(() {
-                                  _isSelectedNotify = true;
-                                  prefs.setBool('notification', true);
-                                  // print(prefs.getBool('notification'));
-                                });
-                              }
-                            },
-                            icon: Icon(
-                              _isSelectedNotify ?? true
-                                  ? Icons.notifications_active
-                                  : Icons.notifications_off,
-                              color: _isSelectedNotify ?? true
-                                  ? Colors.blue
-                                  : Colors.black45,
-                              size: 35.0,
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        margin: EdgeInsets.only(right:20),
+                        child: Column(
+                          children: <Widget>[
+                            IconButton(
+                              onPressed: () async {
+                                final SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                if (_isSelectedNotify) {
+                                  setState(() {
+                                    _isSelectedNotify = false;
+                                    prefs.setBool('notification', false);
+                                    // print(prefs.getBool('notification'));
+                                  });
+                                } else {
+                                  setState(() {
+                                    _isSelectedNotify = true;
+                                    prefs.setBool('notification', true);
+                                    // print(prefs.getBool('notification'));
+                                  });
+                                }
+                              },
+                              icon: Icon(
+                                _isSelectedNotify ?? true
+                                    ? Icons.notifications_active
+                                    : Icons.notifications_off,
+                                color: _isSelectedNotify ?? true
+                                    ? Colors.blue
+                                    : Colors.black45,
+                                size: 35.0,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 5.0,
-                          ),
-                          InkWell(
-                            onTap: () async {
-                              final SharedPreferences prefs =
-                                  await SharedPreferences.getInstance();
-                              _auth.signOut();
-                              _firebaseMessaging.getToken().then((token) {
-                                _firestore
-                                    .collection('Accounts')
-                                    .document(currentEmail)
-                                    .updateData({
-                                  "registrationTokens":
-                                      FieldValue.arrayRemove([token])
+                            SizedBox(
+                              height: 5.0,
+                            ),
+                            InkWell(
+                              onTap: () async {
+                                final SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                _auth.signOut();
+                                _firebaseMessaging.getToken().then((token) {
+                                  _firestore
+                                      .collection('Accounts')
+                                      .document(currentEmail)
+                                      .updateData({
+                                    "registrationTokens":
+                                        FieldValue.arrayRemove([token])
+                                  });
                                 });
-                              });
-                              Navigator.pushReplacementNamed(
-                                  context, LoginPage.id);
-                              prefs.setBool('autoLogin', false);
-                              prefs.setStringList('ID', ['', '']);
-                            },
-                            child: Text('Logout'),
-                          ),
-                        ],
+                                Navigator.pushReplacementNamed(
+                                    context, LoginPage.id);
+                                prefs.setBool('autoLogin', false);
+                                prefs.setStringList('ID', ['', '']);
+                              },
+                              child: Text('Logout'),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -186,7 +189,7 @@ class _MainPageState extends State<MainPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      '알림 목록',
+                      'Notification List',
                       style: TextStyle(
                         fontSize: 27.0,
                         color: Colors.black87,

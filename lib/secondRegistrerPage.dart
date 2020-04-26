@@ -34,7 +34,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
   String currentEmail;
   String profileImageURL =
       "gs://dsc-solution-challenge-6c028.appspot.com/photo/";
-  String timeVar = DateTime.now().year.toString() + DateTime.now().month.toString() + DateTime.now().day.toString() + DateTime.now().hour.toString() + DateTime.now().minute.toString();
+  String timeVar = DateTime.now().year.toString() + "_" + DateTime.now().month.toString() + "_" + DateTime.now().day.toString() + "_" + DateTime.now().hour.toString() + "_" + DateTime.now().minute.toString() +  "_";
   int randomNumber;
   File _image;
   String imageType;
@@ -96,7 +96,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
                   Container(
                     margin: EdgeInsets.all(10.0),
                     child: Text(
-                      '등록하기',
+                      'Register',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 40.0,
@@ -109,7 +109,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          '기타사항',
+                          'Other matters',
                           style: TextStyle(
                             fontSize: 25.0,
                             fontWeight: FontWeight.bold,
@@ -126,7 +126,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
                           keyboardType: TextInputType.text, //줄바꿈
                           decoration: InputDecoration(
                             hintText:
-                                "가족사항, 사회참여, 경제상태, 주거환경, 질병, 주요 욕구 등을 입력하세요.",
+                                "Write family information, social participation, economic status, residential environment, disease, major needs, etc.",
                             labelStyle:
                                 TextStyle(fontSize: 20.0, color: Colors.grey),
                             contentPadding: EdgeInsets.symmetric(
@@ -152,8 +152,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
                                       _image,
                                       fit: BoxFit.fill,
                                     )
-                                  : Image.network(
-                                      "https://images.unsplash.com/photo-1502164980785-f8aa41d53611?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+                                  : Image.asset('images/DSCHUFS.png',
                                       fit: BoxFit.fill,
                                     ),
                             ),
@@ -181,7 +180,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
                       padding: EdgeInsets.symmetric(
                           horizontal: 50.0, vertical: 10.0),
                       child: Text(
-                        '다음',
+                        'Submit',
                         style: TextStyle(
                           fontSize: 30.0,
                           fontWeight: FontWeight.bold,
@@ -194,10 +193,18 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
                           setState(() {
                             showSpinner = true;
                           });
-                          await uploadPic(context);
+                          if(_image != null){
+                            await uploadPic(context);
+                          }
                           setState(() {
-                            profileImageURL += "$timeVar$randomNumber$imageType";
+                            if(_image == null){
+                              profileImageURL = "gs://dsc-solution-challenge-6c028.appspot.com/photo/IMG_5862.PNG";
+                            }
+                            else {
+                              profileImageURL += "$timeVar$randomNumber$imageType";
+                            }
                           });
+                          
                           await _firestore
                               .collection('Accounts')
                               .document(currentEmail)
