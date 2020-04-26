@@ -53,7 +53,6 @@ class _SignUpPageState extends State<SignUpPage> {
             child: SingleChildScrollView(
               physics: AlwaysScrollableScrollPhysics(),
               padding: EdgeInsets.symmetric(
-                // horizontal: 30.0,
                 vertical: 120.0,
               ),
               child: Column(
@@ -65,7 +64,6 @@ class _SignUpPageState extends State<SignUpPage> {
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       )),
-                  // SizedBox(height: 30.0),
                   Container(
                       margin: EdgeInsets.symmetric(horizontal: 20),
                       alignment: Alignment.centerRight,
@@ -75,7 +73,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         },
                         padding: EdgeInsets.only(right: 0.0, bottom: 0.0),
                         child: Text(
-                          'Sign In',
+                          'Login',
                           style: TextStyle(
                             fontSize: 15.0,
                             color: Colors.black,
