@@ -10,18 +10,16 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  
   String name;
   String age;
   String address;
   String number;
   String gender;
 
-  ImageProvider photo = AssetImage('images/pengsoo.jpeg');
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       resizeToAvoidBottomPadding: false,
       body: SingleChildScrollView(
         child: Container(
@@ -31,7 +29,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 Container(
                   margin: EdgeInsets.all(10.0),
                   child: Text(
-                    '등록하기',
+                    'Register',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 40.0,
@@ -44,7 +42,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        '성함(이름)',
+                        'Name',
                         style: TextStyle(
                           fontSize: 25.0,
                           fontWeight: FontWeight.bold,
@@ -56,15 +54,14 @@ class _RegisterPageState extends State<RegisterPage> {
                           name = value;
                         },
                         decoration: InputDecoration(
-                          labelText: "이름을 입력하세요",
-                          labelStyle: TextStyle(
-                              fontSize: 20.0,
-                              color: Colors.grey),
+                          labelText: "Write name",
+                          labelStyle:
+                              TextStyle(fontSize: 20.0, color: Colors.grey),
                         ),
                       ),
-                      SizedBox(height:30.0),
+                      SizedBox(height: 30.0),
                       Text(
-                        '주소',
+                        'Address',
                         style: TextStyle(
                           fontSize: 25.0,
                           fontWeight: FontWeight.bold,
@@ -76,15 +73,14 @@ class _RegisterPageState extends State<RegisterPage> {
                           address = value;
                         },
                         decoration: InputDecoration(
-                          labelText: "주소를 입력하세요",
-                          labelStyle: TextStyle(
-                              fontSize: 20.0,
-                              color: Colors.grey),
+                          labelText: "Write address",
+                          labelStyle:
+                              TextStyle(fontSize: 20.0, color: Colors.grey),
                         ),
                       ),
-                      SizedBox(height:30.0),
+                      SizedBox(height: 30.0),
                       Text(
-                        '연락처',
+                        'Contact',
                         style: TextStyle(
                           fontSize: 25.0,
                           fontWeight: FontWeight.bold,
@@ -96,9 +92,9 @@ class _RegisterPageState extends State<RegisterPage> {
                           number = value;
                         },
                       ),
-                      SizedBox(height:30.0),
+                      SizedBox(height: 30.0),
                       Text(
-                        '생년월일',
+                        'Birthday',
                         style: TextStyle(
                           fontSize: 25.0,
                           fontWeight: FontWeight.bold,
@@ -110,42 +106,64 @@ class _RegisterPageState extends State<RegisterPage> {
                           age = value;
                         },
                         decoration: InputDecoration(
-                          labelText: "생년월일을 입력하세요",
-                          labelStyle: TextStyle(
-                              fontSize: 20.0,
-                              color: Colors.grey),
+                          labelText: "Write birthday",
+                          labelStyle:
+                              TextStyle(fontSize: 20.0, color: Colors.grey),
                         ),
                       ),
-                      SizedBox(height:30.0),
+                      SizedBox(height: 30.0),
                       Text(
-                        '성별',
+                        'Fitbit ID',
                         style: TextStyle(
                           fontSize: 25.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height:10.0),
-                      Row(children: <Widget>[
-                        GenderSelectBox(
-                          onPress: (){
-                            setState((){
-                              gender = 'male';
-                            });
-                          },
-                          label: 'MALE',
-                          colour: gender == 'male' ? Colors.blue[300] : Colors.white,
+                      TextField(
+                        textAlign: TextAlign.center,
+                        onChanged: (value) {},
+                        decoration: InputDecoration(
+                          labelText: "Write Fitbit ID",
+                          labelStyle:
+                              TextStyle(fontSize: 20.0, color: Colors.grey),
                         ),
-                        SizedBox(width: 10),
-                        GenderSelectBox(
-                          onPress:(){
-                            setState((){
-                              gender = 'female';
-                            });
-                          },
-                          label: 'FEMALE',
-                          colour: gender == 'female' ? Colors.blue[300] : Colors.white,
+                      ),
+                      SizedBox(height: 30.0),
+                      Text(
+                        'Gender',
+                        style: TextStyle(
+                          fontSize: 25.0,
+                          fontWeight: FontWeight.bold,
                         ),
-                      ],),
+                      ),
+                      SizedBox(height: 10.0),
+                      Row(
+                        children: <Widget>[
+                          GenderSelectBox(
+                            onPress: () {
+                              setState(() {
+                                gender = 'male';
+                              });
+                            },
+                            label: 'MALE',
+                            colour: gender == 'male'
+                                ? Colors.blue[300]
+                                : Colors.white,
+                          ),
+                          SizedBox(width: 10),
+                          GenderSelectBox(
+                            onPress: () {
+                              setState(() {
+                                gender = 'female';
+                              });
+                            },
+                            label: 'FEMALE',
+                            colour: gender == 'female'
+                                ? Colors.blue[300]
+                                : Colors.white,
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -156,41 +174,39 @@ class _RegisterPageState extends State<RegisterPage> {
                       borderRadius: BorderRadius.circular(18.0),
                     ),
                     color: Colors.white,
-                    padding: EdgeInsets.symmetric(horizontal: 50.0,vertical: 10.0),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 50.0, vertical: 10.0),
                     child: Text(
-                      '다음',
+                      'Next',
                       style: TextStyle(
                         fontSize: 30.0,
                         fontWeight: FontWeight.bold,
                       ),
-                      ),
+                    ),
                     onPressed: () {
-                      if(name == null || name == ''){
+                      if (name == null || name == '') {
                         alertPopup(context, 1);
-                      }
-                      else if(address == null || address == ''){
+                      } else if (address == null || address == '') {
                         alertPopup(context, 4);
-                      }
-                      else if(number == null || number == ''){
+                      } else if (number == null || number == '') {
                         alertPopup(context, 5);
-                      }
-                      else if(age == null || age == ''){
+                      } else if (age == null || age == '') {
                         alertPopup(context, 2);
-                      }
-                      else if(gender == null){
+                      } else if (gender == null) {
                         alertPopup(context, 6);
-                      }
-                      else{
-                        print(name); 
+                      } else {
+                        print(name);
                         print(age);
-                        print(photo);
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> SecondRegisterPage(
-                          name:name,
-                          gender: gender,
-                          age: age,
-                          address: address,
-                          number: number,
-                          )));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SecondRegisterPage(
+                                      name: name,
+                                      gender: gender,
+                                      age: age,
+                                      address: address,
+                                      number: number,
+                                    )));
                       }
                     },
                   ),

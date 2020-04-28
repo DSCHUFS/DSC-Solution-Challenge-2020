@@ -113,19 +113,19 @@ class _CustomAppBarState extends State<CustomAppBar> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text('홈'),
+            title: Text('Home'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.event_note),
-            title: Text('보고서'),
+            title: Text('Report'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add_circle_outline),
-            title: Text('추가'),
+            title: Text('Add new Senior'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            title: Text('환경설정'),
+            title: Text('Setting'),
           ),
         ],
         currentIndex: _selectedIndex,

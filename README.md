@@ -1,35 +1,48 @@
-# dsc_solution_challenge_2020
+# Care Supporter (DSC-Solution-Challenge-2020)
 
-A new Flutter project.
+노인분들을 위한 생활관리사를 돕는 어플
+A Smart App with an wearable device that supports Social workers or Care givers who supports or helps Seniors. 
 
-## Getting Started
+## Explanation
+This project is made by DSC HUFS(Hankuk University of Foreign Studies) for DSC Solution Challenge 2020.
 
-This project is a starting point for a Flutter application.
+그리고 생활관리사가 그들을 돕는다.
+이 어플이 그들을 돕는다.
+fitbit을 통해 노인들의 맥박을 측정하고 생활관리사는 그 변화를 확인할 수 있고 부정맥이 측정되면 즉각적인 알림이 발송된다.
 
-A few resources to get you started if this is your first Flutter project:
+## Installation
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Link : 
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Flutter App generate :
 
-
-## 📂 Directory structure
-``` bash
-  |-android
-  |  |-images
-  |-assets
-  |  |-Crawling.ipynb
-  |-build
-  |  |-README.md
-  |-functions
-  |-images
-  |-ios
-  |-lib
-  |-node_modules
-  |-test
-  |pubspec.lock
-  |pubspec.yaml
+```bash
+git clone https://github.com/DSCHUFS/DSC-Solution-Challenge-2020.git
 ```
+
+## Usage
+
+```bash
+flutter run
+```
+
+## Use Stacks
+- Flutter
+- Firebase Authentication
+- Firebase Cloud Firestore
+- Firebase Cloud Functions
+- Firebase Cloud Messaging
+- Django
+- FitBit API
+
+
+## Contributors
+- [Hankyul Kim](https://github.com/rlagksruf16)
+- [Byunghak Koh](https://github.com/bengHak)
+- [Jihyun Lee](https://github.com/jihyunle2)
+- [WonHyuk Choi](https://github.com/devluce)
+- [Youngjun Park](https://github.com/jun108059)
+
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)

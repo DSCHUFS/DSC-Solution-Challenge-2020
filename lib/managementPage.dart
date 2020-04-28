@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dsc_solution_challenge_2020/personalReportPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
@@ -74,7 +75,7 @@ class ManagementPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Text(
-                    '특이사항',
+                    'Special Note',
                     style: TextStyle(
                       fontSize: 27.0,
                       color: Colors.black87,
@@ -85,7 +86,7 @@ class ManagementPage extends StatelessWidget {
                     height: 10.0,
                   ),
                   Text(
-                    profile.comments, 
+                    profile.comments,
                     style: TextStyle(
                       fontSize: 20.0,
                       color: Colors.black87,
@@ -102,17 +103,29 @@ class ManagementPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
-                          '최근 보고서',
+                          'Latest report',
                           style: TextStyle(
                             fontSize: 27.0,
                             color: Colors.black87,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Icon(
-                          Icons.keyboard_arrow_right,
-                          color: Colors.black45,
-                          size: 40.0,
+                        IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PersonalReportPage(
+                                    profile: profile,
+                                    currentEmail: currentEmail,
+                                  ),
+                                ));
+                          },
+                          icon: Icon(
+                            Icons.keyboard_arrow_right,
+                            color: Colors.black45,
+                            size: 40.0,
+                          ),
                         ),
                       ],
                     ),
@@ -135,7 +148,7 @@ class ManagementPage extends StatelessWidget {
                                     .toDate()
                                     .toString()
                                     .substring(0, 10)
-                                : '없음',
+                                : 'do not exist',
                             style: TextStyle(
                               fontSize: 20.0,
                               color: Colors.black87,
@@ -153,7 +166,8 @@ class ManagementPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Text(
-                    '기본 정보',
+                    // '기본 정보',
+                    'Basic Information',
                     style: TextStyle(
                       fontSize: 27.0,
                       color: Colors.black87,
@@ -164,7 +178,7 @@ class ManagementPage extends StatelessWidget {
                     height: 10.0,
                   ),
                   Text(
-                    '연락처 :  ${profile.phoneNumber}',
+                    'Contact :  ${profile.phoneNumber}',
                     style: TextStyle(
                       fontSize: 20.0,
                       color: Colors.black87,
@@ -174,7 +188,7 @@ class ManagementPage extends StatelessWidget {
                     height: 6.0,
                   ),
                   Text(
-                    ' 주소   :  ${profile.address}',
+                    ' Address   :  ${profile.address}',
                     style: TextStyle(
                       fontSize: 20.0,
                       color: Colors.black87,
