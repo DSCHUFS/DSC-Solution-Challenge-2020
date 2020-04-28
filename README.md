@@ -1,9 +1,11 @@
 # Care Supporter (DSC-Solution-Challenge-2020)
 
 노인분들을 위한 생활관리사를 돕는 어플
+A Smart App with an wearable device that supports Social workers or Care givers who supports or helps Seniors. 
 
 ## Explanation
-한국에는 독거노인이 많다~
+This project is made by DSC HUFS(Hankuk University of Foreign Studies) for DSC Solution Challenge 2020.
+
 그리고 생활관리사가 그들을 돕는다.
 이 어플이 그들을 돕는다.
 fitbit을 통해 노인들의 맥박을 측정하고 생활관리사는 그 변화를 확인할 수 있고 부정맥이 측정되면 즉각적인 알림이 발송된다.
