@@ -1,4 +1,10 @@
 # Care Supporter (DSC-Solution-Challenge-2020)
+![Flutter](https://img.shields.io/badge/Dart-Flutter-blue?logo=Flutter)
+![Firebase](https://img.shields.io/badge/with-Firebase-FFCC00?logo=Firebase)
+![djagno](https://img.shields.io/badge/Python-Django-003300?logo=Django)
+![Fitbit](https://img.shields.io/badge/API-Fitbit-66CCCC?logo=Fitbit)
+
+
 
 노인분들을 위한 생활관리사를 돕는 어플
 A Smart App with an wearable device that supports Social workers or Care givers who supports or helps Seniors. 
