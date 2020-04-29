@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+//환경설정 페이지
 class SettingPage extends StatefulWidget {
   @override
   _SettingPageState createState() => _SettingPageState();
@@ -34,6 +35,7 @@ class _SettingPageState extends State<SettingPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(height: 20.0),
+              //알림 설정 변경
               Text(
                 "Notifications Setting",
                 style: TextStyle(
@@ -44,6 +46,7 @@ class _SettingPageState extends State<SettingPage> {
                 ),
               ),
               SwitchListTile(
+                //디바이스에서 알림 받기
                 activeColor: Colors.tealAccent[700],
                 contentPadding: const EdgeInsets.only(left: 5),
                 value: _isSelectedNotify ?? true,
@@ -59,6 +62,7 @@ class _SettingPageState extends State<SettingPage> {
                 },
               ),
               SwitchListTile(
+                //이메일 알림 받기
                 activeColor: Colors.tealAccent[700],
                 contentPadding: const EdgeInsets.only(left: 5),
                 value: false,
@@ -66,6 +70,7 @@ class _SettingPageState extends State<SettingPage> {
                 onChanged: null,
               ),
               SwitchListTile(
+                //업데이트 정보 받기
                 activeColor: Colors.tealAccent[700],
                 contentPadding: const EdgeInsets.only(left: 5),
                 value: false,
@@ -75,6 +80,7 @@ class _SettingPageState extends State<SettingPage> {
               SizedBox(height: 20.0),
               _buildDivider(),
               SizedBox(height: 20.0),
+              //개인정보변경
               Text(
                 "Personal information",
                 style: TextStyle(
@@ -85,7 +91,7 @@ class _SettingPageState extends State<SettingPage> {
                 ),
               ),
               SizedBox(height: 20.0),
-              Card(
+              Card( //기본 정보 변경
                 elevation: 8.0,
                 margin: EdgeInsets.fromLTRB(5.0, 0.0, 5.0, 0.0),
                 shape: RoundedRectangleBorder(
@@ -102,7 +108,7 @@ class _SettingPageState extends State<SettingPage> {
                 ),
               ),
               SizedBox(height: 20.0),
-              Card(
+              Card( //비밀번호 변경
                 elevation: 8.0,
                 margin: EdgeInsets.fromLTRB(5.0, 0.0, 5.0, 0.0),
                 shape: RoundedRectangleBorder(
@@ -121,7 +127,7 @@ class _SettingPageState extends State<SettingPage> {
               SizedBox(height: 20.0),
               _buildDivider(),
               SizedBox(height: 20.0),
-              Text(
+              Text( //개발자와 대화하기
                 "Communicate with developers",
                 style: TextStyle(
                   fontSize: 30.0,
@@ -131,7 +137,7 @@ class _SettingPageState extends State<SettingPage> {
                 ),
               ),
               SizedBox(height: 20.0),
-              Card(
+              Card( //공지사항
                 elevation: 8.0,
                 margin: EdgeInsets.fromLTRB(5.0, 0.0, 5.0, 0.0),
                 shape: RoundedRectangleBorder(
@@ -148,8 +154,8 @@ class _SettingPageState extends State<SettingPage> {
                 ),
               ),
               SizedBox(height: 20.0),
-              Card(
-                elevation: 8.0,
+              Card( //버그 리포트
+                elevation: 8.0, 
                 margin: EdgeInsets.fromLTRB(5.0, 0.0, 5.0, 0.0),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0)),
@@ -167,6 +173,7 @@ class _SettingPageState extends State<SettingPage> {
               SizedBox(height: 20.0),
               _buildDivider(),
               SizedBox(height: 20.0),
+              //앱정보 확인하기
               Text(
                 "About apps",
                 style: TextStyle(

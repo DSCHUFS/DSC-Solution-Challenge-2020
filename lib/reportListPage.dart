@@ -8,6 +8,7 @@ import 'package:dsc_solution_challenge_2020/components/report_card.dart';
 import 'package:dsc_solution_challenge_2020/models/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+//보고서 리스트 페이지
 class ReportListPage extends StatefulWidget {
   static const String id = 'report_list_page';
 
@@ -23,6 +24,7 @@ class _ReportListPageState extends State<ReportListPage> {
   String currentEmail;
   String currentName;
 
+  //현재 유저 확인
   void getCurrentUser() async {
     try {
       final user = await _auth.currentUser();
@@ -79,6 +81,7 @@ class _ReportListPageState extends State<ReportListPage> {
               SizedBox(
                 height: 10.0,
               ),
+              //리스트뷰로 작성된 보고서들 모두 확인, 포맷은 components의 report_card.dart
               Expanded(
                 child: ContainerBox(
                   StreamBuilder<QuerySnapshot>(

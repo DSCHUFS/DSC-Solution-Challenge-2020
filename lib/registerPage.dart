@@ -4,6 +4,7 @@ import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
 import 'package:dsc_solution_challenge_2020/secondRegistrerPage.dart';
 import 'package:dsc_solution_challenge_2020/components/genderSelectBox.dart';
 
+//독거노인 등록페이지 - 1
 class RegisterPage extends StatefulWidget {
   @override
   _RegisterPageState createState() => _RegisterPageState();
@@ -41,6 +42,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      //이름 작성
                       Text(
                         'Name',
                         style: TextStyle(
@@ -60,6 +62,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                       SizedBox(height: 30.0),
+                      //주소 작성
                       Text(
                         'Address',
                         style: TextStyle(
@@ -79,6 +82,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                       SizedBox(height: 30.0),
+                      //연락처 작성
                       Text(
                         'Contact',
                         style: TextStyle(
@@ -93,6 +97,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         },
                       ),
                       SizedBox(height: 30.0),
+                      //생일 작성
                       Text(
                         'Birthday',
                         style: TextStyle(
@@ -112,6 +117,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                       SizedBox(height: 30.0),
+                      //핏빗 아이디 작성
                       Text(
                         'Fitbit ID',
                         style: TextStyle(
@@ -129,6 +135,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                       SizedBox(height: 30.0),
+                      //성별 선택
                       Text(
                         'Gender',
                         style: TextStyle(
@@ -184,6 +191,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ),
                     onPressed: () {
+                      //작성 안된 부분 있으면 팝업 알림
                       if (name == null || name == '') {
                         alertPopup(context, 1);
                       } else if (address == null || address == '') {
@@ -194,9 +202,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         alertPopup(context, 2);
                       } else if (gender == null) {
                         alertPopup(context, 6);
-                      } else {
-                        print(name);
-                        print(age);
+                      } else { //없으면 다음 페이지로 정보 넘기기
                         Navigator.push(
                             context,
                             MaterialPageRoute(

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
 import 'package:dsc_solution_challenge_2020/models/profile.dart';
 
+//독거 노인 기본정보 확인 페이지
 class ManagementPage extends StatelessWidget {
   final Profile profile;
   final String currentEmail;
@@ -20,6 +21,7 @@ class ManagementPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              //뒤로 가기 버튼
               FlatButton(
                 child: Icon(
                   Icons.keyboard_arrow_left,
@@ -35,10 +37,12 @@ class ManagementPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
+                    //노인 개인 사진 확인
                     CircleAvatar(
                       radius: 50.0,
                       backgroundImage: profile.photo,
                     ),
+                    //생년월일과 성별 확인
                     Container(
                       padding: EdgeInsets.all(20.0),
                       child: Column(
@@ -71,6 +75,7 @@ class ManagementPage extends StatelessWidget {
                   ],
                 ),
               ),
+              //기타 사항
               ContainerBox(Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
@@ -94,6 +99,7 @@ class ManagementPage extends StatelessWidget {
                   ),
                 ],
               )),
+              //노인별 보고서 확인
               ContainerBox(
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -162,11 +168,11 @@ class ManagementPage extends StatelessWidget {
                   ],
                 ),
               ),
+              // 기본 정보 확인 - 연락처와 주소
               ContainerBox(Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Text(
-                    // '기본 정보',
                     'Basic Information',
                     style: TextStyle(
                       fontSize: 27.0,
