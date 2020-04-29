@@ -121,7 +121,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add_circle_outline),
-            title: Text('Add Elder Info'),
+            title: Text('Add new Senior'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),

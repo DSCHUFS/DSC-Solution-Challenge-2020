@@ -121,7 +121,7 @@ class _MainPageState extends State<MainPage> {
                     Expanded(
                       child: Container(
                         alignment: Alignment.centerRight,
-                        margin: EdgeInsets.only(right:20),
+                        margin: EdgeInsets.only(right: 20),
                         child: Column(
                           children: <Widget>[
                             IconButton(
@@ -268,28 +268,19 @@ class _MainPageState extends State<MainPage> {
                             final elderPhoto = elderInfo.data['photo'];
                             final elderNumber = elderInfo.data['phoneNum'];
                             final elderETCinfo = elderInfo.data['note'];
-                            return StreamBuilder<DocumentSnapshot>(
-                              stream: _firestore
-                                  .collection('pulse_log')
-                                  .document('NcxLYL2kLhIGaI8e0Yvj')
-                                  .snapshots(),
-                              builder: (context, snapshot) {
-                                return PersonalCard(
-                                    Profile(
-                                      name: elderName,
-                                      address: elderAddress,
-                                      age: elderAge,
-                                      photo: FirebaseImage(elderPhoto),
-                                      comments: elderETCinfo,
-                                      phoneNumber: elderNumber,
-                                      gender: elderGender,
-                                    ),
-                                    snapshot.hasData
-                                        ? snapshot.data.data['pulse'].toString()
-                                        : '',
-                                    currentEmail);
-                              },
-                            );
+                            final elderPulse = elderInfo.data['pulse'] ?? '';
+                            return PersonalCard(
+                                Profile(
+                                  name: elderName,
+                                  address: elderAddress,
+                                  age: elderAge,
+                                  photo: FirebaseImage(elderPhoto),
+                                  comments: elderETCinfo,
+                                  phoneNumber: elderNumber,
+                                  gender: elderGender,
+                                ),
+                                elderPulse,
+                                currentEmail);
                           },
                         );
                       } else {
