@@ -78,7 +78,7 @@ class _ReportPageState extends State<ReportPage> {
                             'Name',
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: 30.0,
+                              fontSize: 25.0,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -86,7 +86,7 @@ class _ReportPageState extends State<ReportPage> {
                             widget.name,
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25.0,
+                              fontSize: 20.0,
                             ),
                           )
                         ],
@@ -113,7 +113,7 @@ class _ReportPageState extends State<ReportPage> {
                             'Create Date',
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: 30.0,
+                              fontSize: 25.0,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -121,7 +121,7 @@ class _ReportPageState extends State<ReportPage> {
                             now.toString().substring(0, 10),
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25.0,
+                              fontSize: 20.0,
                             ),
                           )
                         ],
@@ -148,7 +148,7 @@ class _ReportPageState extends State<ReportPage> {
                             'Visit Date',
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: 30.0,
+                              fontSize: 25.0,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -157,7 +157,7 @@ class _ReportPageState extends State<ReportPage> {
                               visitDate.toString().substring(0, 10),
                               style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 25.0,
+                                fontSize: 20.0,
                               ),
                             ),
                             onTap: () async {
