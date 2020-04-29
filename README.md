@@ -5,16 +5,20 @@
 ![Fitbit](https://img.shields.io/badge/API-Fitbit-66CCCC?logo=Fitbit)
 
 
+A Smart App with an wearable device that supports Social workers or Care givers who supports or helps Seniors. 
 
 노인분들을 위한 생활관리사를 돕는 어플
-A Smart App with an wearable device that supports Social workers or Care givers who supports or helps Seniors. 
+
+## Screenshots
+![login](./img/login.png)
+![main](./img/main.png)
+![register](./img/register.png)
 
 ## Explanation
 This project is made by DSC HUFS(Hankuk University of Foreign Studies) for DSC Solution Challenge 2020.
 
-그리고 생활관리사가 그들을 돕는다.
-이 어플이 그들을 돕는다.
-fitbit을 통해 노인들의 맥박을 측정하고 생활관리사는 그 변화를 확인할 수 있고 부정맥이 측정되면 즉각적인 알림이 발송된다.
+By using Flutter App and Wearable Device Fitbit, Social workers can receive Senior's pulse levels from individuals in real time.
+
 
 ## Installation
 
