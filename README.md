@@ -10,9 +10,7 @@ A Smart App with an wearable device that supports Social workers or Care givers 
 노인분들을 위한 생활관리사를 돕는 어플
 
 ## Screenshots
-![login](./img/login.png)
-![main](./img/main.png)
-![register](./img/register.png)
+<img src="https://github.com/DSCHUFS/DSC-Solution-Challenge-2020/blob/master/img/login.png" width="30%"> <img src="https://github.com/DSCHUFS/DSC-Solution-Challenge-2020/blob/master/img/main.png" width="30%"> <img src="https://github.com/DSCHUFS/DSC-Solution-Challenge-2020/blob/master/img/register.png" width="30%">
 
 ## Explanation
 This project is made by DSC HUFS(Hankuk University of Foreign Studies) for DSC Solution Challenge 2020.
