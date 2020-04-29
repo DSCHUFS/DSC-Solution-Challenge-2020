@@ -11,6 +11,7 @@ import 'dart:io';
 import 'package:path/path.dart';
 import 'dart:math';
 
+//독거노인 등록페이지 - 2
 class SecondRegisterPage extends StatefulWidget {
   SecondRegisterPage(
       {this.name, this.age, this.address, this.number, this.gender});
@@ -61,7 +62,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
   @override
   Widget build(BuildContext context) {
     bool showSpinner = false;
-
+    //갤러리에서 이미지 가져오기
     Future getImage() async {
       var image = await ImagePicker.pickImage(source: ImageSource.gallery);
       int fileLength = await image.length();
@@ -75,6 +76,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
       }
     }
 
+    //가져온 이미지를 파이어베이스에 업로드
     Future uploadPic(BuildContext context) async {
       randomNumber = Random().nextInt(10000) + 1;
       StorageReference firebaseStorageRef = FirebaseStorage.instance
@@ -105,7 +107,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
                       ),
                     ),
                   ),
-                  ContainerBox(
+                  ContainerBox( //기타사항 작성
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
@@ -138,7 +140,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
                       ],
                     ),
                   ),
-                  ContainerBox(
+                  ContainerBox( //사진 가져오는 버튼
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
@@ -171,7 +173,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
                       ],
                     ),
                   ),
-                  Container(
+                  Container( //제출하기
                     margin: EdgeInsets.fromLTRB(20, 30, 20, 10),
                     child: RaisedButton(
                       shape: RoundedRectangleBorder(
@@ -197,6 +199,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
                           if(_image != null){
                             await uploadPic(context);
                           }
+                          //이미지 업로드 안하면 기본이미지로 저장
                           setState(() {
                             if(_image == null){
                               profileImageURL = "gs://dsc-solution-challenge-6c028.appspot.com/photo/IMG_5862.PNG";
@@ -205,7 +208,7 @@ class _SecondRegisterPageState extends State<SecondRegisterPage> {
                               profileImageURL += "$timeVar$randomNumber$imageType";
                             }
                           });
-                          
+                          //파이어베이스에 노인 정보 저장
                           await _firestore
                               .collection('Accounts')
                               .document(currentEmail)

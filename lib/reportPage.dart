@@ -8,6 +8,7 @@ enum HealthState { good, normal, bad }
 enum ContactYesOrNo { yes, no }
 enum SocialYesOrNo { yes, no }
 
+//보고서 작성 페이지
 class ReportPage extends StatefulWidget {
   final String name;
   final String currentEmail;
@@ -74,6 +75,7 @@ class _ReportPageState extends State<ReportPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
+                          //독거 노인 이름
                           Text(
                             'Name',
                             style: TextStyle(
@@ -109,6 +111,7 @@ class _ReportPageState extends State<ReportPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
+                          //작성 날짜
                           Text(
                             'Create Date',
                             style: TextStyle(
@@ -144,6 +147,7 @@ class _ReportPageState extends State<ReportPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
+                          //방문 날짜
                           Text(
                             'Visit Date',
                             style: TextStyle(
@@ -188,6 +192,7 @@ class _ReportPageState extends State<ReportPage> {
                     ],
                   ),
                 ),
+                //건강 상태 3단계
                 Container(
                   margin: EdgeInsets.all(10.0),
                   child: Column(
@@ -270,6 +275,7 @@ class _ReportPageState extends State<ReportPage> {
                     ],
                   ),
                 ),
+                //가족과 연락 여부
                 Container(
                   margin: EdgeInsets.all(10.0),
                   child: Column(
@@ -332,6 +338,7 @@ class _ReportPageState extends State<ReportPage> {
                     ],
                   ),
                 ),
+                //사회활동 참여 여부
                 Container(
                   margin: EdgeInsets.all(10.0),
                   child: Column(
@@ -394,6 +401,7 @@ class _ReportPageState extends State<ReportPage> {
                     ],
                   ),
                 ),
+                //기타 활동 사항 작성
                 Container(
                   margin: EdgeInsets.all(10.0),
                   child: Column(
@@ -426,6 +434,7 @@ class _ReportPageState extends State<ReportPage> {
                   ),
                 ),
                 SizedBox(height: 30),
+                //파이어베이스에 저장하기
                 Center(
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 20),

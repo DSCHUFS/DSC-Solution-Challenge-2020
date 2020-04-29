@@ -19,8 +19,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      // home: CustomAppBar(),
-      // initialRoute: MainPage.id,
       initialRoute: LoginPage.id,
       routes: {
         MainPage.id: (context) => MainPage(),
