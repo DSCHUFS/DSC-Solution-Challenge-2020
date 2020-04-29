@@ -10,6 +10,7 @@ A Smart App with an wearable device that supports Social workers or Care givers 
 노인분들을 위한 생활관리사를 돕는 어플
 
 ## Screenshots
+<img src="https://github.com/DSCHUFS/DSC-Solution-Challenge-2020/blob/master/img/login.png" width="50%" height="50%>
 ![login](./img/login.png){: width="50%" height="50%"}
 ![main](./img/main.png){: width="50%" height="50%"}
 ![register](./img/register.png){: width="50%" height="50%"}
