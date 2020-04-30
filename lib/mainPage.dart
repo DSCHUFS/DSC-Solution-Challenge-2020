@@ -194,7 +194,7 @@ class _MainPageState extends State<MainPage> {
                     Text(
                       'Notification List',
                       style: TextStyle(
-                        fontSize: 25.0,
+                        fontSize: 27.0,
                         color: Colors.black87,
                         fontWeight: FontWeight.bold,
                       ),

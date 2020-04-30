@@ -68,60 +68,30 @@ class _ReportPageState extends State<ReportPage> {
                 ),
                 SizedBox(height: 30),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 10.0),
+                  margin: EdgeInsets.all(10.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(
-                        'Name',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          widget.name,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25.0,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          //독거 노인 이름
+                          Text(
+                            'Name',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(0),
-                        child: Divider(
-                          thickness: 1,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        'Create Date',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          now.toString().substring(0, 10),
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20.0,
-                          ),
-                        ),
+                          Text(
+                            widget.name,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20.0,
+                            ),
+                          )
+                        ],
                       ),
                       Padding(
                         padding: EdgeInsets.all(0),
@@ -138,40 +108,79 @@ class _ReportPageState extends State<ReportPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(
-                        'Visit Date',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: GestureDetector(
-                          child: Text(
-                            visitDate.toString().substring(0, 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          //작성 날짜
+                          Text(
+                            'Create Date',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            now.toString().substring(0, 10),
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 20.0,
                             ),
-                          ),
-                          onTap: () async {
-                            DateTime picked = await showDatePicker(
-                                    context: context,
-                                    initialDate: visitDate,
-                                    firstDate: DateTime(2019),
-                                    lastDate: DateTime(2101)) ??
-                                now;
-                            if (picked.isAfter(now)) {
-                              alertPopup(context, 3);
-                            } else if (picked != null && picked != visitDate) {
-                              setState(() {
-                                visitDate = picked;
-                              });
-                            }
-                          },
+                          )
+                        ],
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(0),
+                        child: Divider(
+                          thickness: 1,
+                          color: Colors.black,
                         ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(10.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          //방문 날짜
+                          Text(
+                            'Visit Date',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          GestureDetector(
+                            child: Text(
+                              visitDate.toString().substring(0, 10),
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20.0,
+                              ),
+                            ),
+                            onTap: () async {
+                              DateTime picked = await showDatePicker(
+                                  context: context,
+                                  initialDate: visitDate,
+                                  firstDate: DateTime(2019),
+                                  lastDate: DateTime(2101)) ?? now;
+                              if (picked.isAfter(now)) {
+                                alertPopup(context, 3);
+                              } else if (picked != null &&
+                                  picked != visitDate) {
+                                setState(() {
+                                  visitDate = picked;
+                                });
+                              }
+                            },
+                          ),
+                        ],
                       ),
                       Padding(
                         padding: EdgeInsets.all(0),

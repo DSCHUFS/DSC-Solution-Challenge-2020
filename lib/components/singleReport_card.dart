@@ -39,16 +39,7 @@ class ReportInfo extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      'Create Date',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.left,
-                    ),
-                    Text(
-                      '${reportDate.toString().substring(0,10)}',
+                      'Create Date: ${reportDate.toString().substring(0,10)}',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 20.0,
@@ -60,16 +51,7 @@ class ReportInfo extends StatelessWidget {
                       height: 5.0,
                     ),
                     Text(
-                      'Visit Date',
-                      style: TextStyle(
-                        color: Colors.black54,
-                        fontSize: 12.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.left,
-                    ),
-                    Text(
-                      '${visitDate.toString().substring(0,10)}',
+                      'Visit Date: ${visitDate.toString().substring(0,10)}',
                       style: TextStyle(
                         color: Colors.black54,
                         fontSize: 15.0,
@@ -87,7 +69,7 @@ class ReportInfo extends StatelessWidget {
                         'Health: $health',
                         style: TextStyle(
                           color: Colors.black54,
-                          fontSize: 12.0,
+                          fontSize: 10.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -95,7 +77,7 @@ class ReportInfo extends StatelessWidget {
                         'Contact: $contact',
                         style: TextStyle(
                           color: Colors.black54,
-                          fontSize: 12.0,
+                          fontSize: 10.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -103,7 +85,7 @@ class ReportInfo extends StatelessWidget {
                         'Social: $social',
                         style: TextStyle(
                           color: Colors.black54,
-                          fontSize: 12.0,
+                          fontSize: 10.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

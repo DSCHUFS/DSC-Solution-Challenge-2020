@@ -22,50 +22,44 @@ class PersonalCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           CircleAvatar(
-            radius: 20.0,
+            radius: 40.0,
             backgroundImage: profile.photo,
           ),
-          SizedBox(width:10),
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.symmetric(vertical: 10.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        profile.name,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 25.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                      SizedBox(width: 10),
-                      CircleAvatar(
-                        radius: 15,
-                        backgroundColor: Colors.blue,
-                        child: Text(
-                          pulse,
-                          style: TextStyle(
-                            color: Colors.yellow,
-                          ),
-                        ),
-                      ),
-                    ],
+          Container(
+            padding: EdgeInsets.all(20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  profile.name,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold,
                   ),
-                  Text(
-                    '${profile.age} / ${profile.gender}',
-                    style: TextStyle(
-                      color: Colors.black54,
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.left,
+                  textAlign: TextAlign.left,
+                ),
+                SizedBox(
+                  height: 5.0,
+                ),
+                Text(
+                  '${profile.age} / ${profile.gender}',
+                  style: TextStyle(
+                    color: Colors.black54,
+                    fontSize: 12.0,
+                    fontWeight: FontWeight.bold,
                   ),
-                ],
+                  textAlign: TextAlign.left,
+                ),
+              ],
+            ),
+          ),
+          CircleAvatar(
+            backgroundColor: Colors.blue,
+            child: Text(
+              pulse,
+              style: TextStyle(
+                color: Colors.yellow,
               ),
             ),
           ),
@@ -79,8 +73,7 @@ class PersonalCard extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ManagementPage(
-                        profile: profile, currentEmail: currentEmail),
+                    builder: (context) => ManagementPage(profile: profile, currentEmail: currentEmail),
                   ));
             },
           ),
