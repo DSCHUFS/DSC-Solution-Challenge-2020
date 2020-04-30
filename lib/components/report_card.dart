@@ -24,7 +24,7 @@ class PersonalReportCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
-            padding: EdgeInsets.all(20.0),
+            padding: EdgeInsets.symmetric(vertical:10.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -37,9 +37,9 @@ class PersonalReportCard extends StatelessWidget {
                   ),
                   textAlign: TextAlign.left,
                 ),
-                SizedBox(height: 5.0,),
+                // SizedBox(height: 5.0,),
                 Text(
-                  'Last Update Date: $latestDate',
+                  'Last Update Date: \n$latestDate',
                   style: TextStyle(
                     color: Colors.black54,
                     fontSize: 15.0,
