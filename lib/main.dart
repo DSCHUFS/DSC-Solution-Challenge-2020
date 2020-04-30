@@ -2,13 +2,18 @@ import 'package:dsc_solution_challenge_2020/components/customAppBar.dart';
 import 'package:dsc_solution_challenge_2020/loginPage.dart';
 import 'package:dsc_solution_challenge_2020/registerPage.dart';
 import 'package:dsc_solution_challenge_2020/reportPage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dsc_solution_challenge_2020/mainPage.dart';
 import 'package:dsc_solution_challenge_2020/signUpPage.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:device_preview/device_preview.dart';
 import 'dart:io';
 
-void main() => runApp(MyApp());
+void main() => runApp(DevicePreview(
+      builder: (context) => MyApp(),
+      // enabled: !kReleaseMode,
+    ));
 
 class MyApp extends StatelessWidget {
   @override
