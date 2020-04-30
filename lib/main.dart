@@ -10,10 +10,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:device_preview/device_preview.dart';
 import 'dart:io';
 
-void main() => runApp(DevicePreview(
-      builder: (context) => MyApp(),
-      // enabled: !kReleaseMode,
-    ));
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override

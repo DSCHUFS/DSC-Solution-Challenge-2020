@@ -21,7 +21,6 @@ dependencies:
   firebase_image: ^0.1.5
   image_picker: ^0.5.3+1
   device_preview: ^0.4.4
-  #firebase_storage: ^2.1.0+1
 
 
 dev_dependencies:
