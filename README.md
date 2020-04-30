@@ -31,6 +31,10 @@ Flutter App generate :
 git clone https://github.com/DSCHUFS/DSC-Solution-Challenge-2020.git
 ```
 
+Refer to it : 
+> If the IDE doesn't automatically executes `get packages`     
+> you have to manually type `flutter pub get` in the terminal  
+
 ## Usage
 
 ```bash
