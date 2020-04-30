@@ -8,6 +8,7 @@ import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+//로그인 페이지
 class LoginPage extends StatefulWidget {
   static const id = 'login_page';
 
@@ -26,6 +27,7 @@ class _LoginPageState extends State<LoginPage> {
   final _formKeySecond = GlobalKey<FormState>();
   final _auth = FirebaseAuth.instance;
 
+  //자동 로그인 설정
   void autoLogIn() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final bool isAutoLogin = prefs.getBool('autoLogin');
@@ -70,7 +72,6 @@ class _LoginPageState extends State<LoginPage> {
               child: SingleChildScrollView(
                 physics: AlwaysScrollableScrollPhysics(),
                 padding: EdgeInsets.symmetric(
-                  // horizontal: 30.0,
                   vertical: 120.0,
                 ),
                 child: Column(
@@ -83,6 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                           color: Colors.black,
                         )),
                     SizedBox(height: 30.0),
+                    //이메일 입력
                     Container(
                       height: 175,
                       child: ContainerBox(
@@ -130,6 +132,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
+                    //비밀번호 입력
                     Container(
                       height: 175,
                       child: ContainerBox(
@@ -180,6 +183,7 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: 10.0,
                     ),
+                    //자동 로그인 체크
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 10),
                       child: Row(
@@ -208,6 +212,7 @@ class _LoginPageState extends State<LoginPage> {
                         ],
                       ),
                     ),
+                    //비밀번호 찾기
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 20),
                       alignment: Alignment.centerRight,
@@ -325,6 +330,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
+                    //회원가입하기
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 20),
                       alignment: Alignment.centerRight,
@@ -345,6 +351,7 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: 30,
                     ),
+                    //로그인 버튼
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       width: 200,

@@ -17,6 +17,9 @@ This project is made by DSC HUFS(Hankuk University of Foreign Studies) for DSC S
 
 By using Flutter App and Wearable Device Fitbit, Social workers can receive Senior's pulse levels from individuals in real time.
 
+For more information check our Youtube introducing our Solution.
+
+[DSC HUFS Youtube](https://youtu.be/sV1MkwgMrNU)
 
 ## Installation
 

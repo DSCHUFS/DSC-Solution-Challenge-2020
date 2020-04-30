@@ -6,6 +6,7 @@ import 'package:dsc_solution_challenge_2020/models/profile.dart';
 import 'package:dsc_solution_challenge_2020/reportPage.dart';
 import 'package:dsc_solution_challenge_2020/components/singleReport_card.dart';
 
+//개인별 보고서 페이지
 class PersonalReportPage extends StatefulWidget {
   final Profile profile;
   final currentEmail;
@@ -34,6 +35,7 @@ class _PersonalReportPageState extends State<PersonalReportPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
+              //뒤로가기 버튼
               Align(
                 alignment: Alignment.centerLeft,
                 child: FlatButton(
@@ -53,6 +55,7 @@ class _PersonalReportPageState extends State<PersonalReportPage> {
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
+                      //독거 노인 이름
                       Text(
                         widget.profile.name,
                         style: TextStyle(
@@ -61,6 +64,7 @@ class _PersonalReportPageState extends State<PersonalReportPage> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      //보고서 추가 버튼
                       IconButton(
                         icon: Icon(
                           Icons.add,
@@ -78,7 +82,7 @@ class _PersonalReportPageState extends State<PersonalReportPage> {
                       ),
                     ]),
               ),
-              // 카드들 들어갈 내용
+             //리스트뷰로 작성된 보고서 정보 모두 확인, 포맷은 components의 singleReport_card.dart
               Expanded(
                 child: ContainerBox(
                   StreamBuilder<QuerySnapshot>(
@@ -116,7 +120,6 @@ class _PersonalReportPageState extends State<PersonalReportPage> {
                               note: note,
                             );
                           },
-                          // itemCount: profiles.length,
                         );
                       } else {
                         return CupertinoActivityIndicator();

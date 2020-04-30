@@ -16,6 +16,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_image/firebase_image.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
+//로그인 후 첫 페이지(메인)
 class MainPage extends StatefulWidget {
   static const String id = 'main_page';
   @override
@@ -32,6 +33,7 @@ class _MainPageState extends State<MainPage> {
   String currentName;
   bool _isSelectedNotify;
 
+  //현재 유저 정보 확인
   void getCurrentUser() async {
     try {
       final user = await _auth.currentUser();
@@ -51,6 +53,7 @@ class _MainPageState extends State<MainPage> {
     }
   }
 
+  //알림 여부 설정
   void getSetInfo() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -132,13 +135,11 @@ class _MainPageState extends State<MainPage> {
                                   setState(() {
                                     _isSelectedNotify = false;
                                     prefs.setBool('notification', false);
-                                    // print(prefs.getBool('notification'));
                                   });
                                 } else {
                                   setState(() {
                                     _isSelectedNotify = true;
                                     prefs.setBool('notification', true);
-                                    // print(prefs.getBool('notification'));
                                   });
                                 }
                               },
@@ -155,6 +156,7 @@ class _MainPageState extends State<MainPage> {
                             SizedBox(
                               height: 5.0,
                             ),
+                            //로그아웃 버튼
                             InkWell(
                               onTap: () async {
                                 final SharedPreferences prefs =
@@ -188,15 +190,15 @@ class _MainPageState extends State<MainPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
+                    //알림 리스트 확인하러 가는 버튼
                     Text(
                       'Notification List',
                       style: TextStyle(
-                        fontSize: 25.0,
+                        fontSize: 27.0,
                         color: Colors.black87,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    //알림 >
                     Row(
                       children: <Widget>[
                         StreamBuilder<QuerySnapshot>(
@@ -247,6 +249,7 @@ class _MainPageState extends State<MainPage> {
                   ],
                 ),
               ),
+              //리스트뷰로 독거노인 모두 확인, 포맷은 components의 personal_card.dart
               Expanded(
                 child: ContainerBox(
                   StreamBuilder<QuerySnapshot>(

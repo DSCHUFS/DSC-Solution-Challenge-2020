@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+//회원가입 페이지
 class SignUpPage extends StatefulWidget {
   static const id = 'signIn_page';
 
@@ -81,7 +82,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                       ),
                     ),
-                  Container(
+                  Container(  //이메일 입력
                     height: 175,
                     child: ContainerBox(
                       Column(
@@ -128,7 +129,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     ),
                   ),
-                  Container(
+                  Container( //비밀번호 입력
                     height: 175,
                     child: ContainerBox(
                       Column(
@@ -175,7 +176,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     ),
                   ),
-                  Container(
+                  Container( //비밀번호 확인
                     height: 175,
                     child: ContainerBox(
                       Column(
@@ -220,7 +221,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     ),
                   ),
-                  Container(
+                  Container( //이름 입력
                     height: 175,
                     child: ContainerBox(
                       Column(
@@ -263,7 +264,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     ),
                   ),
-                  Container(
+                  Container( //주민등록번호 입력
                     height: 175,
                     child: ContainerBox(
                       Column(
@@ -278,11 +279,11 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                           ),
                           SizedBox(height: 10.0),
-                          Row(
+                          Row( //생일 입력
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Flexible(
-                                child: TextFormField(
+                                child: TextFormField( //앞 6자리
                                   onChanged: (value) {
                                     if (value.length == 6) {
                                       resNum.requestFocus();
@@ -323,7 +324,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                               SizedBox(width: 15),
                               Flexible(
-                                child: TextFormField(
+                                child: TextFormField( //뒷 1자리
                                   onChanged: (value) {
                                     backIdNum = value;
                                   },
@@ -361,7 +362,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   SizedBox(
                     height: 20,
                   ),
-                  Container(
+                  Container( //제출 버튼
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     width: 200,
                     child: RaisedButton(
@@ -404,9 +405,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                     );
                                   });
                             }
-                          } catch (e) {
+                          } catch (e) { //에러컨트롤
                             print(e);
-                            showDialog(
+                            showDialog( //중복확인
                                 context: context,
                                 builder: (BuildContext context) {
                                   return AlertDialog(

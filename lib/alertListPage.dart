@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dsc_solution_challenge_2020/components/containerBox.dart';
 
+//알림 리스트 페이지
 class AlertListPage extends StatefulWidget {
   static const String id = 'alert_list_page';
   final currentEmail;
@@ -32,6 +33,7 @@ class AlertListPageState extends State<AlertListPage> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        //뒤로 가기 버튼
         leading: IconButton(
           icon: Icon(
             Icons.keyboard_arrow_left,
@@ -43,6 +45,7 @@ class AlertListPageState extends State<AlertListPage> {
           },
         ),
       ),
+      //받았던 알림 모두 확인 가능
       body: Container(
         child: SafeArea(
           child: Column(
